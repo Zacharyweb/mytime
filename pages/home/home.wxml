@@ -1,0 +1,43 @@
+<!--pages/home/home.wxml-->
+<view class="outerst_layer">
+  <view class="top_block">
+    <image class="top_block_bg" src="../../static/img/bg2.png"></image>
+    <view class="user_msg">
+      <image class="user_avatar" src="../../static/img/avatar.jpg"></image>
+      <view class="user_info">
+        <view class="user_name">朱两边</view>
+        <view class="to_history_btn">查看我的历史时间记录</view>
+      </view>
+      <image class="history_icon_btn" src="../../static/img/right_arrow.png"></image>
+    </view>
+  </view>
+
+  <view class="content_block">
+    <view class="act_item">
+      <view class="act_pic_wrapper">
+        <image class="act_pic" src="../../static/img/meeting.png"></image>
+      </view>
+      <view class="act_name">
+        会议
+      </view>
+    </view>
+    <view class="act_item">
+      <view class="act_pic_wrapper">
+        <image class="act_pic" src="../../static/img/work.png"></image>
+      </view>
+      <view class="act_name">
+        工作
+      </view>
+    </view>
+    <view class="act_item no_margin_right">
+      <view class="act_pic_wrapper">
+        <image class="act_pic" src="../../static/img/ans.png"></image>
+      </view>
+      <view class="act_name">
+        分析
+      </view>
+    </view>
+  </view>
+
+
+</view>
