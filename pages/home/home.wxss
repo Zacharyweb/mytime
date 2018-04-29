@@ -53,33 +53,404 @@
   flex-wrap: wrap;
 }
 .content_block .act_item{
-   width: 236rpx;
-   height: 236rpx;
-   margin-right:10rpx;
-   background-color: #a1d2ce;
+   width: 235rpx;
+   height: 235rpx;
+   margin-right: 10rpx;
    margin-bottom: 10rpx;
+   box-shadow: 0 1rpx 9rpx 0 rgba(29,133,116,.63);
+   text-align: center;
+   position: relative;
+   overflow: hidden;
+   border-radius: 6rpx;
 }
-.content_block .act_item.activite{
-  background-color: #1d8574;
-}
+
 .content_block .act_item.no_margin_right{
   margin-right: 0;
 }
 
 
-.content_block .act_item .act_pic_wrapper{
-  padding-top: 60rpx;
+.content_block .act_item .to_edit_btn_mask{
+  position: absolute;
+  top:0;
+  left: -1px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-90deg);
+  transform-origin: left bottom;
+  transition: all 0.4s ease-in-out;
+}
+.content_block .act_item .to_edit_btn_mask.show{
+  transform: rotate(0deg);
+}
+.content_block .act_item .to_edit_btn_mask .to_edit_btn_text{
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.content_block .act_item .act_icon_wrap{
+  padding: 25rpx 0 8rpx 0;
   display: flex;
   justify-content: center;
-  margin-bottom: 15rpx;
 }
-.content_block .act_item .act_pic_wrapper .act_pic{
-  width: 80rpx;
-  height:80rpx;
+.content_block .act_item.act_set_block .act_icon_wrap{
+  padding:0.5rpx 0 8rpx 0;
+}
+.content_block .act_item .act_icon_wrap .act_icon_pic{
+  width: 100rpx;
+  height: 100rpx;
 }
 .content_block .act_item .act_name{
-  font-size: 28rpx;
-  color: #000;
-  text-align: center;
+  font-weight: 600;
+  font-size: 26rpx;
+  margin-bottom: 8rpx;
+  color: #222;
+  line-height: 1.2;
+}
+.content_block .act_item .act_remark{
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.2;
+}
+
+.content_block .act_item .act_trigger{
+  width: 205rpx;
+  padding:0 15rpx;
+  margin-top: 12rpx;
+  display: flex;
+  justify-content: center;
+}
+.content_block .act_item .act_start_btn{
+  height: 40rpx;
+  width: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:2rpx solid #1d8574;
+  background-color: #a1d2ce;
+  color: #1d8574;
+  font-size: 24rpx;
+  border-radius: 4prx;
+}
+.content_block .act_item .act_end_btn{
+  height: 40rpx;
+  width: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:2rpx solid #1d8574;
+  background-image: linear-gradient(90deg, #1d8574 0%, #4ec1bc 150%);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 4rpx;
+}
+
+.content_block .to_remark_btn{
+    position: absolute;
+    top: 0;
+    right: 10rpx;
+}
+
+.content_block .to_remark_btn .btn_text {
+   width: 48rpx;
+   height: 48rpx;
+}
+
+.content_block .act_remark_panel{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 80%;
+  padding: 0 10%;
+  height: 165rpx;
+  background-color: rgba(29,133,116,0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: all 0.3s;
+}
+
+.content_block .act_remark_panel.show{
+    transform: translateY(0%);
+}
+.content_block .act_remark_panel .act_remark_text{
+  font-size: 26rpx;
+  color: #fff;
+
+}
+.content_block .act_remark_panel .act_remark_text1{
+    margin-bottom: 10rpx;
+}
+.content_block .act_remark_panel .close_icon{
+
+  position: absolute;
+  top:0;
+  right:0;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.content_block .act_item .unactived_mask{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 165rpx;
+  background-color: rgba(255,255,255,0.6);
+}
+
+
+.act_edit_block{
+  position: fixed;
+  left: 10rpx;
+  bottom: 20rpx;
+  width: 690rpx;
+  height: 100rpx;
   padding:0 20rpx;
+  border-radius: 4rpx;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.act_edit_block .act_edit_trigger{
+  position: relative;
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.act_edit_block .divide_line{
+  position: absolute;
+  top:50%;
+  right: 0;
+  margin-top: -20rpx;
+  height: 40rpx;
+  width: 4rpx;
+  background-color: #fff;
+}
+.act_edit_block .act_icon_pic{
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 20rpx;
+}
+.act_edit_block .set_btn_text{
+  color: #fff;
+  font-size: 28rpx;
+}
+
+
+
+
+.edit_remark_wrapper .edit_remark_panel{
+   position: fixed;
+   top:0;
+   bottom: 0;
+   right: 0;
+   width: 750rpx;
+   z-index: 10;
+   background-color: #fff;
+   transition: all 0.3s;
+   transform: translateX(100%);
+}
+.edit_remark_wrapper .edit_remark_panel.show{
+  transform: translateX(0%);
+}
+.edit_remark_panel .panel_header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-size: 32rpx;
+  height: 100rpx;
+  position: relative;
+}
+.edit_remark_panel .panel_header .close_icon{
+  position: absolute;
+  left:30rpx;
+  width: 48rpx;
+  height: 48rpx;
+  top:50%;
+  margin-top: -24rpx;
+}
+
+.edit_remark_panel .panel_content{
+   padding:100rpx 50rpx;
+   padding-bottom: 10rpx;
+}
+.edit_remark_panel .panel_content .input_item{
+   margin-bottom: 50rpx;
+}
+.edit_remark_panel .panel_content .item_name{
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  color: #1d8574;
+  display: flex;
+
+}
+.edit_remark_panel .panel_content .item_name .item_name_content{
+   position: relative;
+}
+.edit_remark_panel .panel_content .item_name .edit_remark_name_icon{
+   position: absolute;
+   right: -60rpx;
+   top: 0;
+   width: 48rpx;
+   height: 48rpx;
+}
+
+
+.edit_remark_panel .panel_content .item_input_wrap{
+   height: 60rpx;
+   border-bottom:2rpx solid #d9d9d9;
+   display: flex;
+}
+.edit_remark_panel .panel_content .remark_input{
+  font-size: 30rpx;
+  line-height: 2;
+  height: 60rpx;
+  flex: 1;
+}
+
+.edit_remark_panel .panel_content .history_remark_list{
+   margin-top: 30rpx;
+   margin-bottom: 20rpx;
+   min-height: 100rpx;
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.edit_remark_panel .panel_content .history_remark_list .history_remark_item{
+  height: 50rpx;
+  padding:0 20rpx;
+  background-color: #fff;
+  color: #1d8574;
+  border:2rpx solid #1d8574;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.edit_remark_panel .panel_content .history_remark_list .history_remark_item.active{
+  background-color: #1d8574;
+  color: #fff;
+}
+
+.edit_remark_panel .panel_content .history_remark_list .history_remark_item .delete_icon{
+  background-color: #fff;
+   position: absolute;
+   width: 30rpx;
+   height: 30rpx;
+   border-radius: 50%;
+   right: -15rpx;
+   top:-10rpx;
+} 
+
+.edit_remark_panel .panel_content .history_remark_list .history_remark_item .delete_icon .delete_icon_pic{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+ .edit_remark_panel .panel_footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+}
+ .edit_remark_panel .panel_footer .bottom_btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+
+}
+ .edit_remark_panel .panel_footer .cancel_btn{
+  background-color: #f6f6f6;
+  border-top: 2rpx solid #d9d9d9;
+  color: #666;
+  width: 33%;
+}
+ .edit_remark_panel .panel_footer .submit_btn{
+  width: 67%;
+  background-color: #1d8574;
+  border-top: 2rpx solid #1d8574;
+  color: #fff;
+}
+
+
+
+
+
+.edit_remark_name_mask{
+   position: fixed;
+   top:0;
+   bottom: 0;
+   right: 0;
+   width: 750rpx;
+   z-index: 11;
+   background-color: rgba(0,0,0,0.8);
+   transition: all 0.3s;
+}
+.edit_remark_name_panel{
+   position: fixed;
+   top:0;
+   left: 0;
+   width: 750rpx;
+   height: 120rpx;
+   right: 0;
+   z-index: 12;
+   background-color: #f6f6f6;
+   border-bottom: 2rpx solid #d9d9d9;
+   display:flex;
+   align-items: center;
+   justify-content: center;
+
+   transition: all 0.3s;
+   transform: translateY(-100%);
+}
+.edit_remark_name_panel.show{
+   transform: translateY(0);
+}
+.edit_remark_name_panel .name_input_wrap{
+  width: 560rpx;
+  height: 60rpx;
+  overflow: hidden;
+  border:2rpx solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 8rpx;
+  display: flex;
+}
+
+.edit_remark_name_panel .name_input_wrap .name_input{
+  font-size: 28rpx;
+  flex: 1;
+  height: 60rpx;
+  color: #333;
+  padding:0 30rpx;
+}
+.edit_remark_name_panel  .submit_btn{
+  width: 100rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26rpx;
+  background-color: #1d8574;
+  border-radius: 8rpx;
+  margin-left: 30rpx;
 }

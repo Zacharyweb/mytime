@@ -1,6 +1,11 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/history/history",
+    "pages/editAct/editAct",
+    "pages/editActName/editActName",
+    "pages/iconHouse/iconHouse",
+  
     "pages/index/index",
     "pages/logs/logs"
   ],

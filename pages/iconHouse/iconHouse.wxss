@@ -1,0 +1,191 @@
+/* pages/iconHouse/iconHouse.wxss */
+page {
+  background-color: #fff;
+}
+
+.selecte_act_icon_layer {
+  padding: 30rpx;
+  padding-right: 0;
+  padding-bottom: 140rpx;
+}
+
+.content_block {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content_block .act_item {
+  width: 220rpx;
+  height: 220rpx;
+  margin-right: 15rpx;
+  margin-bottom: 15rpx;
+  box-shadow: 0 1rpx 9rpx 0 rgba(223, 223, 223, 0.63);
+  position: relative;
+}
+
+.content_block .act_item .act_item_inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content_block .act_item .act_item_inner.selected {
+  border: 6rpx solid #1d8574;
+}
+
+.content_block .act_item.no_margin_right {
+  margin-right: 0;
+}
+
+.content_block .act_item.act_set_block {
+}
+
+.content_block .act_item .act_icon_pic {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.content_block .act_item .act_icon_name {
+  font-weight: 600;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #222;
+  line-height: 1.2;
+}
+
+.content_block .edit_act_icon_btn {
+  position: fixed;
+  bottom: 30rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 60rpx;
+  background-color: #a1d2ce;
+  font-size: 32rpx;
+}
+
+.content_block .select_btn {
+  color: #fff;
+  background-color: #d9d9d9;
+  border: 2rpx solid #ccc;
+  width: 150rpx;
+  left: 50rpx;
+  justify-content: center;
+}
+
+.content_block .delete_btn {
+  color: #fff;
+  background-color: #d9d9d9;
+  border: 2rpx solid #ccc;
+  width: 150rpx;
+  left: 250rpx;
+  justify-content: center;
+}
+
+.content_block .select_btn.active {
+  border: 2rpx solid #1d8574;
+  background-color: #1d8574;
+}
+
+.content_block .delete_btn.active {
+  background-color: #a1d2ce;
+  border: 2rpx solid #1d8574;
+  color: #1d8574;
+}
+
+.content_block .add_btn {
+  background-color: #a1d2ce;
+  border: 2rpx solid #1d8574;
+  color: #1d8574;
+  padding-left: 30rpx;
+  width: 210rpx;
+  right: 50rpx;
+}
+
+.content_block .add_btn .btn_icon {
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 10rpx;
+}
+
+.edit_icon_name_mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 750rpx;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s;
+}
+
+.edit_icon_name_panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 120rpx;
+  right: 0;
+  z-index: 12;
+  background-color: #f6f6f6;
+  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  transform: translateY(-100%);
+}
+
+.edit_icon_name_panel.show {
+  transform: translateY(0);
+}
+
+.edit_icon_name_panel .name_input_wrap {
+  width: 360rpx;
+  height: 60rpx;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 8rpx;
+  display: flex;
+}
+
+.edit_icon_name_panel .name_input_wrap .name_input {
+  flex: 1;
+  height: 60rpx;
+  font-size: 28rpx;
+  color: #333;
+  padding: 0 30rpx;
+}
+
+.edit_icon_name_panel .cancel_btn {
+  width: 146rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d8574;
+  font-size: 26rpx;
+  border: 2rpx solid #1d8574;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
+}
+
+.edit_icon_name_panel .submit_btn {
+  width: 150rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26rpx;
+  background-color: #1d8574;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
+}

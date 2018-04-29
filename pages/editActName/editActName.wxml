@@ -1,0 +1,8 @@
+<!--pages/editActName/editActName.wxml-->
+<view class="edit_text_outlayer" id="app">
+  <view class="edit_input_wrap">
+    <input class="edit_input" value="{{actName}}" type="text" bindinput="bindNameInput" maxlength="10" auto-focus/>
+    <image class="close_icon_pic" src="../../static/img/close_icon.png" wx:if="{{showDeleteIcon}}" bindtap="cleanText"></image>
+  </view>
+  <view class="submit_btn" bindtap='submitName'>确认</view>
+</view>

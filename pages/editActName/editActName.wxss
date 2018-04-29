@@ -1,0 +1,52 @@
+/* pages/editActName/editActName.wxss */
+.edit_text_outlayer{
+  position: absolute;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #efeff4;
+  padding-top: 30rpx;
+}
+.edit_input_wrap{
+  position: relative;
+  background-color: #fff;
+  border-top:2rpx solid #d9d9d9;
+  border-bottom:2rpx solid #d9d9d9;
+  padding-left:30rpx;
+  padding-right: 80rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit_input_wrap .edit_input{
+  height: 100rpx;
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+.edit_input_wrap .close_icon_pic{
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  right: 20rpx;
+  top:50%;
+  margin-top: -18rpx;
+}
+.edit_text_outlayer .submit_btn{
+  position: absolute;
+  left: 30rpx;
+  bottom: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 690rpx;
+  height: 100rpx;
+  background-image: linear-gradient(90deg, #1d8574 0%, #4ec1bc 130%);
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 1rpx 9rpx 0 rgba(223,223,223,.63);
+
+}

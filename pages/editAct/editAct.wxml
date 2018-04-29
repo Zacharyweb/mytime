@@ -1,0 +1,21 @@
+<!--pages/editAct/editAct.wxml-->
+<view class="edit_outlayer">
+  <view class="edit_item_wrapper">
+    <view class="edit_item edit_act_icon_block" bindtap='toIconHouse'>
+      <view class="edit_item_name">活动图标</view>
+      <view class="edit_item_content">
+        <image class="edit_item_icon" src="../../static/img/histrory.png"></image>
+        <image class="to_edit_arrow" src="../../static/img/to_edit_arrow.png"></image>
+      </view>
+    </view>
+    <view class="edit_item edit_act_name_block" bindtap='toEditActName'>
+      <view class="edit_item_name">活动名称</view>
+      <view class="edit_item_content">
+        <view class="act_name">工作</view>
+        <image class="to_edit_arrow" src="../../static/img/to_edit_arrow.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit_btn" bindtap='submitEditAct'>确认修改</view>
+</view>

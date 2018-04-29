@@ -1,0 +1,68 @@
+/* pages/editAct/editAct.wxss */
+.edit_outlayer{
+  position: absolute;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #efeff4;
+  padding-top: 30rpx;
+}
+.edit_item_wrapper{
+  background-color: #fff;
+  border-top:2rpx solid #d9d9d9;
+  border-bottom:2rpx solid #d9d9d9;
+  padding-left: 30rpx;
+}
+.edit_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding-right: 30rpx;
+}
+.edit_item .edit_item_name{
+  font-size: 32rpx;
+  color: #000;
+}
+.edit_item .edit_item_content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+.edit_item .edit_item_content .to_edit_arrow{
+   margin-left: 25rpx;
+   height: 24rpx;
+   width: 24rpx;
+}
+
+.edit_act_icon_block{
+  height: 140rpx;
+  border-bottom:2rpx solid #d9d9d9;
+}
+.edit_act_icon_block .edit_item_content .edit_item_icon{
+  width: 80rpx;
+  height: 80rpx;
+}
+.edit_act_name_block{
+  height: 100rpx;
+}
+.edit_act_name_block .edit_item_content .act_name{
+  font-size: 28rpx;
+  color: #888;
+}
+
+.edit_outlayer .submit_btn{
+  position: absolute;
+  left: 30rpx;
+  bottom: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 690rpx;
+  height: 100rpx;
+  background-image: linear-gradient(90deg, #1d8574 0%, #4ec1bc 130%);
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 1rpx 9rpx 0 rgba(223,223,223,.63);
+}

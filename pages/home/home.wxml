@@ -6,38 +6,115 @@
       <image class="user_avatar" src="../../static/img/avatar.jpg"></image>
       <view class="user_info">
         <view class="user_name">朱两边</view>
-        <view class="to_history_btn">查看我的历史时间记录</view>
+        <view class="to_history_btn" bindtap="toHistoryPage">查看我的历史时间记录</view>
       </view>
-      <image class="history_icon_btn" src="../../static/img/right_arrow.png"></image>
+      <image class="history_icon_btn" bindtap="toHistoryPage" src="../../static/img/right_arrow.png"></image>
     </view>
   </view>
+
 
   <view class="content_block">
-    <view class="act_item">
-      <view class="act_pic_wrapper">
-        <image class="act_pic" src="../../static/img/meeting.png"></image>
+    <view wx:for="{{actList}}" class="act_item {{(index*1 + 1)%3 == 0 ?'no_margin_right':''}} {{index == countTarget?'bounceIn':''}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="changeCountTarget">
+      <view class="act_icon_wrap">
+        <image class="act_icon_pic" src="{{item.icon}}"></image>
       </view>
-      <view class="act_name">
-        会议
+      <view class="act_name">{{item.name}}</view>
+      <!-- <view class="act_remark">{{item.remark}}</view> -->
+      <view class="act_trigger">
+        <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view>
+        <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
       </view>
-    </view>
-    <view class="act_item">
-      <view class="act_pic_wrapper">
-        <image class="act_pic" src="../../static/img/work.png"></image>
+
+      <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
+
+      <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
+        <view class="to_edit_btn_text">点击去编辑</view>
       </view>
-      <view class="act_name">
-        工作
+      <view class="to_remark_btn" wx:if="{{index == countTarget}}" catchtap="showRemarkPanel">
+        <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
       </view>
-    </view>
-    <view class="act_item no_margin_right">
-      <view class="act_pic_wrapper">
-        <image class="act_pic" src="../../static/img/ans.png"></image>
-      </view>
-      <view class="act_name">
-        分析
+      <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
+        <view class="act_remark_text act_remark_text1" catchtap="showEditRemarkPanel">平安保险</view>
+        <view class="act_remark_text" catchtap="showEditRemarkPanel">投资上市</view>
+        <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
       </view>
     </view>
   </view>
 
+  <!-- 底部新增活动、编辑活动 -->
+  <view class="act_edit_block">
+    <view class="act_edit_trigger" bindtap="addNewAct">
+      <image class="act_icon_pic" src="../../static/img/add_icon.png"></image>
+      <view class="set_btn_text">新增活动</view>
+      <view class="divide_line"></view>
+    </view>
 
+    <view class="act_edit_trigger" bindtap="editAct">
+      <image class="act_icon_pic" src="../../static/img/edit_icon.png"></image>
+      <view class="set_btn_text" wx:if="{{!isInEditing}}">编辑活动</view>
+      <view class="set_btn_text" wx:if="{{isInEditing}}">取消编辑</view>
+    </view>
+  </view>
+
+  <!-- 修改备注的面板 -->
+  <view class="edit_remark_wrapper">
+    <view class="edit_remark_panel {{editRemarkPanelShow?'show':''}}">
+      <view class="panel_header">
+        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> 设置活动备注
+      </view>
+      <view class="panel_content">
+        <view class="input_item">
+          <view class="item_name">
+            <view class="item_name_content">
+              备注1名称
+              <image bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
+            </view>
+
+          </view>
+          <view class="item_input_wrap">
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" placeholder="请输入或从下面标签中选择备注"/>
+          </view>
+          <view class="history_remark_list">
+
+
+          </view>
+        </view>
+
+        <view class="input_item">
+          <view class="item_name">
+            <view class="item_name_content">
+              备注2名称
+              <image bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
+            </view>
+          </view>
+          <view class="item_input_wrap">
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" placeholder="请输入或从下面标签中选择备注"/>
+          </view>
+
+          <view class="history_remark_list">
+            <view class="history_remark_item active">备注备注
+              <view class="delete_icon">
+                <image class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="panel_footer">
+        <view class="bottom_btn cancel_btn">重置</view>
+        <view class="bottom_btn submit_btn" bindtap="submitActRemark">确定</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 修改备注名称的面板 -->
+  <view class="edit_remark_name_wrapper">
+    <view class="edit_remark_name_mask" wx:if="{{editRemarkNamePanelShow}}" bindtap="hideEditRemarkNamePanel"></view>
+    <view class="edit_remark_name_panel {{editRemarkNamePanelShow?'show':''}}">
+      <view class="name_input_wrap">
+        <input class="name_input" type="text" />
+      </view>
+      <view class="submit_btn" bindtap='submitEditRemarkName'>确定</view>
+    </view>
+  </view>
 </view>
