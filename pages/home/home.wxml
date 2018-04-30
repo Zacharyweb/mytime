@@ -66,16 +66,20 @@
         <view class="input_item">
           <view class="item_name">
             <view class="item_name_content">
-              备注1名称
-              <image bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
+              {{remark1Name}}
+              <image data-idx="1" bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
             </view>
 
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" placeholder="请输入或从下面标签中选择备注"/>
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6'/>
           </view>
           <view class="history_remark_list">
-
+            <view class="history_remark_item {{index == selectedRemark1Index?'active':''}}" wx:for="{{remark1List}}"  wx:key="{{index}}" data-idx="{{index}}"  bindtap="selectRemark1">{{item.name}}
+              <view class="delete_icon" catchtap='deleteRemark1' data-idx="{{index}}">
+                <image  class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+              </view>
+            </view>
 
           </view>
         </view>
@@ -83,25 +87,25 @@
         <view class="input_item">
           <view class="item_name">
             <view class="item_name_content">
-              备注2名称
-              <image bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
+              {{remark2Name}}
+              <image data-idx="2" bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
             </view>
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" placeholder="请输入或从下面标签中选择备注"/>
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6'/>
           </view>
 
           <view class="history_remark_list">
-            <view class="history_remark_item active">备注备注
-              <view class="delete_icon">
-                <image class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+            <view class="history_remark_item {{index == selectedRemark2Index?'active':''}}" wx:for="{{remark2List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark2">{{item.name}}
+              <view class="delete_icon" catchtap='deleteRemark2' data-idx="{{index}}">
+                <image  class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
               </view>
             </view>
           </view>
         </view>
       </view>
       <view class="panel_footer">
-        <view class="bottom_btn cancel_btn">重置</view>
+        <view class="bottom_btn cancel_btn" bindtap="resetActRemark">重置</view>
         <view class="bottom_btn submit_btn" bindtap="submitActRemark">确定</view>
       </view>
     </view>
@@ -112,7 +116,7 @@
     <view class="edit_remark_name_mask" wx:if="{{editRemarkNamePanelShow}}" bindtap="hideEditRemarkNamePanel"></view>
     <view class="edit_remark_name_panel {{editRemarkNamePanelShow?'show':''}}">
       <view class="name_input_wrap">
-        <input class="name_input" type="text" />
+        <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='6'/>
       </view>
       <view class="submit_btn" bindtap='submitEditRemarkName'>确定</view>
     </view>

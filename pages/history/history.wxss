@@ -227,6 +227,9 @@ page{
    font-size: 30rpx;
    padding:0 30rpx;
 }
+.search_history_wrapper .search_history_panel .panel_content .item_input_wrap.active{
+  border-color: #1d8574;
+}
 .search_history_wrapper .search_history_panel .panel_content .time_input{
   font-size: 30rpx;
    height: 80rpx;

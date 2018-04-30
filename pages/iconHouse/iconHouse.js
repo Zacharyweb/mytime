@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    actId:'',
     iconList: [
       { icon: '../../static/img/histrory.png', name: '工作1' },
       { icon: '../../static/img/histrory.png', name: '工作2' },
@@ -18,64 +19,22 @@ Page({
       { icon: '../../static/img/histrory.png', name: '工作10' }
     ],
     selectedIconIndex: -1,
-    editIconNamePanelShow: false
-  },
+    editIconNamePanelShow: false,
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+    newActIconName:'',
+    tempImgUrl:''
+  },
   onLoad: function (options) {
-
+    if (options.actId){
+      this.setData({
+        actId: options.actId
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   // 选中图标
   selectIcon(e) {
     var index = e.currentTarget.dataset.idx;
@@ -98,9 +57,31 @@ Page({
       return;
     };
     this.cancelSelectIcon();
-    wx.navigateBack({
-      delta: 1
+    this.postSelectedActIconMsg();
+    
+  },
+  // 向后端发送数据
+  postSelectedActIconMsg(){
+    wx.showLoading({
+      title:''
     });
+    if (this.data.actId){
+        // 编辑的活动
+        setTimeout(function(){
+          wx.hideLoading();
+          wx.navigateBack({
+            delta: 1
+          });
+        },1000)
+    }else{
+        // 新建的活动
+      setTimeout(function () {
+        wx.hideLoading();
+        wx.navigateBack({
+          delta: 1
+        });
+      }, 5000)
+    }
   },
   // 删除选中的图标
   deleteActIcon() {
@@ -114,13 +95,17 @@ Page({
     });
     this.cancelSelectIcon();
   },
+  // 上传图标
   uploadActIcon(){
     var _this=this;
     wx.chooseImage({
       count:1,
       sizeType: 'compressed',
       success: function (tempFilePaths){
-        console.log(tempFilePaths);
+        console.log(tempFilePaths.tempFilePaths[0]);
+        _this.setData({
+          tempImgUrl: tempFilePaths.tempFilePaths[0]
+        })
         _this.showEditIconNamePanel();
       }
     });
@@ -138,8 +123,26 @@ Page({
       editIconNamePanelShow: false
     });
   },
+  // 绑定活动图标名称输入
+  bindNameInput(e) {
+    this.setData({
+      newActIconName: e.detail.value
+    })
+  },
   // 提交输入的图标名字
   submitActIconName() {
+    if (!this.data.newActIconName){
+      wx.showToast({ title: '请输入图标名称', icon: 'none' });
+      return;
+    };
+    var newIconList = this.data.iconList;
+    newIconList.push({
+      icon: this.data.tempImgUrl, 
+      name: this.data.newActIconName
+    });
+    this.setData({
+      iconList: newIconList
+    })
     this.hideEditIconNamePanel();
   }
 })

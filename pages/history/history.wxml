@@ -13,10 +13,10 @@
     <view class="tab2_bar">
       <view class="tab2_item {{summaryType==0?'active':''}}" wx:if="{{currentTab == 3}}" data-idx="0" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item {{summaryType==1?'active':''}}" wx:if="{{currentTab == 3}}" data-idx="1" bindtap="changeSummaryType">按备注汇总</view>
-      <view class="tab2_item rank_btn">
+      <view class="tab2_item rank_btn" bindtap="changeRankStatus">
         排序
-        <image class="rank_btn_icon" src="../../static/img/down_rank_icon.png" wx:if="{{rankStatus == 1}}" data-idx="2" bindtap="changeRankStatus"></image>
-        <image class="rank_btn_icon" src="../../static/img/up_rank_icon.png" wx:if="{{rankStatus == 2}}" data-idx="1" bindtap="changeRankStatus"></image>
+        <image class="rank_btn_icon" src="../../static/img/down_rank_icon.png" wx:if="{{rankStatus == 1}}"></image>
+        <image class="rank_btn_icon" src="../../static/img/up_rank_icon.png" wx:if="{{rankStatus == 2}}"></image>
       </view>
     </view>
   </view>
@@ -84,25 +84,21 @@
       </view>
       <view class="panel_content">
         <view class="input_item">
-          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindStartDateChange">
+          <picker mode="date" value="{{date}}" start="{{datePick1StartDate}}" end="{{datePick1EndDate}}" data-idx="1" bindtap="bindDatePickerTap" bindcancel="bindDatePickerCancel" bindchange="bindStartDateChange">
             <view class="item_name">起始时间：</view>
-            <view class="item_input_wrap">{{startDate}}
-              <!-- <input class="time_input" type="text"  value="{{startDate}}" /> -->
-            </view>
+            <view class="item_input_wrap {{currenteSelectedDateType== 1?'active':''}}">{{startDate}}</view>
           </picker>
         </view>
 
         <view class="input_item">
-          <picker mode="date" value="{{date}}" start="2015-09-01" end="2018-09-01" bindchange="bindEndDateChange">
+          <picker mode="date" value="{{date}}" start="{{datePick2StartDate}}" end="{{datePick2EndDate}}" data-idx="2" bindtap="bindDatePickerTap" bindchange="bindEndDateChange" bindcancel="bindDatePickerCancel">
             <view class="item_name">结束时间：</view>
-            <view class="item_input_wrap">{{endDate}}
-              <!-- <input class="time_input" type="text"  value="{{endDate}}" /> -->
-            </view>
+            <view class="item_input_wrap {{currenteSelectedDateType== 2?'active':''}}">{{endDate}}</view>
           </picker>
         </view>
       </view>
       <view class="panel_footer">
-        <view class="bottom_btn cancel_btn">重置</view>
+        <view class="bottom_btn cancel_btn" bindtap="resetSelectedDate">重置</view>
         <view class="bottom_btn submit_btn" bindtap="submitSearch">搜索</view>
       </view>
     </view>
