@@ -9,6 +9,9 @@ Page({
     summaryType: 0,
     searchPanelShow: false,
     rankStatus: 1,
+    startDate:'',
+    endDate: ''
+  
   },
 
   /**
@@ -102,6 +105,7 @@ Page({
   },
   // 提交搜索面板
   submitSearch() {
+    console.log(this.data.startDate, this.data.endDate);
     this.hideSearchPanel();
   },
   // 更换排序方式
@@ -110,5 +114,30 @@ Page({
     this.setData({
       rankStatus: index
     });
-  }
+  },
+
+  // bindStartDate1Input(e) {
+  //   this.setData({
+  //     startDate: e.detail.value
+  //   })
+  // },
+
+  // bindEndDateInput(e) {
+  //   this.setData({
+  //     endDate: e.detail.value
+  //   })
+  // },
+  // 绑定开始时间选择
+  bindStartDateChange: function (e) {
+    this.setData({
+      startDate: e.detail.value
+    })
+  },
+  // 绑定结束时间选择
+  bindEndDateChange: function (e) {
+
+    this.setData({
+      endDate: e.detail.value
+    })
+  },
 })

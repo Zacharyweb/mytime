@@ -84,17 +84,21 @@
       </view>
       <view class="panel_content">
         <view class="input_item">
-          <view class="item_name">起始时间：</view>
-          <view class="item_input_wrap">
-            <input class="time_input" type="text" />
-          </view>
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindStartDateChange">
+            <view class="item_name">起始时间：</view>
+            <view class="item_input_wrap">{{startDate}}
+              <!-- <input class="time_input" type="text"  value="{{startDate}}" /> -->
+            </view>
+          </picker>
         </view>
 
         <view class="input_item">
-          <view class="item_name">结束时间：</view>
-          <view class="item_input_wrap">
-            <input class="time_input" type="text" />
-          </view>
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2018-09-01" bindchange="bindEndDateChange">
+            <view class="item_name">结束时间：</view>
+            <view class="item_input_wrap">{{endDate}}
+              <!-- <input class="time_input" type="text"  value="{{endDate}}" /> -->
+            </view>
+          </picker>
         </view>
       </view>
       <view class="panel_footer">
