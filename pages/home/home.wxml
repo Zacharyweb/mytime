@@ -21,11 +21,11 @@
       <view class="act_name">{{item.name}}</view>
       <!-- <view class="act_remark">{{item.remark}}</view> -->
       <view class="act_trigger">
-        <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view>
+         <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view> 
         <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
       </view>
 
-      <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
+       <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view> 
 
       <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
         <view class="to_edit_btn_text">点击去编辑</view>
