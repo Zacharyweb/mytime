@@ -68,7 +68,7 @@
         <view class="act_name">今日剩余时间</view>
       </view>
       <view class="act_total_msg">
-        <view class="total_time">3小时0分</view>
+        <view class="total_time">{{countH}}小时{{countM}}分钟{{countS}}秒</view>
       </view>
     </view>
   </view>

@@ -6,15 +6,15 @@ Page({
    */
   data: {
     actList: [
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '11' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '22' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '33' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '44' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '55' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '66' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '77' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '88' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark: '备注1，备注2', id: '99' }
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '11' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '22' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'2222', id: '33' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'', id: '44' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'', id: '55' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '66' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '77' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '88' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '99' }
     ],
     remark1List: [
       { name: '平安保险', id: '1' },
@@ -185,7 +185,12 @@ Page({
   },
   // 展示修改备注的面板
   showEditRemarkPanel() {
+    var index = this.data.countTarget;
+    var remark1 = this.data.actList[index].remark1;
+    var remark2 = this.data.actList[index].remark2;
     this.setData({
+      remark1Text: remark1,
+      remark2Text: remark2,
       editRemarkPanelShow: true
     });
   },
@@ -207,8 +212,13 @@ Page({
   },
   // 提交修改的备注
   submitActRemark() {
-    console.log('备注1：' + this.data.remark1Text);
-    console.log('备注2：' + this.data.remark2Text);
+    var index = this.data.countTarget;
+    var newActList = this.data.actList;
+    newActList[index].remark1 = this.data.remark1Text;
+    newActList[index].remark2 = this.data.remark2Text;
+    this.setData({
+      actList: newActList
+    });
     this.hideEditRemarkPanel();
   },
   // 展示修改备注名称的面板

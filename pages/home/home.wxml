@@ -34,8 +34,8 @@
         <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
       </view>
       <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
-        <view class="act_remark_text act_remark_text1" catchtap="showEditRemarkPanel">平安保险</view>
-        <view class="act_remark_text" catchtap="showEditRemarkPanel">投资上市</view>
+        <view class="act_remark_text act_remark_text1" catchtap="showEditRemarkPanel">{{item.remark1 || '点击添加备注项'}}</view>
+        <view class="act_remark_text" catchtap="showEditRemarkPanel">{{item.remark2 || '点击添加备注项'}}</view>
         <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
       </view>
     </view>

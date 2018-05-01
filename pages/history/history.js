@@ -17,9 +17,15 @@ Page({
     datePick1EndDate: '',
     datePick2StartDate: '',
     datePick2EndDate: '',
+
+    countTimer: null,
+    countH: '00',
+    countM: '00',
+    countS: '00'
   
   },
   onShow: function () {
+    this.count();
     this.initDatePickerRange();
   },
   initDatePickerRange(){
@@ -126,5 +132,50 @@ Page({
       endDate:''
     })
     this.initDatePickerRange();
-  }
+  },
+
+  // 今日剩余倒计时
+  // 加零函数
+  addZero(n) {
+    n = n * 1 < 10 ? '0' + n : n;
+    return n + '';
+  },
+
+  // 计时转换函数
+  countTime(count) {
+    var h = Math.floor(count / 3600);
+    var m = Math.floor((count % 3600) / 60);
+    var s = count % 60;
+    this.setData({
+      countH: this.addZero(h),
+      countM: this.addZero(m),
+      countS: this.addZero(s)
+    });
+  },
+  // 计时函数
+  count() {
+    var nowDate = new Date();
+    var nowTime = nowDate.getTime();
+    var tomorrowDate = new Date(nowTime + 24 * 60 * 60 * 1000);
+    var Y = tomorrowDate.getFullYear();
+    var M = tomorrowDate.getMonth() + 1;
+    var D = tomorrowDate.getDate();
+    var todayEndTime = new Date(Y + '/' + M + '/' + D).getTime();
+
+    var interval = Math.ceil((todayEndTime - nowTime) / 1000);
+
+    var countTimer = null;
+    countTimer = setInterval(() => {
+      interval--;
+      if (interval == -1) {
+        clearInterval(this.countTimer);
+      } else {
+        this.countTime(interval);
+      }
+    }, 1000);
+
+    this.setData({
+      countTimer: countTimer
+    });
+  },
 })

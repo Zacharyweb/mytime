@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/history/history",
     "pages/iconHouse/iconHouse",
 
-    "pages/history/history",
+   
     "pages/editAct/editAct",
     "pages/editActName/editActName",
    
