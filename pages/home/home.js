@@ -6,15 +6,15 @@ Page({
    */
   data: {
     actList: [
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '11' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '22' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'2222', id: '33' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'', id: '44' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'', id: '55' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '66' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '77' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '88' },
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '99' }
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111', remark2: '2222', id: '11' },
+      { icon: '../../static/img/histrory.png', name: '学习', remark1: '11111', remark2: '2222', id: '22' },
+      { icon: '../../static/img/histrory.png', name: '睡觉', remark1: '', remark2: '2222', id: '33' },
+      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'', id: '44' },
+      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'', id: '55' },
+      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '66' },
+      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '77' },
+      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '88' },
+      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '99' }
     ],
     remark1List: [
       { name: '平安保险', id: '1' },
@@ -55,12 +55,19 @@ Page({
     remarkNameText: '',
 
     currentEditRemarkNameType: 1,// 1:编辑备注1的名称，2：编辑备注2的名称
-    selectedRemark1Index:-1,
+    selectedRemark1Index: -1,
     selectedRemark2Index: -1,
+
+    preferAct: { name: '工作', duration: '5' },
+    isSelectingPreferAct:false,
+
+    bgColorSelecterShow:false,
+    bgColorList: ['#1d8574', '#d53c32', '#f9e1d7', '#feac51', '#83d8c5', '#8fa7f1', '#e5f4d7'],
+    pageMainColor:'#1d8574'
   },
 
   onShow: function () {
-
+       console.log('在onShow时读取数据');
   },
 
   onHide: function () {
@@ -74,7 +81,30 @@ Page({
       });
     }, 500);
   },
-  
+  // 点击top区域
+  topBlockTap() {
+    var _this = this;
+    this.setData({
+      isInEditing: false
+    });
+    wx.showActionSheet({
+      itemList: ['设置首选活动', '设置背景颜色'],
+      success: function (res) {
+        console.log(res.tapIndex);
+        if (res.tapIndex == 0){
+          _this.setData({
+            isSelectingPreferAct:true
+          })
+        };
+        if (res.tapIndex == 1){
+          _this.showBgColorSelecter();
+        }
+      },
+      fail: function (res) {
+        
+      }
+    })
+  },
   // 去历史记录页面
   toHistoryPage() {
     wx.navigateTo({
@@ -124,9 +154,15 @@ Page({
     this.setData({
       remarkPanelShow: false
     });
+    // 如果再选择编辑活动的状态下
+    console.log(this.data.isInEditing);
     if (this.data.isInEditing) {
-      this.selectAct(index);
-    } else {
+      // 在选择编辑活动的状态下
+      this.selectDeletedAct(index);
+    } else if (this.data.isSelectingPreferAct){
+      // 在选择首选活动的状态下
+      this.selectPreferAct(index);
+    }else {
       clearInterval(this.data.countTimer);
       if (this.data.countTarget == index) {
         this.setData({
@@ -155,17 +191,38 @@ Page({
   },
 
   // 进入编辑活动状态
-  editAct() {
+  deleteAct() {
     this.setData({
       remarkPanelShow: false,
-      isInEditing: !this.data.isInEditing
+      isInEditing: !this.data.isInEditing,
+      isSelectingPreferAct: false
     });
   },
-  // 选择要编辑的活动
-  selectAct(index) {
-    var id = this.data.actList[index].id
-    wx.navigateTo({
-      url: '../editAct/editAct?actId=' + id
+  // 选择活动删除
+  selectDeletedAct(index) {
+    // var id = this.data.actList[index].id;
+    // this.setData({
+    //   isInEditing: false
+    // });
+    // wx.navigateTo({
+    //   url: '../editAct/editAct?actId=' + id
+    // });
+    var newActList = this.data.actList;
+    newActList.splice(index,1);
+    this.setData({
+      actList: newActList
+    });
+  },
+   // 选择活动设为首选活动
+  selectPreferAct(index){
+    var item = this.data.actList[index];
+    console.log(item.name);
+    this.setData({
+      preferAct: {
+        name: item.name,
+        duration:'2小时'
+      },
+      isSelectingPreferAct: false
     });
   },
   // 展示活动项上的备注
@@ -202,10 +259,10 @@ Page({
     });
   },
   // 重置修改的备注
-  resetActRemark(){
+  resetActRemark() {
     this.setData({
-      remark1Text:'',
-      remark2Text:'',
+      remark1Text: '',
+      remark2Text: '',
       selectedRemark1Index: -1,
       selectedRemark2Index: -1
     });
@@ -262,7 +319,7 @@ Page({
   },
   // 绑定备注1的输入
   bindRemark1Input(e) {
-    if (this.data.selectedRemark1Index != -1){
+    if (this.data.selectedRemark1Index != -1) {
       this.setData({
         selectedRemark1Index: -1
       });
@@ -289,10 +346,10 @@ Page({
     });
   },
   //选择备注1下面的标签项
-  selectRemark1(e){
+  selectRemark1(e) {
     var index = e.currentTarget.dataset.idx;
     this.setData({
-      selectedRemark1Index:index,
+      selectedRemark1Index: index,
       remark1Text: this.data.remark1List[index].name
     })
   },
@@ -305,10 +362,10 @@ Page({
     })
   },
   //删除备注1下面的标签项
-  deleteRemark1(e){
+  deleteRemark1(e) {
     var index = e.currentTarget.dataset.idx;
     var newRemark1List = this.data.remark1List;
-    newRemark1List.splice(index,1);
+    newRemark1List.splice(index, 1);
     this.setData({
       remark1List: newRemark1List
     })
@@ -322,4 +379,25 @@ Page({
       remark2List: newRemark2List
     })
   },
+  // 展示背景颜色选择器
+  showBgColorSelecter() {
+    this.setData({
+      bgColorSelecterShow: true
+    });
+  },
+  // 隐藏背景颜色选择器
+  hideBgColorSelecter(){
+    this.setData({
+      bgColorSelecterShow:false
+    });
+  },
+  // 选择背景色
+  selectBgColor(e){
+    var index = e.currentTarget.dataset.idx;
+    var color = this.data.bgColorList[index];
+    this.setData({
+      pageMainColor: color
+    });
+    this.hideBgColorSelecter();
+  }
 })

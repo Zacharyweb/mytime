@@ -67,7 +67,7 @@ page {
   align-items: center;
   border-radius: 60rpx;
   background-color: #a1d2ce;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .content_block .select_btn {

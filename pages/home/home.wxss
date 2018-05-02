@@ -1,17 +1,24 @@
 /* pages/home/home.wxss */
+page{
+  min-height: 100%;
+}
 .outerst_layer {
+  box-sizing: border-box;
+  height: 100%;
   padding: 10rpx;
 }
 .top_block {
   width: 730rpx;
-  height: 354rpx;
-
+  /* height: 354rpx; */
+  font-size: 0;
+  /* background-color: #1d8574; */
+  padding-top: 175rpx;
   position: relative;
   margin-bottom: 10rpx;
 }
 .top_block_bg{
   width: 730rpx;
-  height: 354rpx;
+  height: 179rpx;
 }
 .top_block .user_msg {
   position: absolute;
@@ -37,8 +44,23 @@
   font-weight: bold;
   margin-bottom: 20rpx;
 }
-.top_block .user_msg .user_info .to_history_btn {
+.top_block .user_msg .user_info .prefer_act_msg {
+  display: flex;
+  align-items: center;
   font-size: 26rpx;
+}
+.top_block .user_msg .user_info .prefer_act_msg .prefer_act_name{
+  /* font-size: 30rpx;
+  font-weight: bold;
+  padding:0 8rpx; */
+}
+.top_block .user_msg .user_info .prefer_act_msg .prefer_act_duration{
+  background-color: #a1d2ce;
+  color: #1d8574;
+   margin-left: 8rpx; 
+  margin-right: 8rpx; 
+  padding:4rpx;
+  border-radius: 4rpx;
 }
 .top_block .history_icon_btn {
   width: 48rpx;
@@ -75,7 +97,7 @@
   left: -1px;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 3;
   background-color: rgba(0,0,0,0.8);
   display: flex;
   align-items: center;
@@ -463,4 +485,50 @@
   background-color: #1d8574;
   border-radius: 8rpx;
   margin-left: 30rpx;
+}
+
+.bg_color_selecter_mask{
+  position: fixed;
+  background-color: rgba(0,0,0,0.7);
+  top:0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+}
+.bg_color_selecter{
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+  z-index: 21;
+  transform: translateY(100%);
+  transition: all 0.3s;
+}
+.bg_color_selecter.show{
+  transform: translateY(0);
+}
+.bg_color_selecter .bg_color_wrapper{
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 30rpx;
+}
+.bg_color_selecter .bg_color_item{
+  width: 160rpx;
+  padding-right: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+.bg_color_selecter .bg_color_item .bg_color_bolck{
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #ccc;
+  margin-bottom: 15rpx;
+}
+.bg_color_selecter .bg_color_item .bg_color_name{
+  text-align: center;
+  color: #333;
+  font-size: 28rpx;
+  line-height: 30rpx;
 }

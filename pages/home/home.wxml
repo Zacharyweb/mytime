@@ -1,14 +1,18 @@
 <!--pages/home/home.wxml-->
 <view class="outerst_layer">
-  <view class="top_block">
+  <view class="top_block" bindtap='topBlockTap' style="background-color: {{pageMainColor}}">
     <image class="top_block_bg" src="../../static/img/bg2.png"></image>
     <view class="user_msg">
       <image class="user_avatar" src="../../static/img/avatar.jpg"></image>
       <view class="user_info">
         <view class="user_name">朱两边</view>
-        <view class="to_history_btn" bindtap="toHistoryPage">查看我的历史时间记录</view>
+        <view class="prefer_act_msg">今日已
+          <text class="prefer_act_name">{{preferAct.name}}</text>
+          <text class="prefer_act_duration">{{preferAct.duration}}</text>
+          <text>小时</text>
+        </view>
       </view>
-      <image class="history_icon_btn" bindtap="toHistoryPage" src="../../static/img/right_arrow.png"></image>
+      <image class="history_icon_btn" catchtap="toHistoryPage" src="../../static/img/right_arrow.png"></image>
     </view>
   </view>
 
@@ -21,15 +25,20 @@
       <view class="act_name">{{item.name}}</view>
       <!-- <view class="act_remark">{{item.remark}}</view> -->
       <view class="act_trigger">
-         <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view> 
+        <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view>
         <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
       </view>
 
-       <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view> 
+      <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
 
       <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
-        <view class="to_edit_btn_text">点击去编辑</view>
+        <view class="to_edit_btn_text">点击删除</view>
       </view>
+
+      <view class="to_edit_btn_mask {{isSelectingPreferAct?'show':''}}">
+        <view class="to_edit_btn_text">设为首选活动</view>
+      </view>
+
       <view class="to_remark_btn" wx:if="{{index == countTarget}}" catchtap="showRemarkPanel">
         <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
       </view>
@@ -42,19 +51,19 @@
   </view>
 
   <!-- 底部新增活动、编辑活动 -->
-  <view class="act_edit_block">
+   <view class="act_edit_block">
     <view class="act_edit_trigger" bindtap="addNewAct">
       <image class="act_icon_pic" src="../../static/img/add_icon.png"></image>
       <view class="set_btn_text">新增活动</view>
       <view class="divide_line"></view>
     </view>
 
-    <view class="act_edit_trigger" bindtap="editAct">
-      <image class="act_icon_pic" src="../../static/img/edit_icon.png"></image>
-      <view class="set_btn_text" wx:if="{{!isInEditing}}">编辑活动</view>
-      <view class="set_btn_text" wx:if="{{isInEditing}}">取消编辑</view>
+    <view class="act_edit_trigger" bindtap="deleteAct">
+      <image class="act_icon_pic" src="../../static/img/delete_icon2.png"></image>
+      <view class="set_btn_text" wx:if="{{!isInEditing}}">删除活动</view>
+      <view class="set_btn_text" wx:if="{{isInEditing}}">取消删除</view>
     </view>
-  </view>
+  </view> 
 
   <!-- 修改备注的面板 -->
   <view class="edit_remark_wrapper">
@@ -72,12 +81,12 @@
 
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6'/>
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6' />
           </view>
           <view class="history_remark_list">
-            <view class="history_remark_item {{index == selectedRemark1Index?'active':''}}" wx:for="{{remark1List}}"  wx:key="{{index}}" data-idx="{{index}}"  bindtap="selectRemark1">{{item.name}}
+            <view class="history_remark_item {{index == selectedRemark1Index?'active':''}}" wx:for="{{remark1List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark1">{{item.name}}
               <view class="delete_icon" catchtap='deleteRemark1' data-idx="{{index}}">
-                <image  class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+                <image class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
               </view>
             </view>
 
@@ -92,13 +101,13 @@
             </view>
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6'/>
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6' />
           </view>
 
           <view class="history_remark_list">
             <view class="history_remark_item {{index == selectedRemark2Index?'active':''}}" wx:for="{{remark2List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark2">{{item.name}}
               <view class="delete_icon" catchtap='deleteRemark2' data-idx="{{index}}">
-                <image  class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+                <image class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
               </view>
             </view>
           </view>
@@ -116,9 +125,19 @@
     <view class="edit_remark_name_mask" wx:if="{{editRemarkNamePanelShow}}" bindtap="hideEditRemarkNamePanel"></view>
     <view class="edit_remark_name_panel {{editRemarkNamePanelShow?'show':''}}">
       <view class="name_input_wrap">
-        <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='6'/>
+        <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='6' />
       </view>
       <view class="submit_btn" bindtap='submitEditRemarkName'>确定</view>
     </view>
   </view>
+  
+  <view class="bg_color_selecter_mask" wx:if="{{bgColorSelecterShow}}" bindtap='hideBgColorSelecter'></view>
+  <scroll-view scroll-x class="bg_color_selecter {{bgColorSelecterShow?'show':''}}">
+    <view class="bg_color_wrapper">
+      <view class="bg_color_item" wx:for="{{bgColorList}}" wx:key="{{index}}">
+        <view class="bg_color_bolck" style="background-color: {{item}}" data-idx="{{index}}" bindtap='selectBgColor'></view>
+        <view class="bg_color_name">{{item}}</view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

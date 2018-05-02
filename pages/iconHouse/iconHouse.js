@@ -80,7 +80,7 @@ Page({
         wx.navigateBack({
           delta: 1
         });
-      }, 5000)
+      }, 1000)
     }
   },
   // 删除选中的图标

@@ -1,14 +1,13 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/index/index",
+   
     "pages/history/history",
     "pages/iconHouse/iconHouse",
 
-   
     "pages/editAct/editAct",
     "pages/editActName/editActName",
-   
-    "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
