@@ -5,7 +5,7 @@
       <view class="tab_item {{currentTab == 0?'active':''}}" data-idx="0" bindtap="changeCurrentTab">今天</view>
       <view class="tab_item {{currentTab == 1?'active':''}}" data-idx="1" bindtap="changeCurrentTab">昨日</view>
       <view class="tab_item {{currentTab == 2?'active':''}}" data-idx="2" bindtap="changeCurrentTab">本周</view>
-      <view class="tab_item {{currentTab == 3?'active':''}}" data-idx="3" bindtap="changeCurrentTab">汇总</view>
+      <!-- <view class="tab_item {{currentTab == 3?'active':''}}" data-idx="3" bindtap="changeCurrentTab">汇总</view> -->
       <view class="tab_item search_btn" bindtap="showSearchPanel">搜索
         <image class="search_icon" src="../../static/img/search_icon.png"></image>
       </view>
@@ -14,7 +14,7 @@
       <view class="tab2_item {{summaryType==0?'active':''}}" wx:if="{{currentTab == 3}}" data-idx="0" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item {{summaryType==1?'active':''}}" wx:if="{{currentTab == 3}}" data-idx="1" bindtap="changeSummaryType">按备注汇总</view>
       <view class="tab2_item rank_btn" bindtap="changeRankStatus">
-        排序
+        汇总
         <image class="rank_btn_icon" src="../../static/img/down_rank_icon.png" wx:if="{{rankStatus == 1}}"></image>
         <image class="rank_btn_icon" src="../../static/img/up_rank_icon.png" wx:if="{{rankStatus == 2}}"></image>
       </view>

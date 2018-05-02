@@ -12,15 +12,15 @@
                 <view class="btn_name">确定</view>
             </view>
 
-            <view class="edit_act_icon_btn delete_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="deleteActIcon">
+            <!-- <view class="edit_act_icon_btn delete_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="deleteActIcon">
                 <view class="btn_name">删除</view>
-            </view>
+            </view> -->
 
 
-            <view class="edit_act_icon_btn add_btn" catchtap="uploadActIcon">
+            <!-- <view class="edit_act_icon_btn add_btn" catchtap="uploadActIcon">
                 <image class="btn_icon" src="../../static/img/add_new_act_icon_icon.png"></image>
                 <view class="btn_name">上传图标</view>
-            </view>
+            </view> -->
         </view>
 
 

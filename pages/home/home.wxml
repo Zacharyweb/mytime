@@ -1,69 +1,72 @@
 <!--pages/home/home.wxml-->
 <view class="outerst_layer">
-  <view class="top_block" bindtap='topBlockTap' style="background-color: {{pageMainColor}}">
-    <image class="top_block_bg" src="../../static/img/bg2.png"></image>
-    <view class="user_msg">
-      <image class="user_avatar" src="../../static/img/avatar.jpg"></image>
-      <view class="user_info">
-        <view class="user_name">朱两边</view>
-        <view class="prefer_act_msg">今日已
-          <text class="prefer_act_name">{{preferAct.name}}</text>
-          <text class="prefer_act_duration">{{preferAct.duration}}</text>
-          <text>小时</text>
+  <scroll-view scroll-y class="content_layer" bindtouchstart="contentTouchStart" bindtouchmove="contentTouchMove" bindtouchend="contentTouchEnd">
+    <!-- 头部 -->
+    <view class="top_block" bindtap="topBlockTap" style="background-color: {{pageMainColor}}">
+      <image class="top_block_bg" src="../../static/img/bg2.png"></image>
+      <view class="user_msg">
+        <image class="user_avatar" src="../../static/img/avatar.jpg"></image>
+        <view class="user_info">
+          <view class="user_name">朱两边</view>
+          <!-- <view class="prefer_act_msg" catchtap="toHistoryPage">今日已
+            <text class="prefer_act_name">{{preferAct.name}}</text>
+            <text class="prefer_act_duration">{{preferAct.duration}}</text>
+            <text>小时</text>
+          </view> -->
+        </view>
+      <!-- <image class="history_icon_btn" catchtap="topBlockTap" src="../../static/img/set_icon.png"></image>-->
+        <image class="history_icon_btn" catchtap="toHistoryPage" src="../../static/img/right_arrow.png"></image>
+      </view>
+    </view>
+
+    <!-- 活动列表区域 -->
+    <view class="content_block">
+      <view wx:for="{{actList}}" class="act_item {{(index*1 + 1)%3 == 0 ?'no_margin_right':''}} {{index == countTarget?'bounceIn':''}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="changeCountTarget">
+        <view class="act_icon_wrap">
+          <image class="act_icon_pic" src="{{item.icon}}"></image>
+        </view>
+        <view class="act_name">{{item.name}}</view>
+        <!-- <view class="act_remark">{{item.remark}}</view> -->
+        <view class="act_trigger">
+          <!-- <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view> -->
+          <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
+        </view>
+
+        <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
+
+        <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
+          <view class="to_edit_btn_text">点击删除</view>
+        </view>
+
+        <view class="to_edit_btn_mask {{isSelectingPreferAct?'show':''}}">
+          <view class="to_edit_btn_text">设为首选活动</view>
+        </view>
+
+        <view class="to_remark_btn" wx:if="{{index == countTarget}}" catchtap="showRemarkPanel">
+          <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
+        </view>
+        <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
+          <view class="act_remark_text act_remark_text1" catchtap="showEditRemarkPanel">{{item.remark1 || '点击添加备注项'}}</view>
+          <view class="act_remark_text" catchtap="showEditRemarkPanel">{{item.remark2 || '点击添加备注项'}}</view>
+          <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
         </view>
       </view>
-      <image class="history_icon_btn" catchtap="toHistoryPage" src="../../static/img/right_arrow.png"></image>
     </view>
-  </view>
-
-
-  <view class="content_block">
-    <view wx:for="{{actList}}" class="act_item {{(index*1 + 1)%3 == 0 ?'no_margin_right':''}} {{index == countTarget?'bounceIn':''}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="changeCountTarget">
-      <view class="act_icon_wrap">
-        <image class="act_icon_pic" src="{{item.icon}}"></image>
-      </view>
-      <view class="act_name">{{item.name}}</view>
-      <!-- <view class="act_remark">{{item.remark}}</view> -->
-      <view class="act_trigger">
-        <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view>
-        <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
-      </view>
-
-      <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
-
-      <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
-        <view class="to_edit_btn_text">点击删除</view>
-      </view>
-
-      <view class="to_edit_btn_mask {{isSelectingPreferAct?'show':''}}">
-        <view class="to_edit_btn_text">设为首选活动</view>
-      </view>
-
-      <view class="to_remark_btn" wx:if="{{index == countTarget}}" catchtap="showRemarkPanel">
-        <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
-      </view>
-      <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
-        <view class="act_remark_text act_remark_text1" catchtap="showEditRemarkPanel">{{item.remark1 || '点击添加备注项'}}</view>
-        <view class="act_remark_text" catchtap="showEditRemarkPanel">{{item.remark2 || '点击添加备注项'}}</view>
-        <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
-      </view>
-    </view>
-  </view>
-
+  </scroll-view>
   <!-- 底部新增活动、编辑活动 -->
-   <view class="act_edit_block">
+  <view class="act_edit_block">
     <view class="act_edit_trigger" bindtap="addNewAct">
-      <image class="act_icon_pic" src="../../static/img/add_icon.png"></image>
-      <view class="set_btn_text">新增活动</view>
+      <image class="act_icon_pic" src="../../static/img/add_icon1.png"></image>
+      <view class="set_btn_text"></view>
       <view class="divide_line"></view>
     </view>
 
     <view class="act_edit_trigger" bindtap="deleteAct">
-      <image class="act_icon_pic" src="../../static/img/delete_icon2.png"></image>
-      <view class="set_btn_text" wx:if="{{!isInEditing}}">删除活动</view>
-      <view class="set_btn_text" wx:if="{{isInEditing}}">取消删除</view>
+      <image class="act_icon_pic" src="../../static/img/delete_icon3.png"></image>
+      <view class="set_btn_text" wx:if="{{!isInEditing}}"></view>
+      <view class="set_btn_text" wx:if="{{isInEditing}}"></view>
     </view>
-  </view> 
+  </view>
 
   <!-- 修改备注的面板 -->
   <view class="edit_remark_wrapper">
@@ -130,7 +133,8 @@
       <view class="submit_btn" bindtap='submitEditRemarkName'>确定</view>
     </view>
   </view>
-  
+
+  <!-- 选择皮肤的面板 -->
   <view class="bg_color_selecter_mask" wx:if="{{bgColorSelecterShow}}" bindtap='hideBgColorSelecter'></view>
   <scroll-view scroll-x class="bg_color_selecter {{bgColorSelecterShow?'show':''}}">
     <view class="bg_color_wrapper">
@@ -140,4 +144,15 @@
       </view>
     </view>
   </scroll-view>
+
+  <!-- 左滑跟着滑出的面板 -->
+  <view class="float_false_panel {{!contentPanelTouching?'return_back':''}}" style="right:{{floatFalsePanelRight}}rpx">
+    <view class="float_false_header">
+      <view class="float_false_subheader1"></view>
+      <view class="float_false_subheader2"></view>
+    </view>
+    <view class="float_false_content">
+    </view>
+
+  </view>
 </view>

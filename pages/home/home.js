@@ -1,9 +1,10 @@
 // pages/home/home.js
+var jumpPageTime = 0;
+var jumpPageTouchDot = 0;//触摸时的原点
+var jumpPageInterval = null;
+var jumpPageFlagHd = true;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     actList: [
       { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111', remark2: '2222', id: '11' },
@@ -63,11 +64,23 @@ Page({
 
     bgColorSelecterShow:false,
     bgColorList: ['#1d8574', '#d53c32', '#f9e1d7', '#feac51', '#83d8c5', '#8fa7f1', '#e5f4d7'],
-    pageMainColor:'#1d8574'
+    pageMainColor:'#1d8574',
+
+    contentPanelTouching:false,
+    floatFalsePanelRight:-40,
+
   },
 
   onShow: function () {
        console.log('在onShow时读取数据');
+
+       // 初始化左滑切换页面参数
+       jumpPageFlagHd = true;    //重新进入页面之后，可以再次执行滑动切换页面代码
+       clearInterval(jumpPageInterval); // 清除setInterval
+       jumpPageTime = 0;
+       this.setData({
+         floatFalsePanelRight:-80
+       })
   },
 
   onHide: function () {
@@ -88,15 +101,20 @@ Page({
       isInEditing: false
     });
     wx.showActionSheet({
-      itemList: ['设置首选活动', '设置背景颜色'],
+      itemList: ['设置语言','设置首选活动', '设置背景颜色'],
       success: function (res) {
         console.log(res.tapIndex);
-        if (res.tapIndex == 0){
+        if (res.tapIndex == 1) {
+          _this.setData({
+            isSelectingPreferAct: true
+          })
+        };
+        if (res.tapIndex == 1){
           _this.setData({
             isSelectingPreferAct:true
           })
         };
-        if (res.tapIndex == 1){
+        if (res.tapIndex == 2){
           _this.showBgColorSelecter();
         }
       },
@@ -185,13 +203,21 @@ Page({
   },
   // 去新增活动
   addNewAct() {
+    if (this.data.countTarget!=-1){
+      wx.showToast({ title: '请先暂停计时中的活动', icon: 'none' });
+      return;
+    };
     wx.navigateTo({
       url: '../iconHouse/iconHouse'
     })
   },
 
-  // 进入编辑活动状态
+  // 进入选择活动删除的状态
   deleteAct() {
+    if (this.data.countTarget != -1 && !this.data.isInEditing){
+      wx.showToast({ title: '请先暂停计时中的活动', icon: 'none' });
+      return;
+    };
     this.setData({
       remarkPanelShow: false,
       isInEditing: !this.data.isInEditing,
@@ -220,7 +246,7 @@ Page({
     this.setData({
       preferAct: {
         name: item.name,
-        duration:'2小时'
+        duration:'2'
       },
       isSelectingPreferAct: false
     });
@@ -399,5 +425,48 @@ Page({
       pageMainColor: color
     });
     this.hideBgColorSelecter();
+  },
+
+  // 触摸开始事件
+  contentTouchStart: function (e) {
+    this.setData({
+      contentPanelTouching:true
+    });
+    jumpPageTouchDot = e.touches[0].pageX; // 获取触摸时的原点
+    // 使用js计时器记录时间    
+    jumpPageInterval = setInterval(function () {
+      jumpPageTime ++;
+    }, 100);
+  },
+   // 触摸移动事件
+  contentTouchMove(e){
+    var touchMove = e.changedTouches[0].pageX;
+    if (touchMove - jumpPageTouchDot >= 0){
+      return;
+    }
+    var right = (jumpPageTouchDot - touchMove) - 40;
+    if (right>0){
+      return;
+    };
+    this.setData({
+      floatFalsePanelRight: right
+    });
+  },
+  // 触摸结束事件
+  contentTouchEnd: function (e) {
+    this.setData({
+      contentPanelTouching: false,
+      floatFalsePanelRight:-40
+    });
+    var touchMove = e.changedTouches[0].pageX;
+    console.log(touchMove - jumpPageTouchDot);
+    if (touchMove - jumpPageTouchDot <= -40 && jumpPageTime < 10 && jumpPageFlagHd == true) {
+      jumpPageFlagHd = false;
+      wx.navigateTo({
+        url: '../history/history'
+      })
+    };
+    clearInterval(jumpPageInterval); 
+    jumpPageTime = 0;
   }
 })
