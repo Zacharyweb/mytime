@@ -163,7 +163,8 @@ page {
 }
 
 .edit_icon_name_panel .name_input_wrap {
-  width: 360rpx;
+  /* width: 360rpx; */
+  width: 500rpx;
   height: 60rpx;
   overflow: hidden;
   border: 1px solid #d9d9d9;

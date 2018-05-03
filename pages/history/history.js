@@ -84,7 +84,7 @@ Page({
     };
     this.hideSearchPanel();
     wx.showLoading({
-      title: '搜索中'
+      title: ''
     });
     setTimeout(()=>{
       wx.navigateTo({

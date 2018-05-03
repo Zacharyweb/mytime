@@ -5,14 +5,25 @@ page{
 .history_layer{
   padding-bottom: 80rpx;
 }
+.tab_bar_fill_block{
+  height: 125rpx;
+}
 .history_layer .tab_bar_wrapper{
   position: fixed;
   width: 100%;
   left: 0;
   top:0;
-  padding-top: 30rpx;
-  height: 195rpx;
+  padding-top: 25rpx;
+  height: 100rpx;
   background-color: #efeff4;
+}
+.history_layer .search_key{
+  height: 50rpx;
+  display: flex;
+  /* align-items: center; */
+  font-size: 24rpx;
+  color: #888;
+  padding-left: 50rpx;
 }
 .history_layer .tab_bar{
   background-color: #fff;
@@ -24,7 +35,7 @@ page{
   font-size: 28rpx;
   color: #666;
    padding-left: 50rpx; 
-  /* justify-content: center; */
+
 
 }
 .history_layer .tab_bar .tab_item{
@@ -39,6 +50,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 2rpx solid #d9d9d9;
   border-bottom: 2rpx solid #d9d9d9;
   position: relative;
   overflow: hidden;
@@ -81,9 +93,7 @@ page{
   margin-left: 10rpx;
 }
 
-.tab_bar_fill_block{
-  height: 225rpx;
-}
+
 .history_layer .history_list{
   background-color: #fff;
   border-top: 2rpx solid #d9d9d9;

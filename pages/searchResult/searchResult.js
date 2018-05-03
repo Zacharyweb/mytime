@@ -6,8 +6,6 @@ Page({
     end:''
   },
   onLoad: function (options) {
-    console.log(options.start);
-    console.log(options.end);
     this.setData({
       start: options.start,
       end:options.end

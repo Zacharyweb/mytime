@@ -6,13 +6,13 @@
   </view>
   <picker-view indicator-style="height: 100rpx;" class="date_picker_panel" value="{{value}}" bindchange="bindChange">
     <picker-view-column>
-      <view wx:for="{{years}}" class="date_picker_grid">{{item}}</view>
+      <view wx:for="{{years}}" wx:key="{{index}}" class="date_picker_grid">{{item}}</view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{months}}" class="date_picker_grid">{{item}}</view>
+      <view wx:for="{{months}}" wx:key="{{index}}" class="date_picker_grid">{{item}}</view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{days}}" class="date_picker_grid">{{item}}</view>
+      <view wx:for="{{days}}" wx:key="{{index}}" class="date_picker_grid">{{item}}</view>
     </picker-view-column>
   </picker-view>
 </view>

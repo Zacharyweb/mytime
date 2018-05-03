@@ -25,7 +25,7 @@
         <view class="act_icon_wrap">
           <image class="act_icon_pic" src="{{item.icon}}"></image>
         </view>
-        <view class="act_name">{{item.name}}</view>
+        <view class="act_name" wx:if="{{index != countTarget}}">{{item.name}}</view>
         <!-- <view class="act_remark">{{item.remark}}</view> -->
         <view class="act_trigger">
           <!-- <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view> -->

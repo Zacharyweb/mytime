@@ -9,15 +9,15 @@ Page({
 
   data: {
     actList: [
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '', remark2: '', id: '11' },
-      { icon: '../../static/img/histrory.png', name: '学习', remark1: '', remark2: '', id: '22' },
-      { icon: '../../static/img/histrory.png', name: '睡觉', remark1: '', remark2: '', id: '33' },
-      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'', id: '44' },
-      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'', id: '55' },
-      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '66' },
-      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '77' },
-      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '88' },
-      // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '99' }
+      { icon: '../../static/img/icon1.png', name: 'pricewaterho', remark1: '', remark2: '', id: '11' },
+      { icon: '../../static/img/icon2.png', name: '审批', remark1: '', remark2: '', id: '22' },
+      { icon: '../../static/img/icon3.png', name: '接待', remark1: '', remark2: '', id: '33' },
+      { icon: '../../static/img/icon4.png', name: '会议', remark1: '11111',remark2:'', id: '44' },
+      { icon: '../../static/img/icon5.png', name: '立项', remark1: '',remark2:'', id: '55' },
+      { icon: '../../static/img/icon6.png', name: '讨论', remark1: '11111',remark2:'2222', id: '66' },
+      { icon: '../../static/img/icon7.png', name: '外出', remark1: '11111',remark2:'2222', id: '77' },
+      { icon: '../../static/img/icon8.png', name: '运动', remark1: '11111',remark2:'2222', id: '88' },
+      { icon: '../../static/img/icon9.png', name: '休息', remark1: '11111',remark2:'2222', id: '99' }
     ],
     remark1List: [
       { name: '平安保险', id: '1' },

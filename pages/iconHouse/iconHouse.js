@@ -7,16 +7,15 @@ Page({
   data: {
     actId:'',
     iconList: [
-      { icon: '../../static/img/histrory.png', name: '工作1' },
-      { icon: '../../static/img/histrory.png', name: '工作2' },
-      { icon: '../../static/img/histrory.png', name: '工作3' },
-      { icon: '../../static/img/histrory.png', name: '工作4' },
-      { icon: '../../static/img/histrory.png', name: '工作5' },
-      { icon: '../../static/img/histrory.png', name: '工作6' },
-      { icon: '../../static/img/histrory.png', name: '工作7' },
-      { icon: '../../static/img/histrory.png', name: '工作8' },
-      { icon: '../../static/img/histrory.png', name: '工作9' },
-      { icon: '../../static/img/histrory.png', name: '工作10' }
+      { icon: '../../static/img/icon1.png', name: '分析' },
+      { icon: '../../static/img/icon2.png', name: '审批' },
+      { icon: '../../static/img/icon3.png', name: '接待' },
+      { icon: '../../static/img/icon4.png', name: '会议' },
+      { icon: '../../static/img/icon5.png', name: '立项' },
+      { icon: '../../static/img/icon6.png', name: '讨论' },
+      { icon: '../../static/img/icon7.png', name: '外出' },
+      { icon: '../../static/img/icon8.png', name: '运动' },
+      { icon: '../../static/img/icon9.png', name: '休息' }
     ],
     selectedIconIndex: -1,
     editIconNamePanelShow: false,
@@ -56,8 +55,12 @@ Page({
     if (this.data.selectedIconIndex == -1) {
       return;
     };
+    var idx = this.data.selectedIconIndex;
+    this.setData({
+      newActIconName: this.data.iconList[idx].name
+    });
     this.cancelSelectIcon();
-    this.postSelectedActIconMsg();
+    this.showEditIconNamePanel();
     
   },
   // 向后端发送数据
@@ -66,7 +69,6 @@ Page({
       title:''
     });
     if (this.data.actId){
-        // 编辑的活动
         setTimeout(function(){
           wx.hideLoading();
           wx.navigateBack({
@@ -74,7 +76,6 @@ Page({
           });
         },1000)
     }else{
-        // 新建的活动
       setTimeout(function () {
         wx.hideLoading();
         wx.navigateBack({
@@ -132,17 +133,19 @@ Page({
   // 提交输入的图标名字
   submitActIconName() {
     if (!this.data.newActIconName){
-      wx.showToast({ title: '请输入图标名称', icon: 'none' });
+      wx.showToast({ title: '请输入活动名称', icon: 'none' });
       return;
     };
-    var newIconList = this.data.iconList;
-    newIconList.push({
-      icon: this.data.tempImgUrl, 
-      name: this.data.newActIconName
-    });
-    this.setData({
-      iconList: newIconList
-    })
     this.hideEditIconNamePanel();
+    this.postSelectedActIconMsg();
+
+    // var newIconList = this.data.iconList;
+    // newIconList.push({
+    //   icon: this.data.tempImgUrl, 
+    //   name: this.data.newActIconName
+    // });
+    // this.setData({
+    //   iconList: newIconList
+    // })
   }
 })

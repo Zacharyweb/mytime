@@ -22,14 +22,18 @@
             </view> 
         </view>
 
+        
+
         <view class="edit_icon_name_wrapper">
             <view class="edit_icon_name_mask" wx:if="{{editIconNamePanelShow}}" bindtap="hideEditIconNamePanel"></view>
             <view class="edit_icon_name_panel {{editIconNamePanelShow?'show':''}}">
                 <view class="name_input_wrap">
-                     <input class="name_input" type="text" placeholder="请输入活动图标名称" bindinput="bindNameInput" value="{{newActIconName}}"/>
+                     <input class="name_input" maxlength='12' type="text" placeholder="请输入活动图标名称" bindinput="bindNameInput" value="{{newActIconName}}"/>
                 </view>
-                <view class="cancel_btn" bindtap="hideEditIconNamePanel">取消上传</view>
+                <!-- <view class="cancel_btn" bindtap="hideEditIconNamePanel">取消上传</view> -->
                 <view class="submit_btn" bindtap="submitActIconName">确定</view>
             </view>
         </view>
+
+
     </view>

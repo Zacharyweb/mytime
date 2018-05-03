@@ -32,22 +32,17 @@ Page({
     for (let i = 1; i <= num; i++) {
       days.push(i);
     };
-    console.log(days);
+    console.log(days.length);
     this.setData({
       days: days      
     })
   },
   bindChange: function (e) {
     const val = e.detail.value;
-    if (bigMonth.indexOf(val[1]) >= 0){
-      this.getDaysNum(31);
-    } else if (smallMonth.indexOf(val[1]) >= 0){
-      this.getDaysNum(30);
-    }
-    // this.setData({
-    //   year: this.data.years[val[0]],
-    //   month: this.data.months[val[1]],
-    //   day: this.data.days[val[2]]
-    // });
+    var year = this.data.years[val[0]];
+    var month = this.data.months[val[1]];
+    var date2 = new Date(year + '/'+ (month+1) + '/' + '1').getTime();
+    var date3 = new Date(date2 - 24*60*60*1000).getDate();
+    this.getDaysNum(date3);
   }
 })
