@@ -7,22 +7,20 @@
                     <view class="act_icon_name">{{item.name}}</view>
                 </view>
             </view>
-
-            <view class="edit_act_icon_btn select_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="submitActIcon">
+            <!-- <view class="edit_act_icon_btn select_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="submitActIcon">
                 <view class="btn_name">确定</view>
-            </view>
-
+            </view> -->
             <!-- <view class="edit_act_icon_btn delete_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="deleteActIcon">
                 <view class="btn_name">删除</view>
             </view> -->
-
-
             <!-- <view class="edit_act_icon_btn add_btn" catchtap="uploadActIcon">
                 <image class="btn_icon" src="../../static/img/add_new_act_icon_icon.png"></image>
                 <view class="btn_name">上传图标</view>
             </view> -->
+            <view class="edit_act_icon_btn submit_select_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="submitActIcon">
+                <view class="btn_name">确定</view>
+            </view> 
         </view>
-
 
         <view class="edit_icon_name_wrapper">
             <view class="edit_icon_name_mask" wx:if="{{editIconNamePanelShow}}" bindtap="hideEditIconNamePanel"></view>

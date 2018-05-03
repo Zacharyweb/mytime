@@ -1,9 +1,12 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/history/history",
+    "pages/searchResult/searchResult",
+
+  
     "pages/index/index",
    
-    "pages/history/history",
     "pages/iconHouse/iconHouse",
 
     "pages/editAct/editAct",

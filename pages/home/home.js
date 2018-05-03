@@ -1,4 +1,6 @@
 // pages/home/home.js
+var app = getApp();
+
 var jumpPageTime = 0;
 var jumpPageTouchDot = 0;//触摸时的原点
 var jumpPageInterval = null;
@@ -7,9 +9,9 @@ Page({
 
   data: {
     actList: [
-      { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111', remark2: '2222', id: '11' },
-      { icon: '../../static/img/histrory.png', name: '学习', remark1: '11111', remark2: '2222', id: '22' },
-      { icon: '../../static/img/histrory.png', name: '睡觉', remark1: '', remark2: '2222', id: '33' },
+      { icon: '../../static/img/histrory.png', name: '工作', remark1: '', remark2: '', id: '11' },
+      { icon: '../../static/img/histrory.png', name: '学习', remark1: '', remark2: '', id: '22' },
+      { icon: '../../static/img/histrory.png', name: '睡觉', remark1: '', remark2: '', id: '33' },
       // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'', id: '44' },
       // { icon: '../../static/img/histrory.png', name: '工作', remark1: '',remark2:'', id: '55' },
       // { icon: '../../static/img/histrory.png', name: '工作', remark1: '11111',remark2:'2222', id: '66' },
@@ -60,27 +62,25 @@ Page({
     selectedRemark2Index: -1,
 
     preferAct: { name: '工作', duration: '5' },
-    isSelectingPreferAct:false,
+    isSelectingPreferAct: false,
 
-    bgColorSelecterShow:false,
+    bgColorSelecterShow: false,
     bgColorList: ['#1d8574', '#d53c32', '#f9e1d7', '#feac51', '#83d8c5', '#8fa7f1', '#e5f4d7'],
-    pageMainColor:'#1d8574',
+    pageMainColor: '#1d8574',
 
-    contentPanelTouching:false,
-    floatFalsePanelRight:-40,
+    contentPanelTouching: false,
+    floatFalsePanelRight: -40,
 
   },
 
   onShow: function () {
-       console.log('在onShow时读取数据');
-
-       // 初始化左滑切换页面参数
-       jumpPageFlagHd = true;    //重新进入页面之后，可以再次执行滑动切换页面代码
-       clearInterval(jumpPageInterval); // 清除setInterval
-       jumpPageTime = 0;
-       this.setData({
-         floatFalsePanelRight:-80
-       })
+    // 初始化左滑切换页面参数
+    jumpPageFlagHd = true;
+    clearInterval(jumpPageInterval);
+    jumpPageTime = 0;
+    this.setData({
+      floatFalsePanelRight: -80
+    })
   },
 
   onHide: function () {
@@ -100,26 +100,56 @@ Page({
     this.setData({
       isInEditing: false
     });
+    // var actionSheet =[];
+    // if (app.globalData.lang == "en"){
+    //   actionSheet = ['Change to Chinese','Set BG Color']
+    // };
+    // if (app.globalData.lang == "cn") {
+    //   actionSheet = ['切换到英文', '设置背景颜色']
+    // };
     wx.showActionSheet({
-      itemList: ['设置语言','设置首选活动', '设置背景颜色'],
+      itemList: ['设置语言', '设置背景颜色'],
       success: function (res) {
         console.log(res.tapIndex);
+        // 去设置语言
+        if (res.tapIndex == 0) {
+          // app.globalData.lang = 'en';
+          _this.setLang();
+        };
+        // 去设置背景色
         if (res.tapIndex == 1) {
+          _this.showBgColorSelecter();
+        };
+
+        //去设置首选活动（先不做）
+        if (res.tapIndex == 2) {
           _this.setData({
             isSelectingPreferAct: true
           })
-        };
-        if (res.tapIndex == 1){
-          _this.setData({
-            isSelectingPreferAct:true
-          })
-        };
-        if (res.tapIndex == 2){
-          _this.showBgColorSelecter();
         }
       },
       fail: function (res) {
-        
+
+      }
+    })
+  },
+  setLang(){
+    wx.showActionSheet({
+      itemList: ['简体中文', 'English'],
+      success: function (res) {
+        if (res.tapIndex == 0) {
+         wx.showToast({
+           title: '中文',
+         })
+        };
+        if (res.tapIndex == 1) {
+          wx.showToast({
+            title: 'En',
+          })
+        };
+      },
+      fail: function (res) {
+
       }
     })
   },
@@ -172,16 +202,16 @@ Page({
     this.setData({
       remarkPanelShow: false
     });
-    // 如果再选择编辑活动的状态下
-    console.log(this.data.isInEditing);
     if (this.data.isInEditing) {
-      // 在选择编辑活动的状态下
+      // 在选择删除活动的状态下
       this.selectDeletedAct(index);
-    } else if (this.data.isSelectingPreferAct){
+    } else if (this.data.isSelectingPreferAct) {
       // 在选择首选活动的状态下
       this.selectPreferAct(index);
-    }else {
+    } else {
+      // 更换计时活动
       clearInterval(this.data.countTimer);
+      this.cleanActRemark();
       if (this.data.countTarget == index) {
         this.setData({
           countTarget: -1
@@ -203,7 +233,7 @@ Page({
   },
   // 去新增活动
   addNewAct() {
-    if (this.data.countTarget!=-1){
+    if (this.data.countTarget != -1) {
       wx.showToast({ title: '请先暂停计时中的活动', icon: 'none' });
       return;
     };
@@ -214,7 +244,7 @@ Page({
 
   // 进入选择活动删除的状态
   deleteAct() {
-    if (this.data.countTarget != -1 && !this.data.isInEditing){
+    if (this.data.countTarget != -1 && !this.data.isInEditing) {
       wx.showToast({ title: '请先暂停计时中的活动', icon: 'none' });
       return;
     };
@@ -234,19 +264,18 @@ Page({
     //   url: '../editAct/editAct?actId=' + id
     // });
     var newActList = this.data.actList;
-    newActList.splice(index,1);
+    newActList.splice(index, 1);
     this.setData({
       actList: newActList
     });
   },
-   // 选择活动设为首选活动
-  selectPreferAct(index){
+  // 选择活动设为首选活动
+  selectPreferAct(index) {
     var item = this.data.actList[index];
-    console.log(item.name);
     this.setData({
       preferAct: {
         name: item.name,
-        duration:'2'
+        duration: '2'
       },
       isSelectingPreferAct: false
     });
@@ -303,6 +332,19 @@ Page({
       actList: newActList
     });
     this.hideEditRemarkPanel();
+  },
+  // 清除活动的备注
+  cleanActRemark() {
+    var index = this.data.countTarget;
+    var newActList = this.data.actList;
+    if (index == -1){
+      return;
+    };
+    newActList[index].remark1 = '';
+    newActList[index].remark2 = '';
+    this.setData({
+      actList: newActList
+    });
   },
   // 展示修改备注名称的面板
   showEditRemarkNamePanel(e) {
@@ -390,19 +432,40 @@ Page({
   //删除备注1下面的标签项
   deleteRemark1(e) {
     var index = e.currentTarget.dataset.idx;
+    var selectedRemark1Index = this.data.selectedRemark1Index;
+    if (index == selectedRemark1Index) {
+      this.setData({
+        remark1Text: ''
+      });
+      selectedRemark1Index = -1;
+    } else if (index < selectedRemark1Index){
+      selectedRemark1Index--;
+    };
     var newRemark1List = this.data.remark1List;
     newRemark1List.splice(index, 1);
     this.setData({
-      remark1List: newRemark1List
+      remark1List: newRemark1List,
+      selectedRemark1Index: selectedRemark1Index
     })
   },
-  //删除备注1下面的标签项
+  //删除备注2下面的标签项
   deleteRemark2(e) {
     var index = e.currentTarget.dataset.idx;
+    var selectedRemark2Index = this.data.selectedRemark2Index;
+    if (index < selectedRemark2Index) {
+      selectedRemark2Index--;
+    };
+    if (index == selectedRemark2Index) {
+      this.setData({
+        remark2Text: ''
+      });
+      selectedRemark2Index = -1;
+    };
     var newRemark2List = this.data.remark2List;
     newRemark2List.splice(index, 1);
     this.setData({
-      remark2List: newRemark2List
+      remark2List: newRemark2List,
+      selectedRemark2Index: selectedRemark2Index
     })
   },
   // 展示背景颜色选择器
@@ -412,13 +475,13 @@ Page({
     });
   },
   // 隐藏背景颜色选择器
-  hideBgColorSelecter(){
+  hideBgColorSelecter() {
     this.setData({
-      bgColorSelecterShow:false
+      bgColorSelecterShow: false
     });
   },
   // 选择背景色
-  selectBgColor(e){
+  selectBgColor(e) {
     var index = e.currentTarget.dataset.idx;
     var color = this.data.bgColorList[index];
     this.setData({
@@ -427,25 +490,25 @@ Page({
     this.hideBgColorSelecter();
   },
 
-  // 触摸开始事件
+  // 左滑切换页面触摸开始事件
   contentTouchStart: function (e) {
     this.setData({
-      contentPanelTouching:true
+      contentPanelTouching: true
     });
     jumpPageTouchDot = e.touches[0].pageX; // 获取触摸时的原点
     // 使用js计时器记录时间    
     jumpPageInterval = setInterval(function () {
-      jumpPageTime ++;
+      jumpPageTime++;
     }, 100);
   },
-   // 触摸移动事件
-  contentTouchMove(e){
+  // 触摸移动事件
+  contentTouchMove(e) {
     var touchMove = e.changedTouches[0].pageX;
-    if (touchMove - jumpPageTouchDot >= 0){
+    if (touchMove - jumpPageTouchDot >= 0) {
       return;
     }
     var right = (jumpPageTouchDot - touchMove) - 40;
-    if (right>0){
+    if (right > 0) {
       return;
     };
     this.setData({
@@ -456,7 +519,7 @@ Page({
   contentTouchEnd: function (e) {
     this.setData({
       contentPanelTouching: false,
-      floatFalsePanelRight:-40
+      floatFalsePanelRight: -40
     });
     var touchMove = e.changedTouches[0].pageX;
     console.log(touchMove - jumpPageTouchDot);
@@ -466,7 +529,7 @@ Page({
         url: '../history/history'
       })
     };
-    clearInterval(jumpPageInterval); 
+    clearInterval(jumpPageInterval);
     jumpPageTime = 0;
   }
 })

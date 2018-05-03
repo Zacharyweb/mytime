@@ -1,0 +1,58 @@
+<!--pages/history/history.wxml-->
+<view class="history_layer">
+  <view class="tab_bar_wrapper">
+    <view class="tab_bar">
+       {{start}}—{{end}}活动记录
+    </view>
+    <view class="tab2_bar">
+      <view class="tab2_item {{summaryType==0?'active':''}} {{isInSummaryStatus?'':'hide'}}"  data-idx="0" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item {{summaryType==1?'active':''}} {{isInSummaryStatus?'':'hide'}}"  data-idx="1" bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item rank_btn {{isInSummaryStatus?'active2':''}}" bindtap="changeRankStatus">
+        汇总
+        <image class="rank_btn_icon" src="../../static/img/total_green.png" wx:if="{{!isInSummaryStatus}}"></image>
+        <image class="rank_btn_icon" src="../../static/img/total_white.png" wx:if="{{isInSummaryStatus}}"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab_bar_fill_block"></view>
+  <view class="history_list">
+    <view class="history_item">
+      <view class="act_base_msg">
+        <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
+        <view class="act_remark">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
+        <view class="act_time">2018.4.06 12:35-15:35</view>
+      </view>
+      <view class="act_total_msg">
+        <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
+        <view class="total_time">3小时0分</view>
+      </view>
+    </view>
+    <view class="history_item">
+      <view class="act_base_msg">
+        <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
+        <view class="act_remark">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
+        <view class="act_time">2018.4.06 12:35-15:35</view>
+      </view>
+      <view class="act_total_msg">
+        <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
+        <view class="total_time">3小时0分</view>
+      </view>
+    </view>
+
+    <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
+      <view class="act_base_msg">
+        <view class="act_name">暂停</view>
+        <view class="act_remark"></view>
+        <view class="act_time">2018.4.06 12:35-15:35</view>
+      </view>
+      <view class="act_total_msg">
+        <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
+        <view class="total_time">3小时0分</view>
+      </view>
+    </view>
+  </view>
+</view>

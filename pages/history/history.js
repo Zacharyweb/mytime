@@ -1,32 +1,35 @@
-// pages/history/history.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     currentTab: 0,
-    summaryType: 0,
-    searchPanelShow: false,
-    rankStatus: 1,
-    startDate:'',
-    endDate: '',
-    currenteSelectedDateType:-1,
 
+    summaryType: 0, // 0：按活动汇总 1：按备注汇总 
+    isInSummaryStatus:false, // 是否展示汇总
+
+    // 搜索日期相关
+    searchPanelShow: false,
+    startDate: '',
+    endDate: '',
+    currenteSelectedDateType: -1,
     datePick1StartDate:'',
     datePick1EndDate: '',
     datePick2StartDate: '',
     datePick2EndDate: '',
 
+    // 今日剩余倒计时
     countTimer: null,
     countH: '00',
     countM: '00',
     countS: '00'
-  
   },
   onShow: function () {
+    // wx.setNavigationBarTitle({
+    //   title:'Histroy'
+    // });
     this.count();
     this.initDatePickerRange();
+  },
+  onHide:function(){
+    wx.hideLoading();
   },
   initDatePickerRange(){
     var date = new Date();
@@ -44,7 +47,7 @@ Page({
     };
     this.setData({
       currentTab: index,
-      summaryType: 0
+      // summaryType: 0
     });
   },
   // 更换二级tab
@@ -80,17 +83,21 @@ Page({
       return;
     };
     this.hideSearchPanel();
+    wx.showLoading({
+      title: '搜索中'
+    });
+    setTimeout(()=>{
+      wx.navigateTo({
+        url: '../searchResult/searchResult?start=' + this.data.startDate + '&end=' + this.data.endDate
+      });
+    },1000);
   },
-  // 更换排序方式
+  // 更换展示状态方式（明细跟汇总状态间切换）
   changeRankStatus() {
-    var index = 0;
-    if (this.data.rankStatus == 1){
-      index=2;
-    }else{
-      index = 1;
-    };
+
     this.setData({
-      rankStatus: index
+      isInSummaryStatus: !this.data.isInSummaryStatus,
+      summaryType:0
     });
   },
   // 绑定开始时间选择
