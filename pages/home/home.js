@@ -484,7 +484,6 @@ Page({
     });
     this.hideBgColorSelecter();
   },
-
   // 左滑切换页面触摸开始事件
   contentTouchStart: function (e) {
     this.setData({
@@ -526,5 +525,12 @@ Page({
     };
     clearInterval(jumpPageInterval);
     jumpPageTime = 0;
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "我的时间",
+      desc: "主页",
+      path: '/pages/home/home'
+    }
   }
 })
