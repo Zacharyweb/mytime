@@ -170,37 +170,12 @@ page {
   line-height: 1.2;
 }
 
-.content_block .act_item .act_remark {
-  font-size: 24rpx;
-  color: #999;
-  line-height: 1.2;
-}
-
 .content_block .act_item .act_trigger {
   width: 205rpx;
   padding: 0 15rpx;
   margin-top: 12rpx;
   display: flex;
   justify-content: center;
-}
-
-.content_block .act_item .act_start_btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
-  transform: translate(-50%, -70%);
-  height: 50rpx;
-  width: 180rpx;
-  font-size: 26rpx;
-  border-radius: 8rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2rpx solid #1d8574;
-  /* background-color: #a1d2ce; */
-  background-color: #fff;
-  color: #1d8574;
 }
 
 .content_block .act_item .act_end_btn {
@@ -256,8 +231,8 @@ page {
   color: #fff;
 }
 
-.content_block .act_remark_panel .act_remark_text1 {
-  margin-bottom: 10rpx;
+.content_block .act_remark_panel .act_remark_text2 {
+  margin-top: 10rpx;
 }
 
 .content_block .act_remark_panel .close_icon {
