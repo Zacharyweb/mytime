@@ -26,9 +26,7 @@
           <image class="act_icon_pic" src="{{item.icon}}"></image>
         </view>
         <view class="act_name" wx:if="{{index != countTarget}}">{{item.name}}</view>
-        <!-- <view class="act_remark">{{item.remark}}</view> -->
         <view class="act_trigger">
-          <!-- <view class="act_start_btn" wx:if="{{index != countTarget}}">开始计时</view> -->
           <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
         </view>
 
@@ -46,8 +44,8 @@
           <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
         </view>
         <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
-          <view class="act_remark_text act_remark_text1" catchtap="showEditRemarkPanel">{{item.remark1 || '添加备注' + remark1Name}}</view>
-          <view class="act_remark_text" catchtap="showEditRemarkPanel">{{item.remark2 || '添加备注' + remark2Name}}</view>
+          <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || '添加备注项'}}</view>
+          <view class="act_remark_text act_remark_text2" catchtap="showEditRemarkPanel" wx:if="{{item.remark2}}">{{item.remark2}}</view>
           <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
         </view>
       </view>
@@ -128,7 +126,7 @@
     <view class="edit_remark_name_mask" wx:if="{{editRemarkNamePanelShow}}" bindtap="hideEditRemarkNamePanel"></view>
     <view class="edit_remark_name_panel {{editRemarkNamePanelShow?'show':''}}">
       <view class="name_input_wrap">
-        <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='6' />
+        <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='12' />
       </view>
       <view class="submit_btn" bindtap='submitEditRemarkName'>确定</view>
     </view>
