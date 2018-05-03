@@ -6,7 +6,7 @@ page{
   padding-bottom: 80rpx;
 }
 .tab_bar_fill_block{
-  height: 125rpx;
+  height: 145rpx;
 }
 .history_layer .tab_bar_wrapper{
   position: fixed;
@@ -14,7 +14,7 @@ page{
   left: 0;
   top:0;
   padding-top: 25rpx;
-  height: 100rpx;
+  height: 120rpx;
   background-color: #efeff4;
 }
 .history_layer .search_key{
@@ -27,7 +27,7 @@ page{
 }
 .history_layer .tab_bar{
   background-color: #fff;
-  height: 100rpx;
+  height: 120rpx;
   display: flex;
   align-items: center;
   border-top: 2rpx solid #d9d9d9;
@@ -46,7 +46,7 @@ page{
   padding-right: 270rpx;
   padding-left: 50rpx;
   background-color: #fff;
-  height: 80rpx;
+  height: 100rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;

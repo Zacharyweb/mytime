@@ -9,7 +9,7 @@ Page({
 
   data: {
     actList: [
-      { icon: '../../static/img/icon1.png', name: 'pricewaterho', remark1: '', remark2: '', id: '11' },
+      { icon: '../../static/img/icon1.png', name: '统计', remark1: '', remark2: '', id: '11' },
       { icon: '../../static/img/icon2.png', name: '审批', remark1: '', remark2: '', id: '22' },
       { icon: '../../static/img/icon3.png', name: '接待', remark1: '', remark2: '', id: '33' },
       { icon: '../../static/img/icon4.png', name: '会议', remark1: '11111',remark2:'', id: '44' },
@@ -108,20 +108,16 @@ Page({
     //   actionSheet = ['切换到英文', '设置背景颜色']
     // };
     wx.showActionSheet({
-      itemList: ['设置语言', '设置背景颜色'],
+      itemList: ['设置背景颜色'],
       success: function (res) {
         console.log(res.tapIndex);
-        // 去设置语言
+        
         if (res.tapIndex == 0) {
-          // app.globalData.lang = 'en';
-          _this.setLang();
-        };
-        // 去设置背景色
-        if (res.tapIndex == 1) {
           _this.showBgColorSelecter();
         };
-
-        //去设置首选活动（先不做）
+        if (res.tapIndex == 1) {
+          
+        };
         if (res.tapIndex == 2) {
           _this.setData({
             isSelectingPreferAct: true
@@ -129,7 +125,6 @@ Page({
         }
       },
       fail: function (res) {
-
       }
     })
   },

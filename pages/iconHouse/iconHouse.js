@@ -7,7 +7,7 @@ Page({
   data: {
     actId:'',
     iconList: [
-      { icon: '../../static/img/icon1.png', name: '分析' },
+      { icon: '../../static/img/icon1.png', name: '统计' },
       { icon: '../../static/img/icon2.png', name: '审批' },
       { icon: '../../static/img/icon3.png', name: '接待' },
       { icon: '../../static/img/icon4.png', name: '会议' },

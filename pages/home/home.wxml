@@ -84,7 +84,7 @@
 
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6' />
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='12' />
           </view>
           <view class="history_remark_list">
             <view class="history_remark_item {{index == selectedRemark1Index?'active':''}}" wx:for="{{remark1List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark1">{{item.name}}
@@ -104,7 +104,7 @@
             </view>
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='6' />
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='12' />
           </view>
 
           <view class="history_remark_list">

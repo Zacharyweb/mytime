@@ -109,7 +109,9 @@ page {
   height: 235rpx;
   margin-right: 10rpx;
   margin-bottom: 10rpx;
-  box-shadow: 0 1rpx 9rpx 0 rgba(29, 133, 116, 0.63);
+  /* box-shadow: 0 1rpx 9rpx 0 rgba(29, 133, 116, 0.63); */
+  box-shadow: 0 1rpx 9rpx 0 rgba(168, 168,168, 0.63);
+  
   text-align: center;
   position: relative;
   overflow: hidden;
