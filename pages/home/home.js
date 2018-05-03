@@ -517,7 +517,6 @@ Page({
       floatFalsePanelRight: -40
     });
     var touchMove = e.changedTouches[0].pageX;
-    console.log(touchMove - jumpPageTouchDot);
     if (touchMove - jumpPageTouchDot <= -40 && jumpPageTime < 10 && jumpPageFlagHd == true) {
       jumpPageFlagHd = false;
       wx.navigateTo({

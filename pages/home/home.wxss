@@ -1,5 +1,4 @@
 /* pages/home/home.wxss */
-
 page {
   min-height: 100%;
 }
