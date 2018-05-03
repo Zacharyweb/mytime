@@ -1,0 +1,18 @@
+<view>{{year}}-{{month}}-{{day}}</view>
+<view class="date_picker_layer">
+  <view class="action_btn_wrapper">
+    <view class="action_btn_item">确定</view>
+    <view class="action_btn_item">取消</view>
+  </view>
+  <picker-view indicator-style="height: 100rpx;" class="date_picker_panel" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{years}}" class="date_picker_grid">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" class="date_picker_grid">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" class="date_picker_grid">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

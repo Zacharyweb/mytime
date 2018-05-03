@@ -1,14 +1,11 @@
 {
   "pages": [
+    "pages/demo/demo",
     "pages/home/home",
     "pages/history/history",
     "pages/searchResult/searchResult",
-
-  
     "pages/index/index",
-   
     "pages/iconHouse/iconHouse",
-
     "pages/editAct/editAct",
     "pages/editActName/editActName",
     "pages/logs/logs"
