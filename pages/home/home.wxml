@@ -27,7 +27,7 @@
         </view>
         <view class="act_name" wx:if="{{index != countTarget}}">{{item.name}}</view>
         <view class="act_trigger">
-          <view class="act_end_btn" wx:if="{{index == countTarget}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
+          <view class="act_end_btn" wx:if="{{index == countTarget}}" style="background-color: {{pageMainColor}};border-color:{{pageMainColor}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
         </view>
 
         <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
@@ -41,7 +41,10 @@
         </view>
 
         <view class="to_remark_btn" wx:if="{{index == countTarget}}" catchtap="showRemarkPanel">
-          <image src="../../static/img/three_dot_icon.png" class="btn_text"></image>
+          <!-- <image src="../../static/img/three_dot_icon.png" class="btn_text"></image> -->
+          <view class="s_circle_dot" style="background-color: {{pageMainColor}}"></view>
+          <view class="s_circle_dot" style="background-color: {{pageMainColor}}"></view>
+          <view class="s_circle_dot" style="background-color: {{pageMainColor}}"></view>
         </view>
         <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
           <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || '添加备注项'}}</view>
