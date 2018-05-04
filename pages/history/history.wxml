@@ -1,6 +1,7 @@
 <!--pages/history/history.wxml-->
 <view class="history_layer">
   <view class="tab_bar_wrapper">
+    <!-- 第一级Tab -->
     <view class="tab_bar">
       <view class="tab_item {{currentTab == 0?'active':''}}" data-idx="0" bindtap="changeCurrentTab">今天</view>
       <view class="tab_item {{currentTab == 1?'active':''}}" data-idx="1" bindtap="changeCurrentTab">昨日</view>
@@ -9,6 +10,8 @@
         <image class="search_icon" src="../../static/img/search_icon.png"></image>
       </view>
     </view>
+
+    <!-- 第二级Tab -->
     <view class="tab2_bar">
       <view class="tab2_item  {{summaryType==0?'active':''}} {{isInSummaryStatus?'':'hide'}}" data-idx="0" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item  {{summaryType==1?'active':''}} {{isInSummaryStatus?'':'hide'}}" data-idx="1" bindtap="changeSummaryType">按备注汇总</view>
@@ -21,7 +24,11 @@
   </view>
 
   <view class="tab_bar_fill_block"></view>
+
+  <!-- 历史列表 -->
   <view class="history_list">
+
+    <!-- 历史活动项 -->
     <view class="history_item">
       <view class="act_base_msg">
         <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
@@ -34,24 +41,11 @@
         <view class="total_time">3小时0分</view>
       </view>
     </view>
-    <view class="history_item">
-      <view class="act_base_msg">
-        <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
-        <view class="act_remark">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
-        <view class="act_time">2018.4.06 12:35-15:35</view>
-      </view>
-      <view class="act_total_msg">
-        <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time">3小时0分</view>
-      </view>
-    </view>
 
-
-
+    <!-- 历史未计时项 -->
     <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
       <view class="act_base_msg">
-        <view class="act_name">暂停</view>
+        <view class="act_name">未计时</view>
         <view class="act_remark"></view>
         <view class="act_time">2018.4.06 12:35-15:35</view>
       </view>
@@ -62,6 +56,7 @@
       </view>
     </view>
 
+    <!-- 今日剩余时间项 -->
     <view class="history_item today_leaf_time" wx:if="{{currentTab == 0}}">
       <view class="act_base_msg">
         <view class="act_name">今日剩余时间</view>
@@ -72,8 +67,7 @@
     </view>
   </view>
 
-
-
+  <!-- 搜索面板 -->
   <view class="search_history_wrapper">
     <view class="search_history_mask" wx:if="{{searchPanelShow}}" bindtap="hideSearchPanel"></view>
     <view class="search_history_panel {{searchPanelShow?'show':''}}">
@@ -81,6 +75,8 @@
         <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideSearchPanel"></image>
         请选择搜索时间段
       </view>
+
+      <!-- 起始时间输入项 -->
       <view class="panel_content">
         <view class="input_item">
           <picker mode="date" value="{{date}}" start="{{datePick1StartDate}}" end="{{datePick1EndDate}}" data-idx="1" bindtap="bindDatePickerTap" bindcancel="bindDatePickerCancel" bindchange="bindStartDateChange">
@@ -89,6 +85,7 @@
           </picker>
         </view>
 
+        <!-- 结束时间输入项 -->
         <view class="input_item">
           <picker mode="date" value="{{date}}" start="{{datePick2StartDate}}" end="{{datePick2EndDate}}" data-idx="2" bindtap="bindDatePickerTap" bindchange="bindEndDateChange" bindcancel="bindDatePickerCancel">
             <view class="item_name">结束时间：</view>

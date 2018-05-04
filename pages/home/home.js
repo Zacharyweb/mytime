@@ -65,7 +65,7 @@ Page({
     isSelectingPreferAct: false,
 
     bgColorSelecterShow: false,
-    bgColorList: ['#1d8574', '#d53c32', '#f9e1d7', '#feac51', '#83d8c5', '#8fa7f1', '#e5f4d7'],
+    bgColorList: ['#1d8574', '#f25f5c', '#fcbf49', '#457b9d', '#e5989b','#c5c3c6'],
     pageMainColor: '#1d8574',
 
     contentPanelTouching: false,
@@ -447,14 +447,13 @@ Page({
   deleteRemark2(e) {
     var index = e.currentTarget.dataset.idx;
     var selectedRemark2Index = this.data.selectedRemark2Index;
-    if (index < selectedRemark2Index) {
-      selectedRemark2Index--;
-    };
     if (index == selectedRemark2Index) {
       this.setData({
         remark2Text: ''
       });
       selectedRemark2Index = -1;
+    } else if (index < selectedRemark2Index) {
+      selectedRemark2Index--;
     };
     var newRemark2List = this.data.remark2List;
     newRemark2List.splice(index, 1);

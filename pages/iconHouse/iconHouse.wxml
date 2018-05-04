@@ -1,12 +1,15 @@
 <!--pages/iconHouse/iconHouse.wxml-->
     <view class="selecte_act_icon_layer"  bindtap="cancelSelectIcon">
         <view class="content_block">
+           <!-- 单个活动图标项 -->
             <view class="act_item" wx:for="{{iconList}}" wx:key="{{index}}" data-idx="{{index}}" catchtap="selectIcon">
                 <view class="act_item_inner {{index == selectedIconIndex?'selected':''}}">
                     <image class="act_icon_pic" src="{{item.icon}}"></image>
                     <view class="act_icon_name">{{item.name}}</view>
                 </view>
             </view>
+
+            <!-- 底部操作按钮 -->
             <!-- <view class="edit_act_icon_btn select_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="submitActIcon">
                 <view class="btn_name">确定</view>
             </view> -->
@@ -21,9 +24,8 @@
                 <view class="btn_name">确定</view>
             </view> 
         </view>
-
-        
-
+          
+        <!-- 选择图标后输入图标名称的面板 -->
         <view class="edit_icon_name_wrapper">
             <view class="edit_icon_name_mask" wx:if="{{editIconNamePanelShow}}" bindtap="hideEditIconNamePanel"></view>
             <view class="edit_icon_name_panel {{editIconNamePanelShow?'show':''}}">
@@ -34,6 +36,4 @@
                 <view class="submit_btn" bindtap="submitActIconName">确定</view>
             </view>
         </view>
-
-
     </view>

@@ -8,8 +8,7 @@
     "pages/editAct/editAct",
     "pages/editActName/editActName",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/demo/demo"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

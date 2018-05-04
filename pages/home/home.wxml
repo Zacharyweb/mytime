@@ -14,43 +14,58 @@
             <text>小时</text>
           </view> -->
         </view>
-      <!-- <image class="history_icon_btn" catchtap="topBlockTap" src="../../static/img/set_icon.png"></image>-->
         <image class="history_icon_btn" catchtap="toHistoryPage" src="../../static/img/right_arrow.png"></image>
       </view>
     </view>
 
     <!-- 活动列表区域 -->
     <view class="content_block">
+      <!-- 单个活动 -->
       <view wx:for="{{actList}}" class="act_item {{(index*1 + 1)%3 == 0 ?'no_margin_right':''}} {{index == countTarget?'bounceIn':''}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="changeCountTarget">
+
+        <!-- 活动图标 -->
         <view class="act_icon_wrap">
           <image class="act_icon_pic" src="{{item.icon}}"></image>
         </view>
+
+        <!-- 活动名称 -->
         <view class="act_name" wx:if="{{index != countTarget}}">{{item.name}}</view>
+
+        <!-- 活动倒计时 -->
         <view class="act_trigger">
           <view class="act_end_btn" wx:if="{{index == countTarget}}" style="background-color: {{pageMainColor}};border-color:{{pageMainColor}}">{{countH + ' : ' + countM + ' : ' + countS}}</view>
         </view>
 
+        <!-- 活动未开时计时时的遮罩 -->
         <view class="unactived_mask" wx:if="{{index != countTarget && !isInEditing}}"></view>
 
+        <!-- 活动未待删除状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
           <view class="to_edit_btn_text">点击删除</view>
         </view>
 
+        <!-- 活动未待设为首选活动时状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isSelectingPreferAct?'show':''}}">
           <view class="to_edit_btn_text">设为首选活动</view>
         </view>
 
+        <!-- 点击展示活动备注的按钮 -->
         <view class="to_remark_btn" wx:if="{{index == countTarget}}" catchtap="showRemarkPanel">
-          <!-- <image src="../../static/img/three_dot_icon.png" class="btn_text"></image> -->
           <view class="s_circle_dot" style="background-color: {{pageMainColor}}"></view>
           <view class="s_circle_dot" style="background-color: {{pageMainColor}}"></view>
           <view class="s_circle_dot" style="background-color: {{pageMainColor}}"></view>
         </view>
+
+        <!-- 活动相关备注的浮层 -->
         <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
-          <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || '添加备注项'}}</view>
-          <view class="act_remark_text act_remark_text2" catchtap="showEditRemarkPanel" wx:if="{{item.remark2}}">{{item.remark2}}</view>
-          <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
+          <view class="panel_content">
+            <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || '添加备注项'}}</view>
+            <view class="act_remark_text act_remark_text2" catchtap="showEditRemarkPanel" wx:if="{{item.remark2}}">{{item.remark2}}</view>
+            <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
+          </view>
+          <view class="panel_bg" style="background-color: {{pageMainColor}}"></view>
         </view>
+
       </view>
     </view>
   </scroll-view>
@@ -76,6 +91,7 @@
         <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> 设置活动备注
       </view>
       <view class="panel_content">
+        <!-- 编辑备注1的部分 -->
         <view class="input_item">
           <view class="item_name">
             <view class="item_name_content">
@@ -97,6 +113,7 @@
           </view>
         </view>
 
+        <!-- 编辑备注2的部分 -->
         <view class="input_item">
           <view class="item_name">
             <view class="item_name_content">
