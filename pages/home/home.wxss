@@ -187,8 +187,11 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2rpx solid #1d8574;
-  background-image: linear-gradient(90deg, #1d8574 0%, #4ec1bc 150%);
+  /* border: 2rpx solid #1d8574;
+  background-image: linear-gradient(90deg, #1d8574 0%, #4ec1bc 150%); */
+  border-width: 2rpx;
+  border-style: solid;
+  
   color: #fff;
   font-size: 24rpx;
   border-radius: 4rpx;
@@ -198,12 +201,21 @@ page {
   position: absolute;
   top: 0;
   right: 10rpx;
-}
-
-.content_block .to_remark_btn .btn_text {
   width: 48rpx;
   height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+.content_block .to_remark_btn .s_circle_dot{
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+}
+/* .content_block .to_remark_btn .btn_text {
+  width: 48rpx;
+  height: 48rpx;
+} */
 
 .content_block .act_remark_panel {
   position: absolute;
