@@ -146,7 +146,10 @@ page {
   color: #fff;
   font-size: 30rpx;
 }
-
+.content_block .act_item .to_edit_btn_mask  .delete_icon{
+  width: 80rpx;
+  height: 80rpx;
+}
 .content_block .act_item .act_icon_wrap {
   padding: 30rpx 0 20rpx 0;
   display: flex;

@@ -41,7 +41,7 @@
 
         <!-- 活动未待删除状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
-          <view class="to_edit_btn_text">点击删除</view>
+          <view class="to_edit_btn_text"><image class="delete_icon" src="../../static/img/delete_icon2.png"></image></view>
         </view>
 
         <!-- 活动未待设为首选活动时状态时的遮罩 -->
@@ -78,8 +78,7 @@
     </view>
 
     <view class="act_edit_trigger" bindtap="deleteAct">
-      <image class="act_icon_pic" src="../../static/img/bottom_icon2.png" wx:if="{{!isInEditing}}"></image>
-      <image class="act_icon_pic" src="../../static/img/bottom_icon3.png" wx:if="{{isInEditing}}"></image>
+      <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" wx:if="{{!isInEditing}}"></view>
       <view class="set_btn_text" wx:if="{{isInEditing}}"></view> -->
        <view class="divide_line"></view>
