@@ -1,4 +1,3 @@
-<view>{{year}}-{{month}}-{{day}}</view>
 <view class="date_picker_layer">
   <view class="action_btn_wrapper">
     <view class="action_btn_item">确定</view>

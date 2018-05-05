@@ -4,8 +4,8 @@
     "pages/iconHouse/iconHouse",
     "pages/history/history",
     "pages/searchResult/searchResult",
-
     "pages/editAct/editAct",
+    "pages/demo/demo",
     "pages/editActName/editActName",
     "pages/index/index",
     "pages/logs/logs"
