@@ -9,10 +9,10 @@ Page({
 
   data: {
     actList: [
-      { icon: '../../static/img/icon1.png', name: '统计', remark1: '', remark2: '', id: '11' },
-      { icon: '../../static/img/icon2.png', name: '审批', remark1: '', remark2: '', id: '22' },
-      { icon: '../../static/img/icon3.png', name: '接待', remark1: '', remark2: '', id: '33' },
-      { icon: '../../static/img/icon4.png', name: '会议', remark1: '',remark2:'', id: '44' },
+      { icon: '../../static/img/icon1.png', name: '四个字的', remark1: '', remark2: '', id: '11' },
+      { icon: '../../static/img/icon2.png', name: '十五个字十五个字十五个字十五个', remark1: '', remark2: '', id: '22' },
+      { icon: '../../static/img/icon3.png', name: 'Chargeable', remark1: '', remark2: '', id: '33' },
+      { icon: '../../static/img/icon4.png', name: 'Chargeable Work', remark1: '',remark2:'', id: '44' },
       { icon: '../../static/img/icon5.png', name: '立项', remark1: '',remark2:'', id: '55' },
       { icon: '../../static/img/icon6.png', name: '讨论', remark1: '',remark2:'', id: '66' },
       { icon: '../../static/img/icon7.png', name: '外出', remark1: '',remark2:'', id: '77' },

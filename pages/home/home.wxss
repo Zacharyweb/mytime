@@ -151,7 +151,8 @@ page {
   height: 80rpx;
 }
 .content_block .act_item .act_icon_wrap {
-  padding: 30rpx 0 20rpx 0;
+  /* padding: 30rpx 0 20rpx 0; */
+  padding: 25rpx 0 15rpx 0;
   display: flex;
   justify-content: center;
 }
@@ -169,7 +170,9 @@ page {
   font-weight: 600;
   font-size: 28rpx;
   color: #222;
-  line-height: 1.2;
+  /* line-height: 1.2; */
+  line-height: 1.25;
+  padding:5rpx;
 }
 
 .content_block .act_item .act_trigger {

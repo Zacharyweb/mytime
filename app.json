@@ -1,12 +1,6 @@
 {
   "pages": [
-    "pages/demo/demo",
-    "pages/demo2/demo2",
-
-
     "pages/home/home",
-
-
     "pages/iconHouse/iconHouse",
     "pages/history/history",
     "pages/searchResult/searchResult",
