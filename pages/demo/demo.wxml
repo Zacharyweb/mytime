@@ -1,3 +1,5 @@
+<view>我是组件组件</view>
+ <component-tag-name inner-text="Some text"></component-tag-name>
 <view class="date_picker_layer">
   <view class="action_btn_wrapper">
     <view class="action_btn_item">确定</view>
