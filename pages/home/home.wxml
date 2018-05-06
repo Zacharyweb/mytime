@@ -41,7 +41,7 @@
 
         <!-- 活动未待删除状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
-          <view class="to_edit_btn_text">点击删除</view>
+          <view class="to_edit_btn_text"><image class="delete_icon" src="../../static/img/delete_icon2.png"></image></view>
         </view>
 
         <!-- 活动未待设为首选活动时状态时的遮罩 -->
@@ -72,20 +72,20 @@
   <!-- 底部新增活动、编辑活动 -->
   <view class="act_edit_block">
     <view class="act_edit_trigger" bindtap="addNewAct">
-      <image class="act_icon_pic" src="../../static/img/add_icon1.png"></image>
+      <image class="act_icon_pic" src="../../static/img/bottom_icon1.png"></image>
       <!-- <view class="set_btn_text"></view> -->
       <view class="divide_line"></view>
     </view>
 
     <view class="act_edit_trigger" bindtap="deleteAct">
-      <image class="act_icon_pic" src="../../static/img/delete_icon3.png"></image>
+      <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" wx:if="{{!isInEditing}}"></view>
       <view class="set_btn_text" wx:if="{{isInEditing}}"></view> -->
        <view class="divide_line"></view>
     </view>
 
     <view class="act_edit_trigger" bindtap="toHistoryPage">
-      <image class="act_icon_pic" src="../../static/img/to_history_icon.png"></image>
+      <image class="act_icon_pic" src="../../static/img/bottom_icon4.png"></image>
     </view>
   </view>
 
