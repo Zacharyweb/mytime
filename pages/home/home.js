@@ -1,23 +1,24 @@
 // pages/home/home.js
 var app = getApp();
 
-var jumpPageTime = 0;
-var jumpPageTouchDot = 0;//触摸时的原点
-var jumpPageInterval = null;
-var jumpPageFlagHd = true;
 Page({
 
   data: {
     actList: [
       { icon: '../../static/img/icon1.png', name: '四个字的', remark1: '', remark2: '', id: '11' },
-      { icon: '../../static/img/icon2.png', name: '十五个字十五个字十五个字十五个', remark1: '', remark2: '', id: '22' },
+      { icon: '../../static/img/icon2.png', name: '十五个字十五', remark1: '', remark2: '', id: '22' },
       { icon: '../../static/img/icon3.png', name: 'Chargeable', remark1: '', remark2: '', id: '33' },
-      { icon: '../../static/img/icon4.png', name: 'Chargeable Work', remark1: '',remark2:'', id: '44' },
+      { icon: '../../static/img/icon4.png', name: 'Chargeable', remark1: '',remark2:'', id: '44' },
       { icon: '../../static/img/icon5.png', name: '立项', remark1: '',remark2:'', id: '55' },
       { icon: '../../static/img/icon6.png', name: '讨论', remark1: '',remark2:'', id: '66' },
       { icon: '../../static/img/icon7.png', name: '外出', remark1: '',remark2:'', id: '77' },
       { icon: '../../static/img/icon8.png', name: '运动', remark1: '',remark2:'', id: '88' },
-      { icon: '../../static/img/icon9.png', name: '休息', remark1: '',remark2:'', id: '99' }
+      { icon: '../../static/img/icon9.png', name: '休息', remark1: '',remark2:'', id: '99' },
+      { icon: '../../static/img/icon5.png', name: '立项', remark1: '', remark2: '', id: '55' },
+      { icon: '../../static/img/icon6.png', name: '讨论', remark1: '', remark2: '', id: '66' },
+      { icon: '../../static/img/icon7.png', name: '外出', remark1: '', remark2: '', id: '77' },
+      { icon: '../../static/img/icon8.png', name: '运动', remark1: '', remark2: '', id: '88' },
+      { icon: '../../static/img/icon9.png', name: '休息', remark1: '', remark2: '', id: '99' }
     ],
     remark1List: [
       { name: '平安保险', id: '1' },
@@ -65,22 +66,17 @@ Page({
     isSelectingPreferAct: false,
 
     bgColorSelecterShow: false,
-    bgColorList: ['#1d8574', '#f25f5c', '#fcbf49', '#457b9d', '#e5989b','#c5c3c6'],
-    pageMainColor: '#1d8574',
+    bgColorList: ['#c5c3c6', '#f25f5c', '#fcbf49', '#457b9d', '#e5989b', '#1d8574'],
+    pageMainColor: '#c5c3c6',
 
     contentPanelTouching: false,
-    floatFalsePanelRight: -40,
+
 
   },
 
   onShow: function () {
-    // 初始化左滑切换页面参数
-    jumpPageFlagHd = true;
-    clearInterval(jumpPageInterval);
-    jumpPageTime = 0;
-    this.setData({
-      floatFalsePanelRight: -80
-    })
+    
+
   },
 
   onHide: function () {
@@ -483,47 +479,8 @@ Page({
     });
     this.hideBgColorSelecter();
   },
-  // 左滑切换页面触摸开始事件
-  contentTouchStart: function (e) {
-    this.setData({
-      contentPanelTouching: true
-    });
-    jumpPageTouchDot = e.touches[0].pageX; // 获取触摸时的原点
-    // 使用js计时器记录时间    
-    jumpPageInterval = setInterval(function () {
-      jumpPageTime++;
-    }, 100);
-  },
-  // 触摸移动事件
-  contentTouchMove(e) {
-    var touchMove = e.changedTouches[0].pageX;
-    if (touchMove - jumpPageTouchDot >= 0) {
-      return;
-    }
-    var right = (jumpPageTouchDot - touchMove) - 40;
-    if (right > 0) {
-      return;
-    };
-    this.setData({
-      floatFalsePanelRight: right
-    });
-  },
-  // 触摸结束事件
-  contentTouchEnd: function (e) {
-    this.setData({
-      contentPanelTouching: false,
-      floatFalsePanelRight: -40
-    });
-    var touchMove = e.changedTouches[0].pageX;
-    if (touchMove - jumpPageTouchDot <= -40 && jumpPageTime < 10 && jumpPageFlagHd == true) {
-      jumpPageFlagHd = false;
-      wx.navigateTo({
-        url: '../history/history'
-      })
-    };
-    clearInterval(jumpPageInterval);
-    jumpPageTime = 0;
-  },
+
+
   onShareAppMessage: function () {
     return {
       title: "我的时间",
