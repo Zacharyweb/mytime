@@ -298,15 +298,17 @@ page {
 
 .act_edit_block .divide_line {
   position: absolute;
-  top: 50%;
-  right: -2rpx;
-  margin-top: -20rpx;
-  height: 40rpx;
+   top: 50%; 
+  right: -7rpx;
+   margin-top: -20rpx; 
+   height: 40rpx; 
+  /* height: 50rpx;
+  top:-20rpx; */
   width: 2rpx;
   background-color: #d9d9d9;
 }
 .act_edit_block .divide_line2{
-   right: 3rpx;
+   right: 6rpx;
 }
 .act_edit_block .act_icon_pic {
   width: 64rpx;
