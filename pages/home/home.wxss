@@ -271,15 +271,13 @@ page {
   background-color: rgba(255, 255, 255, 0.75);
 }
 
-.act_edit_block {
+/* .act_edit_block {
   position: fixed;
   z-index: 10;
   left: 0rpx;
   right: 0rpx;
   bottom: 0rpx;
-  /* width: 750rpx; */
   height: 100rpx;
-   /* padding: 0 10rpx;  */
   border-radius: 4rpx;
   background-color:#fff; 
   border-top: 1rpx solid #efefef;
@@ -302,8 +300,6 @@ page {
   right: -7rpx;
    margin-top: -20rpx; 
    height: 40rpx; 
-  /* height: 50rpx;
-  top:-20rpx; */
   width: 2rpx;
   background-color: #d9d9d9;
 }
@@ -313,13 +309,43 @@ page {
 .act_edit_block .act_icon_pic {
   width: 64rpx;
   height: 64rpx;
-  /* margin-right: 20rpx; */
 }
 
 .act_edit_block .set_btn_text {
   color: #fff;
   font-size: 28rpx;
+} */
+
+.act_edit_block {
+  position: fixed;
+  z-index: 10;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  height: 100rpx;
+  padding-left: 15rpx;
+  display: flex;
+  align-items: center;
 }
+
+.act_edit_block .act_edit_trigger {
+  position: relative;
+  width: 235rpx;
+  height: 72rpx;
+  box-shadow: 0 1rpx 9rpx 0 rgba(168, 168,168, 0.63);
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.act_edit_block .act_icon_pic {
+  width: 64rpx;
+  height: 64rpx;
+}
+
 
 
 .edit_remark_wrapper .edit_remark_panel {
