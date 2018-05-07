@@ -74,14 +74,14 @@
     <view class="act_edit_trigger" bindtap="addNewAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon1.png"></image>
       <!-- <view class="set_btn_text"></view> -->
-      <view class="divide_line"></view>
+      <!-- <view class="divide_line"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="deleteAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" wx:if="{{!isInEditing}}"></view>
       <view class="set_btn_text" wx:if="{{isInEditing}}"></view> -->
-       <view class="divide_line divide_line2"></view>
+       <!-- <view class="divide_line divide_line2"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="toHistoryPage">
