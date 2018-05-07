@@ -324,12 +324,14 @@ page {
   bottom: 0rpx;
   height: 100rpx;
   padding-left: 15rpx;
+
   display: flex;
   align-items: center;
 }
 
 .act_edit_block .act_edit_trigger {
   position: relative;
+  background-color: #fff;
   width: 235rpx;
   height: 72rpx;
   box-shadow: 0 1rpx 9rpx 0 rgba(168, 168,168, 0.63);
