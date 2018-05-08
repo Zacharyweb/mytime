@@ -1,5 +1,6 @@
 // pages/home/home.js
 var app = getApp();
+var authApi = require("../../utils/data/auth.js");
 
 Page({
 
@@ -8,12 +9,12 @@ Page({
       { icon: '../../static/img/icon1.png', name: '四个字的', remark1: '', remark2: '', id: '11' },
       { icon: '../../static/img/icon2.png', name: '十五个字十五', remark1: '', remark2: '', id: '22' },
       { icon: '../../static/img/icon3.png', name: 'Chargeable', remark1: '', remark2: '', id: '33' },
-      { icon: '../../static/img/icon4.png', name: 'Chargeable', remark1: '',remark2:'', id: '44' },
-      { icon: '../../static/img/icon5.png', name: '立项', remark1: '',remark2:'', id: '55' },
-      { icon: '../../static/img/icon6.png', name: '讨论', remark1: '',remark2:'', id: '66' },
-      { icon: '../../static/img/icon7.png', name: '外出', remark1: '',remark2:'', id: '77' },
-      { icon: '../../static/img/icon8.png', name: '运动', remark1: '',remark2:'', id: '88' },
-      { icon: '../../static/img/icon9.png', name: '休息', remark1: '',remark2:'', id: '99' },
+      { icon: '../../static/img/icon4.png', name: 'Chargeable', remark1: '', remark2: '', id: '44' },
+      { icon: '../../static/img/icon5.png', name: '立项', remark1: '', remark2: '', id: '55' },
+      { icon: '../../static/img/icon6.png', name: '讨论', remark1: '', remark2: '', id: '66' },
+      { icon: '../../static/img/icon7.png', name: '外出', remark1: '', remark2: '', id: '77' },
+      { icon: '../../static/img/icon8.png', name: '运动', remark1: '', remark2: '', id: '88' },
+      { icon: '../../static/img/icon9.png', name: '休息', remark1: '', remark2: '', id: '99' },
       { icon: '../../static/img/icon5.png', name: '立项', remark1: '', remark2: '', id: '55' },
       { icon: '../../static/img/icon6.png', name: '讨论', remark1: '', remark2: '', id: '66' },
       { icon: '../../static/img/icon7.png', name: '外出', remark1: '', remark2: '', id: '77' },
@@ -74,8 +75,11 @@ Page({
 
   },
 
+  onLoad: function () {
+    authApi.getUserInfo();
+  },
+
   onShow: function () {
-    
 
   },
 
@@ -107,12 +111,12 @@ Page({
       itemList: ['设置背景颜色'],
       success: function (res) {
         console.log(res.tapIndex);
-        
+
         if (res.tapIndex == 0) {
           _this.showBgColorSelecter();
         };
         if (res.tapIndex == 1) {
-          
+
         };
         if (res.tapIndex == 2) {
           _this.setData({
@@ -124,14 +128,14 @@ Page({
       }
     })
   },
-  setLang(){
+  setLang() {
     wx.showActionSheet({
       itemList: ['简体中文', 'English'],
       success: function (res) {
         if (res.tapIndex == 0) {
-         wx.showToast({
-           title: '中文',
-         })
+          wx.showToast({
+            title: '中文',
+          })
         };
         if (res.tapIndex == 1) {
           wx.showToast({
@@ -328,7 +332,7 @@ Page({
   cleanActRemark() {
     var index = this.data.countTarget;
     var newActList = this.data.actList;
-    if (index == -1){
+    if (index == -1) {
       return;
     };
     newActList[index].remark1 = '';
@@ -429,7 +433,7 @@ Page({
         remark1Text: ''
       });
       selectedRemark1Index = -1;
-    } else if (index < selectedRemark1Index){
+    } else if (index < selectedRemark1Index) {
       selectedRemark1Index--;
     };
     var newRemark1List = this.data.remark1List;

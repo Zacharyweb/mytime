@@ -5,9 +5,11 @@
     <view class="top_block" bindtap="topBlockTap" style="background-color: {{pageMainColor}}">
       <image class="top_block_bg" src="../../static/img/bg2.png"></image>
       <view class="user_msg">
-        <image class="user_avatar" src="../../static/img/avatar.jpg"></image>
+        <!-- <image class="user_avatar" src="../../static/img/avatar.jpg"></image> -->
+        <open-data class="user_avatar" type="userAvatarUrl"></open-data>
         <view class="user_info">
-          <view class="user_name">朱两边</view>
+          <open-data class="user_name" type="userNickName"></open-data>
+          <!-- <view class="user_name">朱两边</view> -->
           <!-- <view class="prefer_act_msg" catchtap="toHistoryPage">今日已
             <text class="prefer_act_name">{{preferAct.name}}</text>
             <text class="prefer_act_duration">{{preferAct.duration}}</text>
@@ -41,7 +43,9 @@
 
         <!-- 活动未待删除状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
-          <view class="to_edit_btn_text"><image class="delete_icon" src="../../static/img/delete_icon2.png"></image></view>
+          <view class="to_edit_btn_text">
+            <image class="delete_icon" src="../../static/img/delete_icon2.png"></image>
+          </view>
         </view>
 
         <!-- 活动未待设为首选活动时状态时的遮罩 -->
@@ -81,7 +85,7 @@
       <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" wx:if="{{!isInEditing}}"></view>
       <view class="set_btn_text" wx:if="{{isInEditing}}"></view> -->
-       <!-- <view class="divide_line divide_line2"></view> -->
+      <!-- <view class="divide_line divide_line2"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="toHistoryPage">
