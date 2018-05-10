@@ -1,0 +1,7 @@
+<view class="login_layer">
+  <view class="user_msg">
+      <image class="user_avatar" src="../../static/img/avatar.jpg"></image> 
+    <text class="user_name">昵称昵称</text>
+  </view>
+  <view class="login_btn" bindtap="toLogin">登 录</view>
+</view>

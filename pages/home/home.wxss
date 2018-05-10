@@ -23,9 +23,9 @@ page {
   width: 730rpx;
   /* height: 354rpx; */
   font-size: 0;
-  padding-top: 150rpx;
+  padding-top: 155rpx;
   position: relative;
-  margin-bottom: 10rpx;
+  margin-bottom: 15rpx;
 }
 
 .top_block_bg {
@@ -208,9 +208,11 @@ page {
 .content_block .to_remark_btn {
   position: absolute;
   top: 0;
-  right: 15rpx;
+  right: 0;
   width: 56rpx;
   height: 50rpx;
+  padding-right: 15rpx;
+  padding-bottom: 10rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
