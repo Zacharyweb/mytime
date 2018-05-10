@@ -1,7 +1,7 @@
 <view class="login_layer">
   <view class="user_msg">
-      <image class="user_avatar" src="../../static/img/avatar.jpg"></image> 
-    <text class="user_name">昵称昵称</text>
+    <open-data class="user_avatar" type="userAvatarUrl"></open-data>
+    <open-data class="user_name" type="userNickName"></open-data>
   </view>
-  <view class="login_btn" bindtap="toLogin">登 录</view>
+  <button open-type="getUserInfo" bindgetuserinfo="toLogin" class="login_btn">登录</button>
 </view>
