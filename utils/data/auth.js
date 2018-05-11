@@ -14,12 +14,10 @@ module.exports = {
     wx.getSetting({
       success: function (obj) {
         if (!obj.authSetting["scope.userInfo"]) {
-          wx.showToast({
-            title: '未授权',
-          })
+          app.showToast('未授权');
           return;
         }
-        wx.showToast({ title: "已授权" });
+        app.showToast("已授权");
       }
     })
     return new Promise((resolve, reject) => {

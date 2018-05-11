@@ -2,7 +2,7 @@
 var app = getApp();
 App({
   onLaunch: function () {
-    
+
   },
   getAuthtoken: function () {
     var token = wx.getStorageSync('token') || '';
@@ -19,6 +19,17 @@ App({
   getUser: function () {
     var user = wx.getStorageSync('user') || {};
     return user;
+  },
+  showToast: function (title) {
+    wx.showToast({
+      title: title,
+      icon: "none"
+    })
+  },
+  showLoading: function (title = "加载中...") {
+    wx.showLoading({
+      title: title,
+    });
   },
   globalData: {
     userInfo: null,
