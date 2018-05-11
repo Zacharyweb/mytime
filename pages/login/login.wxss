@@ -22,7 +22,7 @@
 }
 .login_layer .user_msg .user_name{
   margin-top: 30rpx;
-  font-size: 60rpx;
+  font-size: 40rpx;
 }
 .login_layer  .login_btn{
   width: 100%;
