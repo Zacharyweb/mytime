@@ -167,7 +167,7 @@ page {
 }
 .content_block .act_item .act_icon_wrap {
   /* padding: 30rpx 0 20rpx 0; */
-  padding: 35rpx 0 0 0;
+  padding: 45rpx 0 0 0;
   display: flex;
   justify-content: center;
 }
@@ -177,8 +177,8 @@ page {
 }
 
 .content_block .act_item .act_icon_wrap .act_icon_pic {
-  width: 120rpx;
-  height: 120rpx;
+  width: 110rpx;
+  height: 110rpx;
 }
 
 .content_block .act_item .act_name {
@@ -224,7 +224,7 @@ page {
   right: 0;
   width: 56rpx;
   height: 16rpx;
-  padding-top: 10rpx;
+  padding-top: 20rpx;
   padding-right: 15rpx;
   padding-bottom: 30rpx;
   display: flex;
@@ -374,6 +374,7 @@ page {
   margin-left: 10rpx;
   color: #666;
   font-size: 28rpx;
+  font-weight: bold;
 } 
 
 
@@ -418,7 +419,7 @@ page {
   position: absolute;
   top: 100rpx;
   left: 50rpx;
-  right: 50rpx;
+  right: 25rpx;
   bottom: 100rpx;
   overflow-x: scroll
 }

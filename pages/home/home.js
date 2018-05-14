@@ -15,11 +15,11 @@ Page({
       { icon: '../../static/img/icon/icon7.png', name: '跑客户', remark1: '', remark2: '', id: '77' },
       { icon: '../../static/img/icon/icon8.png', name: '培训', remark1: '', remark2: '', id: '88' },
       { icon: '../../static/img/icon/icon9.png', name: 'Li&Fung', remark1: '', remark2: '', id: '99' },
-      { icon: '../../static/img/icon/icon5.png', name: '西安杨森', remark1: '', remark2: '', id: '1010' },
-      { icon: '../../static/img/icon/icon6.png', name: '充电', remark1: '', remark2: '', id: '1111' },
-      { icon: '../../static/img/icon/icon7.png', name: '地铁', remark1: '', remark2: '', id: '1212' },
-      { icon: '../../static/img/icon/icon8.png', name: '吃饭', remark1: '', remark2: '', id: '1313' },
-      { icon: '../../static/img/icon/icon9.png', name: '睡觉', remark1: '', remark2: '', id: '1414' }
+      { icon: '../../static/img/icon/icon10.png', name: '西安杨森', remark1: '', remark2: '', id: '1010' },
+      { icon: '../../static/img/icon/icon11.png', name: '充电', remark1: '', remark2: '', id: '1111' },
+      { icon: '../../static/img/icon/icon12.png', name: '地铁', remark1: '', remark2: '', id: '1212' },
+      { icon: '../../static/img/icon/icon13.png', name: '吃饭', remark1: '', remark2: '', id: '1313' },
+      { icon: '../../static/img/icon/icon14.png', name: '睡觉', remark1: '', remark2: '', id: '1414' }
     ],
 
     remark1List: [
