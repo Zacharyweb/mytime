@@ -77,6 +77,16 @@ Page({
 
   onLoad: function () {
     authApi.getUserInfo();
+    
+    var _this = this;
+    wx.getStorage({
+      key: 'bgColor',
+      success: function (res) {
+        _this.setData({
+          pageMainColor: res.data || '#c5c3c6'
+        })
+      }
+    });
   },
 
   onShow: function () {
@@ -97,9 +107,6 @@ Page({
   // 点击top区域
   topBlockTap() {
     var _this = this;
-    this.setData({
-      isInEditing: false
-    });
     // var actionSheet =[];
     // if (app.globalData.lang == "en"){
     //   actionSheet = ['Change to Chinese','Set BG Color']
@@ -110,9 +117,11 @@ Page({
     wx.showActionSheet({
       itemList: ['设置背景颜色'],
       success: function (res) {
-        console.log(res.tapIndex);
 
         if (res.tapIndex == 0) {
+          _this.setData({
+            isInEditing: false
+          });
           _this.showBgColorSelecter();
         };
         if (res.tapIndex == 1) {
@@ -478,6 +487,10 @@ Page({
   selectBgColor(e) {
     var index = e.currentTarget.dataset.idx;
     var color = this.data.bgColorList[index];
+    wx.setStorage({
+      key: "bgColor",
+      data: color
+    });
     this.setData({
       pageMainColor: color
     });
