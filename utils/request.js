@@ -48,10 +48,10 @@ function Request(url, query = {}, data = {}, method = "GET") {
       complete: (res) => {
         if (app.globalData.redirected) return;
         if (res.statusCode === 403) {
-          if (app.getCurrentPage().route === "pages/login/index") return;
+          if (app.getCurrentPage().route === app.globalData.loginRoute) return;
           app.globalData.redirected = true;
           wx.navigateTo({
-            url: '../login/index',
+            url: app.globalData.loginUrl,
             success: function (res) {
 
             }

@@ -34,6 +34,8 @@ App({
   globalData: {
     userInfo: null,
     gateway: "https://mytime.yuelinshe.com/",
-    lang: 'cn'
+    lang: 'cn',
+    loginUrl: "../login/login",
+    loginRoute: "pages/login/login"
   }
 })
