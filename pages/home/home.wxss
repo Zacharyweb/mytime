@@ -223,9 +223,10 @@ page {
   top: 0;
   right: 0;
   width: 56rpx;
-  height: 50rpx;
+  height: 16rpx;
+  padding-top: 10rpx;
   padding-right: 15rpx;
-  padding-bottom: 10rpx;
+  padding-bottom: 30rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -412,8 +413,14 @@ page {
 }
 
 .edit_remark_panel .panel_content {
-  padding: 100rpx 50rpx;
-  padding-bottom: 10rpx;
+  /* padding: 50rpx;
+  padding-bottom: 120rpx; */
+  position: absolute;
+  top: 100rpx;
+  left: 50rpx;
+  right: 50rpx;
+  bottom: 100rpx;
+  overflow-x: scroll
 }
 
 .edit_remark_panel .panel_content .input_item {

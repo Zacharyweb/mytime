@@ -6,38 +6,52 @@ Page({
 
   data: {
     actList: [
-      { icon: '../../static/img/icon1.png', name: '统计', remark1: '', remark2: '', id: '11' },
-      { icon: '../../static/img/icon2.png', name: '审核', remark1: '', remark2: '', id: '22' },
-      { icon: '../../static/img/icon3.png', name: 'Chargeable', remark1: '', remark2: '', id: '33' },
-      { icon: '../../static/img/icon4.png', name: 'Chargeable', remark1: '', remark2: '', id: '44' },
-      { icon: '../../static/img/icon5.png', name: '立项', remark1: '', remark2: '', id: '55' },
-      { icon: '../../static/img/icon6.png', name: '讨论', remark1: '', remark2: '', id: '66' },
-      { icon: '../../static/img/icon7.png', name: '外出', remark1: '', remark2: '', id: '77' },
-      { icon: '../../static/img/icon8.png', name: '运动', remark1: '', remark2: '', id: '88' },
-      { icon: '../../static/img/icon9.png', name: '休息', remark1: '', remark2: '', id: '99' },
-      { icon: '../../static/img/icon5.png', name: '立项', remark1: '', remark2: '', id: '55' },
-      { icon: '../../static/img/icon6.png', name: '讨论', remark1: '', remark2: '', id: '66' },
-      { icon: '../../static/img/icon7.png', name: '外出', remark1: '', remark2: '', id: '77' },
-      { icon: '../../static/img/icon8.png', name: '运动', remark1: '', remark2: '', id: '88' },
-      { icon: '../../static/img/icon9.png', name: '休息', remark1: '', remark2: '', id: '99' }
+      { icon: '../../static/img/icon/icon1.png', name: '小米科技', remark1: '', remark2: '', id: '11' },
+      { icon: '../../static/img/icon/icon2.png', name: '团队会', remark1: '', remark2: '', id: '22' },
+      { icon: '../../static/img/icon/icon3.jpg', name: '收费工作', remark1: '', remark2: '', id: '33' },
+      { icon: '../../static/img/icon/icon4.png', name: '电话会议', remark1: '', remark2: '', id: '44' },
+      { icon: '../../static/img/icon/icon5.png', name: 'Allen&Overy', remark1: '', remark2: '', id: '55' },
+      { icon: '../../static/img/icon/icon6.png', name: '外出办事', remark1: '', remark2: '', id: '66' },
+      { icon: '../../static/img/icon/icon7.png', name: '跑客户', remark1: '', remark2: '', id: '77' },
+      { icon: '../../static/img/icon/icon8.png', name: '培训', remark1: '', remark2: '', id: '88' },
+      { icon: '../../static/img/icon/icon9.png', name: 'Li&Fung', remark1: '', remark2: '', id: '99' },
+      { icon: '../../static/img/icon/icon5.png', name: '西安杨森', remark1: '', remark2: '', id: '1010' },
+      { icon: '../../static/img/icon/icon6.png', name: '充电', remark1: '', remark2: '', id: '1111' },
+      { icon: '../../static/img/icon/icon7.png', name: '地铁', remark1: '', remark2: '', id: '1212' },
+      { icon: '../../static/img/icon/icon8.png', name: '吃饭', remark1: '', remark2: '', id: '1313' },
+      { icon: '../../static/img/icon/icon9.png', name: '睡觉', remark1: '', remark2: '', id: '1414' }
     ],
+
     remark1List: [
-      { name: '平安保险', id: '1' },
-      { name: '中国人寿', id: '2' },
-      { name: '阿拉丁', id: '3' },
-      { name: '阿里妈妈', id: '4' },
-      { name: '阿里巴巴', id: '5' },
-      { name: '腾讯', id: '6' },
-      { name: '网易', id: '7' }
+      { name: '海尔集团', id: '1' },
+      { name: '香港贸发局', id: '2' },
+      { name: '腾迅', id: '3' },
+      { name: '宝山钢铁', id: '4' },
+      { name: '丰田汽车', id: '5' },
+      { name: '中国人寿', id: '6' },
+      { name: '平安保险', id: '7' },
+      { name: '三一重工', id: '8' },
+      { name: 'JP Morgan', id: '9' },
+      { name: '中信泰富', id: '10' },
+      { name: 'Amazon', id: '11' },
+      { name: '上海医药', id: '12' },
+      { name: '麦肯锡', id: '13' },
+      { name: 'IBM', id: '14' },
     ],
     remark2List: [
-      { name: '谈判', id: '1' },
-      { name: '合作', id: '2' },
-      { name: '喝咖啡', id: '3' },
-      { name: '吃西瓜', id: '4' },
-      { name: '喝酒', id: '5' },
-      { name: '慈善晚宴', id: '6' },
-      { name: '打游戏', id: '7' }
+      { name: '年度审计', id: '1' },
+      { name: '收购合并', id: '2' },
+      { name: '争议调解', id: '3' },
+      { name: '上市重组', id: '4' },
+      { name: '常年顾问', id: '5' },
+      { name: '技术调研', id: '6' },
+      { name: '季度报表', id: '7' },
+      { name: '行业情报', id: '8' },
+      { name: '尽职调查', id: '9' },
+      { name: '投标报价', id: '10' },
+      { name: '系统咨询', id: '11' },
+      { name: '特殊项目', id: '12' },
+      { name: '薪酬激励', id: '13' }
     ],
 
     countTarget: -1,
@@ -77,7 +91,7 @@ Page({
 
   onLoad: function () {
     authApi.getUserInfo();
-    
+
     var _this = this;
     wx.getStorage({
       key: 'bgColor',
