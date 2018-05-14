@@ -25,14 +25,16 @@ module.exports = {
           fail: function (res) {
             reject(res);
             console.log(res);
-            that.showZanTopTips(res.errMsg || "授权失败");
           }
         })
       }
     }).then(function (res) {
       return api.get("/api/services/app/ExpertWechat/GetToken", { code: res.code });
     }).then(function (res) {
-      console.log(res.data.result);
+      console.log(res.data);
+      wx.navigateTo({
+        url: '../login/login'
+      })
     });
   },
   login: function (data) {

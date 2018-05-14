@@ -14,13 +14,15 @@
   align-items: center;
 }
 .login_layer .user_msg .user_avatar{
-  height: 140rpx;
-  width: 140rpx;
+  height: 180rpx;
+  width: 180rpx;
   border-radius: 50%;
+  display: block;
+  overflow: hidden;
 }
 .login_layer .user_msg .user_name{
   margin-top: 30rpx;
-  font-size: 30rpx;
+  font-size: 60rpx;
 }
 .login_layer  .login_btn{
   width: 100%;
