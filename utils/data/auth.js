@@ -42,7 +42,7 @@ module.exports = {
     }).then(function (res) {
       console.log(res.data);
       wx.navigateTo({
-        url: '../login/login'
+        // url: '../login/login'
       })
     });
   },
