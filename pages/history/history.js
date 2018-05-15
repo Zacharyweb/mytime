@@ -19,7 +19,9 @@ Page({
     countTimer: null,
     countH: '00',
     countM: '00',
-    countS: '00'
+    countS: '00',
+
+    pageMainColor: '#c5c3c6'
   },
   onShow: function () {
     // wx.setNavigationBarTitle({
@@ -27,6 +29,16 @@ Page({
     // });
     this.count();
     this.initDatePickerRange();
+
+    var _this = this;
+    wx.getStorage({
+      key: 'bgColor',
+      success: function (res) {
+        _this.setData({
+          pageMainColor: res.data || '#c5c3c6'
+        })
+      }
+    });
   },
   onHide:function(){
     wx.hideLoading();
@@ -53,9 +65,11 @@ Page({
   // 更换二级tab
   changeSummaryType(e) {
     var index = e.currentTarget.dataset.idx;
+    
     if (this.data.summaryType == index) {
       return;
     };
+    console.log(index);
     this.setData({
       summaryType: index
     });

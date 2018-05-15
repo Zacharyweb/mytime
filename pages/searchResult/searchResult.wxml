@@ -1,7 +1,7 @@
 <view class="history_layer">
   <view class="tab_bar_wrapper">
 
-    <view class="tab2_bar">
+    <!-- <view class="tab2_bar">
       <view class="tab2_item {{summaryType==0?'active':''}} {{isInSummaryStatus?'':'hide'}}" data-idx="0" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item {{summaryType==1?'active':''}} {{isInSummaryStatus?'':'hide'}}" data-idx="1" bindtap="changeSummaryType">按备注汇总</view>
       <view class="tab2_item rank_btn {{isInSummaryStatus?'active2':''}}" bindtap="changeRankStatus">
@@ -9,8 +9,22 @@
         <image class="rank_btn_icon" src="../../static/img/total_green.png" wx:if="{{!isInSummaryStatus}}"></image>
         <image class="rank_btn_icon" src="../../static/img/total_white.png" wx:if="{{isInSummaryStatus}}"></image>
       </view>
-    </view>
+    </view> -->
+    <view class="tab2_bar">
+      <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType != 1}}"  bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType == 1}}"  style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按备注汇总</view>
 
+      <view class="tab2_item rank_btn" wx:if="{{!isInSummaryStatus}}" bindtap="changeRankStatus">
+        汇总
+        <image class="rank_btn_icon" src="../../static/img/total_green.png"></image>
+      </view>
+      <view class="tab2_item rank_btn active2"  wx:if="{{isInSummaryStatus}}" bindtap="changeRankStatus" style="background-color: {{pageMainColor}};">
+        汇总
+        <image class="rank_btn_icon" src="../../static/img/total_white.png"></image>
+      </view>
+    </view>
   </view>
 
   <view class="tab_bar_fill_block"></view>
@@ -21,13 +35,13 @@
     <view class="history_item">
       <view class="act_base_msg">
         <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
-        <view class="act_remark">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
+        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
         <view class="act_time">2018.4.06 12:35-15:35</view>
       </view>
       <view class="act_total_msg">
         <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time">3小时0分</view>
+        <view class="total_time" style="color: {{pageMainColor}}">3小时0分</view>
       </view>
     </view>
 
@@ -42,7 +56,7 @@
       <view class="act_total_msg">
         <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time">3小时0分</view>
+        <view class="total_time" style="color: {{pageMainColor}}">3小时0分</view>
       </view>
     </view>
   </view>

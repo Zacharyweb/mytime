@@ -43,7 +43,7 @@
 
         <!-- 活动未待删除状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isInEditing?'show':''}}">
-          <view class="mask_inner"  style="background-color: {{pageMainColor}}"></view>
+          <view class="mask_inner" style="background-color: {{pageMainColor}}"></view>
           <view class="to_edit_btn_text">
             <image class="delete_icon" src="../../static/img/delete_icon2.png"></image>
           </view>
@@ -78,21 +78,21 @@
   <view class="act_edit_block">
     <view class="act_edit_trigger" bindtap="addNewAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon1.png"></image>
-       <view class="set_btn_text" style="color: {{pageMainColor}}">新增活动</view> 
+      <view class="set_btn_text" style="color: {{pageMainColor}}">新增活动</view>
       <!-- <view class="divide_line"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="deleteAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
-       <!-- <view class="set_btn_text" style="color: {{pageMainColor}}">删除活动</view>  -->
-       <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing}}">删除活动</view>
-      <view class="set_btn_text"  style="color: {{pageMainColor}}" wx:if="{{isInEditing}}">完成删除</view> 
+      <!-- <view class="set_btn_text" style="color: {{pageMainColor}}">删除活动</view>  -->
+      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing}}">删除活动</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditing}}">完成删除</view>
       <!-- <view class="divide_line divide_line2"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="toHistoryPage">
       <image class="act_icon_pic" src="../../static/img/bottom_icon4.png"></image>
-       <view class="set_btn_text" style="color: {{pageMainColor}}">时间记录</view> 
+      <view class="set_btn_text" style="color: {{pageMainColor}}">时间记录</view>
     </view>
   </view>
 
@@ -106,7 +106,7 @@
         <!-- 编辑备注1的部分 -->
         <view class="input_item">
           <view class="item_name">
-            <view class="item_name_content">
+            <view class="item_name_content" style="color: {{pageMainColor}}">
               {{remark1Name}}
               <image data-idx="1" bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
             </view>
@@ -116,9 +116,11 @@
             <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='12' />
           </view>
           <view class="history_remark_list">
-            <view class="history_remark_item {{index == selectedRemark1Index?'active':''}}" wx:for="{{remark1List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark1">{{item.name}}
-              <view class="delete_icon" catchtap='deleteRemark1' data-idx="{{index}}">
-                <image class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+            <view class="history_remark_item" wx:for="{{remark1List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark1">
+              <view class="history_remark_tag" wx:if="{{index != selectedRemark1Index}}" style="color: {{pageMainColor}};border-color: {{pageMainColor}};">{{item.name}}</view>
+              <view class="history_remark_tag" wx:if="{{index == selectedRemark1Index}}" style="color: #fff;background-color: {{pageMainColor}};border-color: {{pageMainColor}};">{{item.name}}</view>
+              <view class="delete_icon" catchtap='deleteRemark1' data-idx="{{index}}" style="background-color: {{pageMainColor}}">
+                <view class="delete_icon_inner">×</view>
               </view>
             </view>
 
@@ -128,7 +130,7 @@
         <!-- 编辑备注2的部分 -->
         <view class="input_item">
           <view class="item_name">
-            <view class="item_name_content">
+            <view class="item_name_content" style="color: {{pageMainColor}}">
               {{remark2Name}}
               <image data-idx="2" bindtap="showEditRemarkNamePanel" class="edit_remark_name_icon" src="../../static/img/edit_remark_name_icon.png"></image>
             </view>
@@ -138,9 +140,11 @@
           </view>
 
           <view class="history_remark_list">
-            <view class="history_remark_item {{index == selectedRemark2Index?'active':''}}" wx:for="{{remark2List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark2">{{item.name}}
-              <view class="delete_icon" catchtap='deleteRemark2' data-idx="{{index}}">
-                <image class="delete_icon_pic" src="../../static/img/delete_icon.png"></image>
+            <view class="history_remark_item {{index == selectedRemark2Index?'active':''}}" wx:for="{{remark2List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark2">
+              <view class="history_remark_tag" wx:if="{{index != selectedRemark2Index}}" style="color: {{pageMainColor}};border-color: {{pageMainColor}};">{{item.name}}</view>
+              <view class="history_remark_tag" wx:if="{{index == selectedRemark2Index}}" style="color: #fff;background-color: {{pageMainColor}};border-color: {{pageMainColor}};">{{item.name}}</view>
+              <view class="delete_icon" catchtap='deleteRemark2' data-idx="{{index}}" style="background-color: {{pageMainColor}};">
+                <view class="delete_icon_inner">×</view>
               </view>
             </view>
           </view>
@@ -148,7 +152,7 @@
       </view>
       <view class="panel_footer">
         <view class="bottom_btn cancel_btn" bindtap="resetActRemark">重置</view>
-        <view class="bottom_btn submit_btn" bindtap="submitActRemark">确定</view>
+        <view class="bottom_btn submit_btn" bindtap="submitActRemark" style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">确定</view>
       </view>
     </view>
   </view>
@@ -160,7 +164,7 @@
       <view class="name_input_wrap">
         <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='12' />
       </view>
-      <view class="submit_btn" bindtap='submitEditRemarkName'>确定</view>
+      <view class="submit_btn" bindtap='submitEditRemarkName' style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">确定</view>
     </view>
   </view>
 

@@ -3,7 +3,7 @@
         <view class="content_block">
            <!-- 单个活动图标项 -->
             <view class="act_item" wx:for="{{iconList}}" wx:key="{{index}}" data-idx="{{index}}" catchtap="selectIcon">
-                <view class="act_item_inner {{index == selectedIconIndex?'selected':''}}">
+                <view class="act_item_inner {{index == selectedIconIndex?'selected':''}}" style="border-color: {{pageMainColor}};">
                     <image class="act_icon_pic" src="{{item.icon}}"></image>
                     <view class="act_icon_name">{{item.name}}</view>
                 </view>
@@ -20,7 +20,10 @@
                 <image class="btn_icon" src="../../static/img/add_new_act_icon_icon.png"></image>
                 <view class="btn_name">上传图标</view>
             </view> -->
-            <view class="edit_act_icon_btn submit_select_btn {{selectedIconIndex >= 0?'active':''}}" catchtap="submitActIcon">
+            <view class="edit_act_icon_btn submit_select_btn" wx:if="{{selectedIconIndex < 0}}">
+                <view class="btn_name">确定</view>
+            </view> 
+             <view class="edit_act_icon_btn submit_select_btn active" wx:if="{{selectedIconIndex >= 0}}"catchtap="submitActIcon" style="border-color: {{pageMainColor}};color:#fff;background-color: {{pageMainColor}}">
                 <view class="btn_name">确定</view>
             </view> 
         </view>
@@ -33,7 +36,7 @@
                      <input class="name_input" maxlength="12" type="text" placeholder="请输入活动图标名称" bindinput="bindNameInput" value="{{newActIconName}}"/>
                 </view>
                 <!-- <view class="cancel_btn" bindtap="hideEditIconNamePanel">取消上传</view> -->
-                <view class="submit_btn" bindtap="submitActIconName">确定</view>
+                <view class="submit_btn" bindtap="submitActIconName" style="background-color: {{pageMainColor}}">确定</view>
             </view>
         </view>
     </view>

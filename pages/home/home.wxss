@@ -469,27 +469,26 @@ page {
 }
 
 .edit_remark_panel .panel_content .history_remark_list .history_remark_item {
-  height: 50rpx;
-  padding: 0 20rpx;
-  background-color: #fff;
-  color: #1d8574;
-  border: 2rpx solid #1d8574;
-  border-radius: 6rpx;
-  font-size: 26rpx;
   margin-right: 20rpx;
   margin-bottom: 20rpx;
   display: flex;
   align-items: center;
   position: relative;
 }
-
-.edit_remark_panel .panel_content .history_remark_list .history_remark_item.active {
-  background-color: #1d8574;
-  color: #fff;
+.edit_remark_panel .panel_content .history_remark_list .history_remark_tag{
+  height: 50rpx;
+  background-color: #fff;
+  font-size: 26rpx;
+  border: 2rpx solid #1d8574;
+  border-radius: 6rpx;
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
 }
 
+
 .edit_remark_panel .panel_content .history_remark_list .history_remark_item .delete_icon {
-  background-color: #fff;
+
   position: absolute;
   width: 30rpx;
   height: 30rpx;
@@ -498,10 +497,16 @@ page {
   top: -10rpx;
 }
 
-.edit_remark_panel .panel_content .history_remark_list .history_remark_item .delete_icon .delete_icon_pic {
-  width: 30rpx;
-  height: 30rpx;
-}
+ .edit_remark_panel .panel_content .history_remark_list .history_remark_item .delete_icon .delete_icon_inner {
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 1;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+} 
 
 .edit_remark_panel .panel_footer {
   position: absolute;

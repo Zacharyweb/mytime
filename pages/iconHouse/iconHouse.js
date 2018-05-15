@@ -21,7 +21,9 @@ Page({
     editIconNamePanelShow: false,
 
     newActIconName:'',
-    tempImgUrl:''
+    tempImgUrl:'',
+
+    pageMainColor: '#c5c3c6'
   },
   onLoad: function (options) {
     if (options.actId){
@@ -31,7 +33,15 @@ Page({
     }
   },
   onShow: function () {
-    
+    var _this = this;
+    wx.getStorage({
+      key: 'bgColor',
+      success: function (res) {
+        _this.setData({
+          pageMainColor: res.data || '#c5c3c6'
+        })
+      }
+    });
   },
 
   // 选中图标

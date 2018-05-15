@@ -37,7 +37,7 @@ page{
 }
 .history_layer .tab_bar .active{
   font-weight:bold;
-  color: #1d8574;
+ 
 }
 .history_layer .tab_bar .search_btn{
   border-left: 2rpx solid #d9d9d9;

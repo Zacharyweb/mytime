@@ -3,9 +3,14 @@
   <view class="tab_bar_wrapper">
     <!-- 第一级Tab -->
     <view class="tab_bar">
-      <view class="tab_item {{currentTab == 0?'active':''}}" data-idx="0" bindtap="changeCurrentTab">今天</view>
-      <view class="tab_item {{currentTab == 1?'active':''}}" data-idx="1" bindtap="changeCurrentTab">昨日</view>
-      <view class="tab_item {{currentTab == 2?'active':''}}" data-idx="2" bindtap="changeCurrentTab">本周</view>
+      <view class="tab_item" data-idx="0" wx:if="{{currentTab != 0}}" bindtap="changeCurrentTab">今天</view>
+      <view class="tab_item active" data-idx="0" wx:if="{{currentTab == 0}}" style="color: {{pageMainColor}}" bindtap="changeCurrentTab">今天</view>
+
+      <view class="tab_item" data-idx="1" wx:if="{{currentTab != 1}}" bindtap="changeCurrentTab">昨日</view>
+      <view class="tab_item active" data-idx="1" wx:if="{{currentTab == 1}}" style="color: {{pageMainColor}}" bindtap="changeCurrentTab">昨日</view>
+
+      <view class="tab_item" data-idx="2" wx:if="{{currentTab != 2}}" bindtap="changeCurrentTab">本周</view>
+      <view class="tab_item active" data-idx="2" wx:if="{{currentTab == 2}}" style="color: {{pageMainColor}}" bindtap="changeCurrentTab">本周</view>
       <view class="tab_item search_btn" bindtap="showSearchPanel">搜索
         <image class="search_icon" src="../../static/img/search_icon.png"></image>
       </view>
@@ -13,12 +18,18 @@
 
     <!-- 第二级Tab -->
     <view class="tab2_bar">
-      <view class="tab2_item  {{summaryType==0?'active':''}} {{isInSummaryStatus?'':'hide'}}" data-idx="0" bindtap="changeSummaryType">按活动汇总</view>
-      <view class="tab2_item  {{summaryType==1?'active':''}} {{isInSummaryStatus?'':'hide'}}" data-idx="1" bindtap="changeSummaryType">按备注汇总</view>
-      <view class="tab2_item rank_btn {{isInSummaryStatus?'active2':''}}" bindtap="changeRankStatus">
+      <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType != 1}}"  bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType == 1}}"  style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按备注汇总</view>
+
+      <view class="tab2_item rank_btn" wx:if="{{!isInSummaryStatus}}" bindtap="changeRankStatus">
         汇总
-        <image class="rank_btn_icon" src="../../static/img/total_green.png" wx:if="{{!isInSummaryStatus}}"></image>
-        <image class="rank_btn_icon" src="../../static/img/total_white.png" wx:if="{{isInSummaryStatus}}"></image>
+        <image class="rank_btn_icon" src="../../static/img/total_green.png"></image>
+      </view>
+      <view class="tab2_item rank_btn active2"  wx:if="{{isInSummaryStatus}}" bindtap="changeRankStatus" style="background-color: {{pageMainColor}};">
+        汇总
+        <image class="rank_btn_icon" src="../../static/img/total_white.png"></image>
       </view>
     </view>
   </view>
@@ -32,13 +43,13 @@
     <view class="history_item">
       <view class="act_base_msg">
         <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
-        <view class="act_remark">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
+        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
         <view class="act_time">2018.4.06 12:35-15:35</view>
       </view>
       <view class="act_total_msg">
         <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time">3小时0分</view>
+        <view class="total_time" style="color: {{pageMainColor}}">3小时0分</view>
       </view>
     </view>
 
@@ -52,7 +63,7 @@
       <view class="act_total_msg">
         <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time">3小时0分</view>
+        <view class="total_time" style="color: {{pageMainColor}}">3小时0分</view>
       </view>
     </view>
 
@@ -62,7 +73,7 @@
         <view class="act_name">今日剩余时间</view>
       </view>
       <view class="act_total_msg">
-        <view class="total_time">{{countH}}小时{{countM}}分钟{{countS}}秒</view>
+        <view class="total_time" style="color: {{pageMainColor}}">{{countH}}小时{{countM}}分钟{{countS}}秒</view>
       </view>
     </view>
   </view>
@@ -81,7 +92,8 @@
         <view class="input_item">
           <picker mode="date" value="{{date}}" start="{{datePick1StartDate}}" end="{{datePick1EndDate}}" data-idx="1" bindtap="bindDatePickerTap" bindcancel="bindDatePickerCancel" bindchange="bindStartDateChange">
             <view class="item_name">起始时间：</view>
-            <view class="item_input_wrap {{currenteSelectedDateType== 1?'active':''}}">{{startDate}}</view>
+            <view class="item_input_wrap" wx:if="{{currenteSelectedDateType != 1}}">{{startDate}}</view>
+            <view class="item_input_wrap active" wx:if="{{currenteSelectedDateType == 1}}" style="border-color:{{pageMainColor}};">{{startDate}}</view>
           </picker>
         </view>
 
@@ -89,13 +101,14 @@
         <view class="input_item">
           <picker mode="date" value="{{date}}" start="{{datePick2StartDate}}" end="{{datePick2EndDate}}" data-idx="2" bindtap="bindDatePickerTap" bindchange="bindEndDateChange" bindcancel="bindDatePickerCancel">
             <view class="item_name">结束时间：</view>
-            <view class="item_input_wrap {{currenteSelectedDateType== 2?'active':''}}">{{endDate}}</view>
+            <view class="item_input_wrap" wx:if="{{currenteSelectedDateType != 2}}">{{endDate}}</view>
+            <view class="item_input_wrap active" wx:if="{{currenteSelectedDateType == 2}}" style="border-color:{{pageMainColor}};">{{endDate}}</view>
           </picker>
         </view>
       </view>
       <view class="panel_footer">
         <view class="bottom_btn cancel_btn" bindtap="resetSelectedDate">重置</view>
-        <view class="bottom_btn submit_btn" bindtap="submitSearch">搜索</view>
+        <view class="bottom_btn submit_btn" bindtap="submitSearch" style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">搜索</view>
       </view>
     </view>
   </view>

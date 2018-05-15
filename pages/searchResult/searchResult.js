@@ -3,7 +3,9 @@ Page({
     summaryType: 0, // 0：按活动汇总 1：按备注汇总 
     isInSummaryStatus:false, // 是否展示汇总
     start:'',
-    end:''
+    end:'',
+
+    pageMainColor: '#c5c3c6'
   },
   onLoad: function (options) {
     this.setData({
@@ -12,7 +14,15 @@ Page({
     });
   },
   onShow: function () {
-
+    var _this = this;
+    wx.getStorage({
+      key: 'bgColor',
+      success: function (res) {
+        _this.setData({
+          pageMainColor: res.data || '#c5c3c6'
+        })
+      }
+    });
   },
   // 更换汇总状态
   changeSummaryType(e) {

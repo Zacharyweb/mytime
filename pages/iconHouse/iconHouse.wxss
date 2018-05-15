@@ -101,19 +101,19 @@ page {
 
 .content_block .select_btn.active {
   border: 2rpx solid #1d8574;
-  background-color: #1d8574;
+  background-color: #fff;
 }
 
 .content_block .delete_btn.active {
   background-color: #a1d2ce;
   border: 2rpx solid #1d8574;
-  color: #1d8574;
+  color: #fff;
 }
 
 .content_block  .submit_select_btn.active {
   background-color: #a1d2ce;
   border: 2rpx solid #1d8574;
-  color: #1d8574;
+  color: #fff;
 }
 
 .content_block .add_btn {
