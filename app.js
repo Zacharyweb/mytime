@@ -2,7 +2,7 @@
 var app = getApp();
 App({
   onLaunch: function () {
-
+    
   },
   getAuthtoken: function () {
     var token = wx.getStorageSync('token') || '';
@@ -32,8 +32,10 @@ App({
     });
   },
   globalData: {
+    authUserInfo: false,
+    OpenId: null,
     userInfo: null,
-    gateway: "https://mytime.yuelinshe.com/",
+    gateway: "http://localhost:57809",
     lang: 'cn',
     loginUrl: "../login/login",
     loginRoute: "pages/login/login"

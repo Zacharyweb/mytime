@@ -2,27 +2,15 @@ var api = require("../restapi.js");
 var app = getApp();
 
 module.exports = {
-  validation: function () {
-    console.log("登录验证");
-    var token = app.getAuthtoken();
-    if (!token) {
-      console.log("未登录");
-    }
-  },
-  getUserInfo: function () {
-    var that = app;
+  register: function () {
     wx.getSetting({
-      success: function (obj) {
-        if (!obj.authSetting["scope.userInfo"]) {
-          app.showToast('未授权');
-          return;
-        }
-        app.showToast("已授权");
+      success: function (res) {
+        app.globalData.authUserInfo = res.authSetting["scope.userInfo"];
       }
     })
     return new Promise((resolve, reject) => {
-      if (that.globalData.userInfo) {
-        resolve(that.globalData.userInfo)
+      if (app.globalData.userInfo) {
+        resolve(app.globalData.userInfo)
       } else {
         console.log("call:getUserInfo");
         //调用登录接口
@@ -40,22 +28,18 @@ module.exports = {
     }).then(function (res) {
       return api.get("/api/services/app/ExpertWechat/GetToken", { code: res.code });
     }).then(function (res) {
-      console.log(res.data);
-      wx.navigateTo({
-        url: '../login/login'
-      })
+      if (!res.data.openid) {
+        app.showToast("登录失败");
+        return;
+      }
+      console.log(res.data.openid);
+      app.globalData.OpenId = res.data.openid;
+      return api.post("/api/TokenAuth/Register", null, { openid: res.data.openid });
+    }).then(function (res) {
+      console.log(res);
     });
   },
   login: function (data) {
-    return api.post("/api/user/bindingwechat", null, data);
-  },
-  sendCode: function (phone, code) {
-    return api.get("/api/user/sendTsCode", { phone: phone, code: code });
-  },
-  logout: function () {
-    app.setAuthtoken(null);
-  },
-  userinfo: function () {
-    return api.get("/api/user/userinfo");
+    return api.post("/api/TokenAuth/Authenticate", null, data);
   }
 }
