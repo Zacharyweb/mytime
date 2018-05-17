@@ -59,6 +59,9 @@ Page({
     countH: '00',
     countM: '00',
     countS: '00',
+    finistTotal:'',
+    lastFinishTarget:-1,
+    finishPanelShow:false,
 
     isInEditing: false,
 
@@ -228,8 +231,22 @@ Page({
       this.selectPreferAct(index);
     } else {
       // 更换计时活动
+      let lastFinishTarget = this.data.countTarget;
+      let finishTotal = this.data.countH + ':' + this.data.countM + ':' + this.data.countS;
+      this.setData({
+          lastFinishTarget: lastFinishTarget,
+          finishTotal: finishTotal,
+          finishPanelShow: true,
+      });
+      setTimeout(()=>{
+        this.setData({
+          finishPanelShow: false
+        });
+      },2000)
+
       clearInterval(this.data.countTimer);
       this.cleanActRemark();
+
       if (this.data.countTarget == index) {
         this.setData({
           countTarget: -1

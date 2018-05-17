@@ -41,9 +41,9 @@ module.exports = {
       return api.get("/api/services/app/ExpertWechat/GetToken", { code: res.code });
     }).then(function (res) {
       console.log(res.data);
-      wx.navigateTo({
-        url: '../login/login'
-      })
+      // wx.navigateTo({
+      //   url: '../login/login'
+      // })
     });
   },
   login: function (data) {

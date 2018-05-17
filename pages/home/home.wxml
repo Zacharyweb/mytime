@@ -31,7 +31,7 @@
         </view>
 
         <!-- 活动名称 -->
-        <view class="act_name" wx:if="{{index != countTarget}}">{{item.name}}</view>
+        <view class="act_name" wx:if="{{index != countTarget || finishPanelShow}}">{{item.name}}</view>
 
         <!-- 活动倒计时 -->
         <view class="act_trigger">
@@ -69,6 +69,19 @@
             <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
           </view>
           <view class="panel_bg" style="background-color: {{pageMainColor}}"></view>
+        </view>
+
+        
+        <!-- 活动计时结束用时多少浮层 -->
+        <view class="act_remark_panel {{index == lastFinishTarget && finishPanelShow ?'show':''}}">
+          <view class="panel_content">
+            <view class="act_remark_text ">活动用时</view>
+            <view class="act_remark_text act_remark_text2">{{finishTotal}}</view>
+          </view>
+          <view class="panel_bg" style="background-color: {{pageMainColor}}"></view>
+        </view>
+        <view class="act_trigger" wx:if="{{index == lastFinishTarget && finishPanelShow}}">
+          <view class="act_end_btn" style="background-color: #fff;border-color:#fff;color:#000;">{{item.name}}</view>
         </view>
 
       </view>
