@@ -24,9 +24,13 @@ Page({
       return;
     }
     app.showLoading('登录中...');
-    console.log(res.detail.userInfo);
-    wx.navigateTo({
-      url: '../home/home',
+    var data = { ...res.detail.userInfo, openid: app.globalData.OpenId }
+    authApi.login(data).then(res => {
+      console.log(res);
+      app.setAuthtoken(res.result.accessToken);
+      wx.navigateTo({
+        url: '../home/home',
+      })
     })
   }
 })

@@ -98,7 +98,7 @@ Page({
   },
 
   onLoad: function () {
-    authApi.getUserInfo();
+    authApi.register();
 
     var _this = this;
     wx.getStorage({
