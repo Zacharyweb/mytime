@@ -1,7 +1,7 @@
 // pages/home/home.js
 var app = getApp();
 var authApi = require("../../utils/data/auth.js");
-
+var timeOutTimer= null;
 Page({
 
   data: {
@@ -89,6 +89,11 @@ Page({
 
     contentPanelTouching: false,
 
+    // 用户引导页展示
+    isFirstEnter:true,
+    guidePageHidePre:false,
+    guidePageShow:true
+
 
   },
 
@@ -104,6 +109,17 @@ Page({
         })
       }
     });
+   
+    // 判断是不是首次登录
+    wx.getStorage({
+      key: 'firstEnterFlag',
+      success: function (res) {
+        _this.setData({
+          isFirstEnter: false
+        })
+      }
+    });
+
   },
 
   onShow: function () {
@@ -238,7 +254,8 @@ Page({
           finishTotal: finishTotal,
           finishPanelShow: true,
       });
-      setTimeout(()=>{
+      clearTimeout(timeOutTimer);
+      timeOutTimer = setTimeout(()=>{
         this.setData({
           finishPanelShow: false
         });
@@ -526,6 +543,22 @@ Page({
       pageMainColor: color
     });
     this.hideBgColorSelecter();
+  },
+  // 关闭引导页
+  closeGuidePage(){
+    wx.setStorage({
+      key: "firstEnterFlag",
+      data: (new Date()).getTime()
+    });
+    this.setData({
+      guidePageHidePre: true
+    });
+    setTimeout(()=>{
+      this.setData({
+        guidePageShow: false,
+        guidePageHidePre:false
+      })
+    },1500);
   },
 
 

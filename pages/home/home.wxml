@@ -71,7 +71,7 @@
           <view class="panel_bg" style="background-color: {{pageMainColor}}"></view>
         </view>
 
-        
+
         <!-- 活动计时结束用时多少浮层 -->
         <view class="act_remark_panel {{index == lastFinishTarget && finishPanelShow ?'show':''}}">
           <view class="panel_content">
@@ -191,4 +191,10 @@
       </view>
     </view>
   </scroll-view>
+
+  <!-- 首次进入的引导页 -->
+  <view class="guide_page {{guidePageHidePre?'hide':''}}" wx:if="{{guidePageShow && isFirstEnter}}" bindtap='closeGuidePage'>
+    <view class="guide_page_bg"></view>
+    <view class="guide_page_text">时间都去哪了？</view>
+  </view>
 </view>
