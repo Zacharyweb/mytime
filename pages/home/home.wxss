@@ -279,8 +279,8 @@ page {
 
 .content_block .act_remark_panel .close_icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5rpx;
+  right: 5rpx;
   width: 48rpx;
   height: 48rpx;
 }
