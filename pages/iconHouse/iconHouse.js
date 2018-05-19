@@ -1,36 +1,33 @@
 // pages/iconHouse/iconHouse.js
+var app = getApp();
+var userApi = require("../../utils/data/user.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    actId:'',
-    iconList: [
-      { icon: '../../static/img/icon1.png', name: '统计' },
-      { icon: '../../static/img/icon2.png', name: '审批' },
-      { icon: '../../static/img/icon3.png', name: '接待' },
-      { icon: '../../static/img/icon4.png', name: '会议' },
-      { icon: '../../static/img/icon5.png', name: '立项' },
-      { icon: '../../static/img/icon6.png', name: '讨论' },
-      { icon: '../../static/img/icon7.png', name: '外出' },
-      { icon: '../../static/img/icon8.png', name: '运动' },
-      { icon: '../../static/img/icon9.png', name: '休息' }
-    ],
+    actId: '',
+    iconList: [],
     selectedIconIndex: -1,
     editIconNamePanelShow: false,
 
-    newActIconName:'',
-    tempImgUrl:'',
+    newActIconName: '',
+    tempImgUrl: '',
 
     pageMainColor: '#c5c3c6'
   },
   onLoad: function (options) {
-    if (options.actId){
+    if (options.actId) {
       this.setData({
         actId: options.actId
       })
     }
+    userApi.getSystemActivities().then(res => {
+      this.setData({
+        iconList: res.result
+      })
+    })
   },
   onShow: function () {
     var _this = this;
@@ -69,23 +66,23 @@ Page({
     this.setData({
       newActIconName: this.data.iconList[idx].name
     });
-    this.cancelSelectIcon();
+    //this.cancelSelectIcon();
     this.showEditIconNamePanel();
-    
+
   },
   // 向后端发送数据
-  postSelectedActIconMsg(){
+  postSelectedActIconMsg() {
     wx.showLoading({
-      title:''
+      title: ''
     });
-    if (this.data.actId){
-        setTimeout(function(){
-          wx.hideLoading();
-          wx.navigateBack({
-            delta: 1
-          });
-        },1000)
-    }else{
+    if (this.data.actId) {
+      setTimeout(function () {
+        wx.hideLoading();
+        wx.navigateBack({
+          delta: 1
+        });
+      }, 1000)
+    } else {
       setTimeout(function () {
         wx.hideLoading();
         wx.navigateBack({
@@ -107,12 +104,12 @@ Page({
     this.cancelSelectIcon();
   },
   // 上传图标
-  uploadActIcon(){
-    var _this=this;
+  uploadActIcon() {
+    var _this = this;
     wx.chooseImage({
-      count:1,
+      count: 1,
       sizeType: 'compressed',
-      success: function (tempFilePaths){
+      success: function (tempFilePaths) {
         console.log(tempFilePaths.tempFilePaths[0]);
         _this.setData({
           tempImgUrl: tempFilePaths.tempFilePaths[0]
@@ -126,7 +123,7 @@ Page({
     this.setData({
       editIconNamePanelShow: true
     });
-    this.cancelSelectIcon();
+    //this.cancelSelectIcon();
   },
   // 隐藏上传图标完成后编辑图标名字的面板
   hideEditIconNamePanel() {
@@ -142,12 +139,19 @@ Page({
   },
   // 提交输入的图标名字
   submitActIconName() {
-    if (!this.data.newActIconName){
+    if (!this.data.newActIconName) {
       wx.showToast({ title: '请输入活动名称', icon: 'none' });
       return;
     };
-    this.hideEditIconNamePanel();
-    this.postSelectedActIconMsg();
+    userApi.addActivity({
+      activityId: this.data.iconList[this.data.selectedIconIndex].id,
+      name: this.data.newActIconName
+    }).then(res => {
+      this.hideEditIconNamePanel();
+      this.postSelectedActIconMsg();
+      app.showToast("您已添加新活动");
+      app.globalData.event.initHome();
+    })
 
     // var newIconList = this.data.iconList;
     // newIconList.push({

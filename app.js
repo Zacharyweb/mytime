@@ -2,7 +2,7 @@
 var app = getApp();
 App({
   onLaunch: function () {
-    
+
   },
   getAuthtoken: function () {
     var token = wx.getStorageSync('token') || '';
@@ -32,6 +32,7 @@ App({
     });
   },
   globalData: {
+    event: {},
     authUserInfo: false,
     OpenId: null,
     userInfo: null,

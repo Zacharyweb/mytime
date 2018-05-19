@@ -1,4 +1,5 @@
 <!--pages/history/history.wxml-->
+<wxs src="../../utils/filter.wxs" module="filter" />
 <view class="history_layer">
   <view class="tab_bar_wrapper">
     <!-- 第一级Tab -->
@@ -35,21 +36,20 @@
   </view>
 
   <view class="tab_bar_fill_block"></view>
-
   <!-- 历史列表 -->
   <view class="history_list">
 
     <!-- 历史活动项 -->
-    <view class="history_item">
+    <view wx:for="{{history}}" wx:for-item="h" wx:key="{{index}}" class="history_item">
       <view class="act_base_msg">
-        <view class="act_name">{{ summaryType == 1 ? '活动备注1、活动备注2' : '工作'}}</view>
-        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? '工作' : '活动备注1、活动备注2'}}</view>
-        <view class="act_time">2018.4.06 12:35-15:35</view>
+        <view class="act_name">{{ summaryType == 1 ? filter.getShowRemark(h.labels) : h.activityName}}</view>
+        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? h.activityName : filter.getShowRemark(h.labels)}}</view>
+        <view class="act_time">{{h.beginTime}}-{{h.endTime}}</view>
       </view>
       <view class="act_total_msg">
         <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time" style="color: {{pageMainColor}}">3小时0分</view>
+        <view class="total_time" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
       </view>
     </view>
 

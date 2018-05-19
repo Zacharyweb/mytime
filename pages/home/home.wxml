@@ -27,7 +27,7 @@
 
         <!-- 活动图标 -->
         <view class="act_icon_wrap">
-          <image class="act_icon_pic" src="{{item.icon}}"></image>
+          <image class="act_icon_pic" src="../../static/img/icon/{{item.icon}}"></image>
         </view>
 
         <!-- 活动名称 -->

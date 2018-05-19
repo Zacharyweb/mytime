@@ -3,6 +3,8 @@ var app = getApp();
 
 module.exports = {
   register: function () {
+    if (app.getAuthtoken()) return Promise.resolve();;
+
     wx.getSetting({
       success: function (res) {
         app.globalData.authUserInfo = res.authSetting["scope.userInfo"];
@@ -28,15 +30,13 @@ module.exports = {
     }).then(function (res) {
       return api.get("/api/services/app/ExpertWechat/GetToken", { code: res.code });
     }).then(function (res) {
-      if (!res.data.openid) {
+      if (!res.openid) {
         app.showToast("登录失败");
         return;
       }
-      console.log(res.data.openid);
-      app.globalData.OpenId = res.data.openid;
-      return api.post("/api/TokenAuth/Register", null, { openid: res.data.openid });
-    }).then(function (res) {
-      console.log(res);
+      console.log(res.openid);
+      app.globalData.OpenId = res.openid;
+      return api.post("/api/TokenAuth/Register", null, { openid: res.openid });
     });
   },
   login: function (data) {

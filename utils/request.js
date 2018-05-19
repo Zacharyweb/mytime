@@ -32,13 +32,14 @@ function Request(url, query = {}, data = {}, method = "GET") {
       url: url,
       data: data || {},
       header: {
-        Authorization: app.getAuthtoken(),
-        'content-type': 'application/x-www-form-urlencoded'
+        Authorization: "Bearer " + app.getAuthtoken(),
+        'content-type': 'application/json'
       },
       method: method,
       dataType: "json",
       success: res => {
-        resolve(res);
+        if (res.statusCode === 200) resolve(res.data);
+        else reject(res);
       },
       fail: (res) => {
         console.log(res);
@@ -46,15 +47,10 @@ function Request(url, query = {}, data = {}, method = "GET") {
         reject(res);
       },
       complete: (res) => {
-        if (app.globalData.redirected) return;
-        if (res.statusCode === 403) {
+        if (res.statusCode === 401) {
           if (app.getCurrentPage().route === app.globalData.loginRoute) return;
-          app.globalData.redirected = true;
           wx.navigateTo({
-            url: app.globalData.loginUrl,
-            success: function (res) {
-
-            }
+            url: app.globalData.loginUrl
           });
         }
       }

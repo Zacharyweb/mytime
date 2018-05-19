@@ -1,16 +1,19 @@
+var app = getApp();
+var userApi = require("../../utils/data/user.js");
 Page({
   data: {
+    history: [],
     currentTab: 0,
 
     summaryType: 0, // 0：按活动汇总 1：按备注汇总 
-    isInSummaryStatus:false, // 是否展示汇总
+    isInSummaryStatus: false, // 是否展示汇总
 
     // 搜索日期相关
     searchPanelShow: false,
     startDate: '',
     endDate: '',
     currenteSelectedDateType: -1,
-    datePick1StartDate:'',
+    datePick1StartDate: '',
     datePick1EndDate: '',
     datePick2StartDate: '',
     datePick2EndDate: '',
@@ -39,11 +42,16 @@ Page({
         })
       }
     });
+    userApi.getPeopleActivityHistory().then(res => {
+      this.setData({
+        history: res.result
+      })
+    });
   },
-  onHide:function(){
+  onHide: function () {
     wx.hideLoading();
   },
-  initDatePickerRange(){
+  initDatePickerRange() {
     var date = new Date();
     var currentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     this.setData({
@@ -65,7 +73,7 @@ Page({
   // 更换二级tab
   changeSummaryType(e) {
     var index = e.currentTarget.dataset.idx;
-    
+
     if (this.data.summaryType == index) {
       return;
     };
@@ -100,18 +108,18 @@ Page({
     wx.showLoading({
       title: ''
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       wx.navigateTo({
         url: '../searchResult/searchResult?start=' + this.data.startDate + '&end=' + this.data.endDate
       });
-    },1000);
+    }, 1000);
   },
   // 更换展示状态方式（明细跟汇总状态间切换）
   changeRankStatus() {
 
     this.setData({
       isInSummaryStatus: !this.data.isInSummaryStatus,
-      summaryType:0
+      summaryType: 0
     });
   },
   // 绑定开始时间选择
@@ -124,7 +132,7 @@ Page({
   },
   // 绑定结束时间选择
   bindEndDateChange: function (e) {
-    if (!this.data.startDate){
+    if (!this.data.startDate) {
       wx.showToast({ title: '请先选择起始时间', icon: 'none' });
       return;
     };
@@ -134,23 +142,23 @@ Page({
     })
   },
   // 点击日期输入框
-  bindDatePickerTap(e){
+  bindDatePickerTap(e) {
     var index = e.currentTarget.dataset.idx;
     this.setData({
-      currenteSelectedDateType:index
+      currenteSelectedDateType: index
     })
   },
   // 取消、关闭日期选择器
-  bindDatePickerCancel(){
+  bindDatePickerCancel() {
     this.setData({
       currenteSelectedDateType: -1
     })
   },
   // 清空选择的时间
-  resetSelectedDate(){
+  resetSelectedDate() {
     this.setData({
-      startDate:'',
-      endDate:''
+      startDate: '',
+      endDate: ''
     })
     this.initDatePickerRange();
   },
@@ -198,5 +206,5 @@ Page({
     this.setData({
       countTimer: countTimer
     });
-  },
+  }
 })
