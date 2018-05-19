@@ -193,7 +193,7 @@
   </scroll-view>
 
   <!-- 首次进入的引导页 -->
-  <view class="guide_page {{guidePageHidePre?'hide':''}}" wx:if="{{guidePageShow }}" bindtap='closeGuidePage'>
+  <view class="guide_page {{guidePageHidePre?'hide':''}}" wx:if="{{guidePageShow && isFirstEnter}}" bindtap='closeGuidePage'>
     <view class="guide_page_bg"></view>
     <view class="guide_page_text">时间都去哪了</view>
   </view>
