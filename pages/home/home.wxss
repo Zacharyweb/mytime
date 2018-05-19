@@ -279,8 +279,8 @@ page {
 
 .content_block .act_remark_panel .close_icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0rpx;
+  right: 0rpx;
   width: 48rpx;
   height: 48rpx;
 }
@@ -675,11 +675,22 @@ page {
 .guide_page .guide_page_text{
   position: absolute;
   left: 50%;
-  top:50%;
+  top:45%;
   transform: translate(-50%,-50%);
-  width: 56rpx;
+  text-align: center;
+  width:88rpx;
   word-break: break-all;
   color: #fff;
-  font-size: 54rpx;
+  font-size: 80rpx;
   z-index: 2;
+}
+.guide_page .guide_page_text::after{
+  content: '?';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom:0;
+  transform: translateY(100%);
+  color: #fff;
+  font-size: 80rpx;
 }
