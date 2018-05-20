@@ -43,7 +43,7 @@ function Request(url, query = {}, data = {}, method = "GET") {
       },
       fail: (res) => {
         console.log(res);
-        wx.showToast({ title: "网络错误", duration: 5000 });
+        wx.showToast({ title: res.errMsg || "网络错误", duration: 5000 });
         reject(res);
       },
       complete: (res) => {

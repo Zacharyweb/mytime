@@ -36,7 +36,7 @@ App({
     authUserInfo: false,
     OpenId: null,
     userInfo: null,
-    gateway: "http://localhost:57809",
+    gateway: "https://mytime.yuelinshe.com",
     lang: 'cn',
     loginUrl: "../login/login",
     loginRoute: "pages/login/login"

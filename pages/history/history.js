@@ -42,7 +42,10 @@ Page({
         })
       }
     });
-    userApi.getPeopleActivityHistory().then(res => {
+    this.showHistoryData();
+  },
+  showHistoryData() {
+    userApi.getPeopleActivityHistory({ dateType: this.data.currentTab }).then(res => {
       this.setData({
         history: res.result
       })
@@ -69,6 +72,7 @@ Page({
       currentTab: index,
       // summaryType: 0
     });
+    this.showHistoryData();
   },
   // 更换二级tab
   changeSummaryType(e) {
@@ -112,7 +116,7 @@ Page({
       wx.navigateTo({
         url: '../searchResult/searchResult?start=' + this.data.startDate + '&end=' + this.data.endDate
       });
-    }, 1000);
+    }, 500);
   },
   // 更换展示状态方式（明细跟汇总状态间切换）
   changeRankStatus() {

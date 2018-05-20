@@ -1,16 +1,30 @@
+var app = getApp();
+var userApi = require("../../utils/data/user.js");
 Page({
   data: {
     summaryType: 0, // 0：按活动汇总 1：按备注汇总 
-    isInSummaryStatus:false, // 是否展示汇总
-    start:'',
-    end:'',
-
+    isInSummaryStatus: false, // 是否展示汇总
+    start: '',
+    end: '',
     pageMainColor: '#c5c3c6'
   },
   onLoad: function (options) {
     this.setData({
       start: options.start,
-      end:options.end
+      end: options.end
+    });
+    wx.getStorage({
+      key: 'bgColor',
+      success: res => {
+        this.setData({
+          pageMainColor: res.data || '#c5c3c6'
+        })
+      }
+    });
+    userApi.getPeopleActivityHistory({ beginDate: this.data.start, endDate: this.data.end }).then(res => {
+      this.setData({
+        history: res.result
+      })
     });
   },
   onShow: function () {
@@ -39,7 +53,7 @@ Page({
   changeRankStatus() {
     this.setData({
       isInSummaryStatus: !this.data.isInSummaryStatus,
-      summaryType:0
+      summaryType: 0
     });
   }
 })

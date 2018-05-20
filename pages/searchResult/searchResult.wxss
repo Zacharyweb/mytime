@@ -141,6 +141,7 @@ page{
   /*height: 50rpx;*/
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   font-size: 30rpx;
   color: #666;
 }
@@ -148,9 +149,9 @@ page{
   width: 40rpx;
   height: 40rpx;
   margin-right: 10rpx; 
-  margin-bottom: 20rpx;
 }
 .history_layer .history_item  .total_time{
   font-size: 26rpx;
   color: #1d8574;
+  margin-top:20rpx;
 }

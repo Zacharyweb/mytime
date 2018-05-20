@@ -510,11 +510,13 @@ Page({
     } else if (index < selectedRemark1Index) {
       selectedRemark1Index--;
     };
-    var newRemark1List = this.data.remark1List;
-    newRemark1List.splice(index, 1);
-    this.setData({
-      remark1List: newRemark1List,
-      selectedRemark1Index: selectedRemark1Index
+    userApi.deleteLabel(this.data.remark1List[index].id).then(() => {
+      var newRemark1List = this.data.remark1List;
+      newRemark1List.splice(index, 1);
+      this.setData({
+        remark1List: newRemark1List,
+        selectedRemark1Index: selectedRemark1Index
+      })
     })
   },
   //删除备注2下面的标签项
@@ -529,11 +531,13 @@ Page({
     } else if (index < selectedRemark2Index) {
       selectedRemark2Index--;
     };
-    var newRemark2List = this.data.remark2List;
-    newRemark2List.splice(index, 1);
-    this.setData({
-      remark2List: newRemark2List,
-      selectedRemark2Index: selectedRemark2Index
+    userApi.deleteLabel(this.data.remark2List[index].id).then(() => {
+      var newRemark2List = this.data.remark2List;
+      newRemark2List.splice(index, 1);
+      this.setData({
+        remark2List: newRemark2List,
+        selectedRemark2Index: selectedRemark2Index
+      })
     })
   },
   // 展示背景颜色选择器

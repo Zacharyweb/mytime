@@ -9,14 +9,14 @@ module.exports = {
   getCurrentActivity: () => {
     return api.get("/api/services/app/People/GetCurrentActivity");
   },
-  getPeopleActivityHistory: () => {
-    return api.get("/api/services/app/People/GetPeopleActivityHistory");
+  getPeopleActivityHistory: (data) => {
+    return api.get("/api/services/app/People/GetPeopleActivityHistory", data);
   },
   addActivity: (data) => {
     return api.post("/api/services/app/People/AddActivity", null, data);
   },
   deleteActivity: (id) => {
-    return api.delete("/api/services/app/People/DeleteActivity?activityId={id}", { id: id });
+    return api.delete("/api/services/app/People/DeleteActivity", { activityId: id });
   },
   getUsedActivities: () => {
     return api.get("/api/services/app/People/GetUsedActivities").then(res => {
@@ -31,6 +31,9 @@ module.exports = {
   },
   setLabel: (data) => {
     return api.post("/api/services/app/People/SetLabel", null, data);
+  },
+  deleteLabel: (id) => {
+    return api.delete("/api/services/app/People/DeleteLabel", { labelId: id });
   },
   setLabelCategoryName: (data) => {
     return api.post("/api/services/app/People/SetLabelCategoryName", null, data);
