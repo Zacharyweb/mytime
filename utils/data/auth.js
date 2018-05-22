@@ -3,8 +3,10 @@ var app = getApp();
 
 module.exports = {
   register: function () {
-    if (app.getAuthtoken()) return Promise.resolve();;
-
+    if (app.getAuthtoken()) {
+      return Promise.resolve();
+    }
+    
     wx.getSetting({
       success: function (res) {
         app.globalData.authUserInfo = res.authSetting["scope.userInfo"];

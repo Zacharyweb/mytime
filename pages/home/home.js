@@ -54,9 +54,7 @@ Page({
 
   },
   initHome: function () {
-    authApi.register().then(() => {
-      return userApi.getUsedActivities();
-    }).then(data => {
+    userApi.getUsedActivities().then(data => {
       console.log(data);
       this.setData({
         actList: data
@@ -90,7 +88,7 @@ Page({
   onLoad: function () {
     var _this = this;
     app.globalData.event.initHome = this.initHome;
-    this.initHome();
+    authApi.register();
     wx.getStorage({
       key: 'bgColor',
       success: function (res) {
@@ -113,7 +111,7 @@ Page({
   },
 
   onShow: function () {
-
+    this.initHome();
   },
 
   onHide: function () {
@@ -138,7 +136,7 @@ Page({
     //   actionSheet = ['切换到英文', '设置背景颜色']
     // };
     wx.showActionSheet({
-      itemList: ['设置背景颜色'],
+      itemList: ['设置背景颜色', '退出登录'],
       success: function (res) {
 
         if (res.tapIndex == 0) {
@@ -148,7 +146,7 @@ Page({
           _this.showBgColorSelecter();
         };
         if (res.tapIndex == 1) {
-
+          app.setAuthtoken(null);
         };
         if (res.tapIndex == 2) {
           _this.setData({
@@ -205,13 +203,9 @@ Page({
   },
   // 计时函数
   count(startInterval) {
+    if (this.data.countTimer) clearInterval(this.data.countTimer);
     var interval = startInterval || 0;
     var countTimer = null;
-    this.setData({
-      countH: '00',
-      countM: '00',
-      countS: '00',
-    });
 
     countTimer = setInterval(() => {
       interval++;
@@ -252,7 +246,6 @@ Page({
         });
       }, 2000)
 
-      clearInterval(this.data.countTimer);
       this.cleanActRemark();
 
       if (this.data.countTarget == index) {
@@ -270,7 +263,10 @@ Page({
       }).then(res => {
         this.data.actList[index].peopleActivityId = res.result.id;
         this.setData({
-          countTarget: index
+          countTarget: index,
+          countH: '00',
+          countM: '00',
+          countS: '00'
         });
         this.count();
       })
@@ -451,8 +447,9 @@ Page({
         remark2Name: this.data.remarkNameText
       });
     }
-
-    this.hideEditRemarkNamePanel();
+    userApi.setLabelCategoryName({ id: this.data.currentEditRemarkNameType, name: this.data.remarkNameText }).then(() => {
+      this.hideEditRemarkNamePanel();
+    });
   },
   // 绑定备注1的输入
   bindRemark1Input(e) {
