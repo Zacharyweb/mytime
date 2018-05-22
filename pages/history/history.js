@@ -8,6 +8,7 @@ Page({
     summaryType: 0, // 0：按活动汇总 1：按备注汇总 
     isInSummaryStatus: false, // 是否展示汇总
 
+
     // 搜索日期相关
     searchPanelShow: false,
     startDate: '',
@@ -23,6 +24,12 @@ Page({
     countH: '00',
     countM: '00',
     countS: '00',
+    //进行中的活动
+    countingAct:null,
+    countTimer2: null,
+    countH2: '--',
+    countM2: '--',
+    countS2: '--',
 
     pageMainColor: '#c5c3c6'
   },
@@ -48,7 +55,8 @@ Page({
     userApi.getPeopleActivityHistory({ dateType: this.data.currentTab }).then(res => {
       this.setData({
         history: res.result
-      })
+      });
+      this.findCountingAct(res.result);
     });
   },
   onHide: function () {
@@ -210,5 +218,46 @@ Page({
     this.setData({
       countTimer: countTimer
     });
-  }
+  },
+
+
+  findCountingAct(list){
+    var flag = -1;
+    for(var i = 0;i<list.length;i++){
+      if (list[i].endTime == '??'){
+        this.setData({
+          countingAct:list[i]
+        });
+        flag = i;
+        break;
+      }
+    };
+    if(flag == -1){
+      return;
+    }
+    var interval = list[i].totalSeconds;
+
+    var countTimer = null;
+    countTimer = setInterval(() => {
+      interval++;
+      this.countTime2(interval);
+    }, 1000);
+
+    this.setData({
+      countTimer2: countTimer
+    });
+
+  },
+
+  // 计时转换函数
+  countTime2(count) {
+    var h = Math.floor(count / 3600);
+    var m = Math.floor((count % 3600) / 60);
+    var s = count % 60;
+    this.setData({
+      countH2: this.addZero(h),
+      countM2: this.addZero(m),
+      countS2: this.addZero(s)
+    });
+  },
 })

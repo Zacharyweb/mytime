@@ -40,7 +40,7 @@
   <view class="history_list">
 
     <!-- 历史活动项 -->
-    <view wx:for="{{history}}" wx:for-item="h" wx:key="{{index}}" class="history_item">
+    <view wx:for="{{history}}" wx:for-item="h" wx:key="{{index}}" wx:if="{{h.endTime != '??'}}" class="history_item">
       <view class="act_base_msg">
         <view class="act_name">{{ summaryType == 1 ? filter.getShowRemark(h.labels) : h.activityName}}</view>
         <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? h.activityName : filter.getShowRemark(h.labels)}}</view>
@@ -52,6 +52,21 @@
         <view class="total_time" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
       </view>
     </view>
+
+    <!-- 进行中活动 -->
+    <view wx:if="{{countingAct}}" class="history_item">
+      <view class="act_base_msg">
+        <view class="act_name">{{ summaryType == 1 ? filter.getShowRemark(countingAct.labels) : countingAct.activityName}}</view>
+        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? countingAct.activityName : filter.getShowRemark(countingAct.labels)}}</view>
+        <view class="act_time">{{countingAct.beginTime}}-{{countingAct.endTime}}</view>
+      </view>
+      <view class="act_total_msg">
+        <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>进行中</view>
+        <view class="total_time" style="color: {{pageMainColor}}">{{countH2 + ' : ' + countM2 + ' : ' + countS2}}</view>
+      </view>
+    </view>
+
 
     <!-- 历史未计时项 -->
     <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
