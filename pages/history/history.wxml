@@ -21,14 +21,14 @@
     <view class="tab2_bar">
       <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按活动汇总</view>
-      <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType != 1}}"  bindtap="changeSummaryType">按备注汇总</view>
-      <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType == 1}}"  style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType != 1}}" bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType == 1}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按备注汇总</view>
 
       <view class="tab2_item rank_btn" wx:if="{{!isInSummaryStatus}}" bindtap="changeRankStatus">
         汇总
         <image class="rank_btn_icon" src="../../static/img/total_green.png"></image>
       </view>
-      <view class="tab2_item rank_btn active2"  wx:if="{{isInSummaryStatus}}" bindtap="changeRankStatus" style="background-color: {{pageMainColor}};">
+      <view class="tab2_item rank_btn active2" wx:if="{{isInSummaryStatus}}" bindtap="changeRankStatus" style="background-color: {{pageMainColor}};">
         汇总
         <image class="rank_btn_icon" src="../../static/img/total_white.png"></image>
       </view>
@@ -38,20 +38,6 @@
   <view class="tab_bar_fill_block"></view>
   <!-- 历史列表 -->
   <view class="history_list">
-
-    <!-- 历史活动项 -->
-    <view wx:for="{{history}}" wx:for-item="h" wx:key="{{index}}" wx:if="{{h.endTime != '??'}}" class="history_item">
-      <view class="act_base_msg">
-        <view class="act_name">{{ summaryType == 1 ? filter.getShowRemark(h.labels) : h.activityName}}</view>
-        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? h.activityName : filter.getShowRemark(h.labels)}}</view>
-        <view class="act_time">{{h.beginTime}}-{{h.endTime}}</view>
-      </view>
-      <view class="act_total_msg">
-        <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
-      </view>
-    </view>
 
     <!-- 进行中活动 -->
     <view wx:if="{{countingAct}}" class="history_item">
@@ -67,6 +53,19 @@
       </view>
     </view>
 
+    <!-- 历史活动项 -->
+    <view wx:for="{{history}}" wx:for-item="h" wx:key="{{index}}" wx:if="{{h.endTime != '??'}}" class="history_item">
+      <view class="act_base_msg">
+        <view class="act_name">{{ summaryType == 1 ? filter.getShowRemark(h.labels) : h.activityName}}</view>
+        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? h.activityName : filter.getShowRemark(h.labels)}}</view>
+        <view class="act_time">{{h.beginTime}}-{{h.endTime}}</view>
+      </view>
+      <view class="act_total_msg">
+        <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
+        <view class="total_time" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
+      </view>
+    </view>
 
     <!-- 历史未计时项 -->
     <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">

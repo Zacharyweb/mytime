@@ -25,7 +25,7 @@ Page({
     countM: '00',
     countS: '00',
     //进行中的活动
-    countingAct:null,
+    countingAct: null,
     countTimer2: null,
     countH2: '--',
     countM2: '--',
@@ -221,18 +221,22 @@ Page({
   },
 
 
-  findCountingAct(list){
+  findCountingAct(list) {
     var flag = -1;
-    for(var i = 0;i<list.length;i++){
-      if (list[i].endTime == '??'){
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].endTime == '??') {
         this.setData({
-          countingAct:list[i]
+          countingAct: list[i]
         });
         flag = i;
         break;
       }
     };
-    if(flag == -1){
+    if (flag == -1) {
+      this.setData({
+        countTimer2: null,
+        countingAct: null
+      });
       return;
     }
     var interval = list[i].totalSeconds;
