@@ -1,17 +1,17 @@
 <!--pages/history/history.wxml-->
 <wxs src="../../utils/filter.wxs" module="filter" />
 <view class="history_layer">
-  <view class="tab_bar_wrapper">
+  <view class="tab_bar_wrapper {{summaryType == 2?'':'extend'}}">
     <!-- 第一级Tab -->
     <view class="tab_bar">
       <view class="tab_item" data-idx="0" wx:if="{{currentTab != 0}}" bindtap="changeCurrentTab">今天</view>
-      <view class="tab_item active" data-idx="0" wx:if="{{currentTab == 0}}" style="color: {{pageMainColor}}" bindtap="changeCurrentTab">今天</view>
+      <view class="tab_item active" data-idx="0" wx:if="{{currentTab == 0}}" style="color: {{pageMainColor}}">今天</view>
 
       <view class="tab_item" data-idx="1" wx:if="{{currentTab != 1}}" bindtap="changeCurrentTab">昨日</view>
-      <view class="tab_item active" data-idx="1" wx:if="{{currentTab == 1}}" style="color: {{pageMainColor}}" bindtap="changeCurrentTab">昨日</view>
+      <view class="tab_item active" data-idx="1" wx:if="{{currentTab == 1}}" style="color: {{pageMainColor}}">昨日</view>
 
       <view class="tab_item" data-idx="2" wx:if="{{currentTab != 2}}" bindtap="changeCurrentTab">本周</view>
-      <view class="tab_item active" data-idx="2" wx:if="{{currentTab == 2}}" style="color: {{pageMainColor}}" bindtap="changeCurrentTab">本周</view>
+      <view class="tab_item active" data-idx="2" wx:if="{{currentTab == 2}}" style="color: {{pageMainColor}}">本周</view>
       <view class="tab_item search_btn" bindtap="showSearchPanel">搜索
         <image class="search_icon" src="../../static/img/search_icon.png"></image>
       </view>
@@ -34,20 +34,32 @@
       </view>
     </view> -->
 
-   <view class="tab2_bar">
+    <view class="tab2_bar">
       <view class="tab2_item" data-idx="2" wx:if="{{summaryType != 2}}" bindtap="changeSummaryType">按时间排序</view>
-      <view class="tab2_item active" data-idx="2" wx:if="{{summaryType ==2}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按时间排序</view>
+      <view class="tab2_item active" data-idx="2" wx:if="{{summaryType ==2}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">按时间排序</view>
       <view class="tab2_item" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
-      <view class="tab2_item active" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item active" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">按活动汇总</view>
       <view class="tab2_item" data-idx="1" wx:if="{{summaryType != 1}}" bindtap="changeSummaryType">按备注汇总</view>
-      <view class="tab2_item active" data-idx="1" wx:if="{{summaryType == 1}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item active" data-idx="1" wx:if="{{summaryType == 1}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">按备注汇总</view>
+    </view>
+    <view class="tab3_bar" wx:if="{{summaryType == 0}}">
+      <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">显示备注</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">显示备注</view>
+      <view class="devide_line"></view>
+      <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">隐藏备注</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">隐藏备注</view>
+    </view>
 
-   
-    
+    <view class="tab3_bar" wx:if="{{summaryType == 1}}">
+      <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">显示活动</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">显示活动</view>
+      <view class="devide_line"></view>
+      <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">隐藏活动</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">隐藏活动</view>
     </view>
   </view>
 
-  <view class="tab_bar_fill_block"></view>
+  <view class="tab_bar_fill_block {{summaryType == 2?'':'extend'}}" ></view>
   <!-- 历史列表 -->
   <view class="history_list">
 

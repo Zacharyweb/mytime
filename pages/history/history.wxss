@@ -6,14 +6,17 @@ page{
   padding-bottom: 80rpx;
 }
 .history_layer .tab_bar_wrapper{
-
   position: fixed;
   width: 100%;
   left: 0;
   top:0;
   padding-top: 30rpx;
-  height: 195rpx;
+   height: 195rpx; 
   background-color: #efeff4;
+  transform: all 0.3s;
+}
+.history_layer .tab_bar_wrapper.extend{
+height: 255rpx;
 }
 .history_layer .tab_bar{
   background-color: #fff;
@@ -21,8 +24,8 @@ page{
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 2rpx solid #d9d9d9;
-  border-bottom: 2rpx solid #d9d9d9;
+  border-top: 1rpx solid #d9d9d9;
+  border-bottom: 1rpx solid #d9d9d9;
 
 }
 .history_layer .tab_bar .tab_item{
@@ -68,7 +71,7 @@ page{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2rpx solid #d9d9d9;
+  border-bottom: 1rpx solid #d9d9d9;
   position: relative;
   overflow: hidden;
 }
@@ -110,9 +113,36 @@ page{
   margin-left: 10rpx;
 
 }
+.history_layer .tab3_bar{
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #d9d9d9;
+}
+.history_layer .tab3_bar .tab3_item{
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+}
+.history_layer .tab3_bar .tab3_item.active{
+  font-weight: bold;
+}
+.history_layer .tab3_bar .devide_line{
+  height: 30rpx;
+  width: 1rpx;
+  background-color: #bbb;
+
+}
+
 
 .tab_bar_fill_block{
-  height: 225rpx;
+  height: 225rpx; 
+  transition: all 0.3s;
+}
+.tab_bar_fill_block.extend{
+  height: 285rpx;
 }
 .history_layer .history_list{
   background-color: #fff;

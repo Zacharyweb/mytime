@@ -6,6 +6,9 @@ Page({
     currentTab: 0,
 
     summaryType: 2, //2：按时间排序 0：按活动汇总 1：按备注汇总 
+    summarySubType: 0, // 0：显示备注 1：隐藏备注 
+    
+    
     // isInSummaryStatus: false, // 是否展示汇总
 
 
@@ -73,9 +76,6 @@ Page({
   // 更换一级tab
   changeCurrentTab(e) {
     var index = e.currentTarget.dataset.idx;
-    if (this.data.currentTab == index) {
-      return;
-    };
     this.setData({
       currentTab: index,
       // summaryType: 0
@@ -85,13 +85,15 @@ Page({
   // 更换二级tab
   changeSummaryType(e) {
     var index = e.currentTarget.dataset.idx;
-
-    if (this.data.summaryType == index) {
-      return;
-    };
-    console.log(index);
     this.setData({
       summaryType: index
+    });
+  },
+  // 更换三级tab
+  changeSummarySubType(e){
+    var index = e.currentTarget.dataset.idx;
+    this.setData({
+      summarySubType: index
     });
   },
   // 展示搜索面板
