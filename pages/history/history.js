@@ -89,7 +89,8 @@ Page({
   changeSummaryType(e) {
     var index = e.currentTarget.dataset.idx;
     this.setData({
-      summaryType: index
+      summaryType: index,
+      summarySubType: 0
     });
   },
   // 更换三级tab
