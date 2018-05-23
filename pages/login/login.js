@@ -34,8 +34,8 @@ Page({
     authApi.login(data).then(res => {
       console.log(res);
       app.setAuthtoken(res.result.accessToken);
-      wx.navigateTo({
-        url: '../home/home',
+      wx.navigateBack({
+        delta: 1
       })
     })
   }

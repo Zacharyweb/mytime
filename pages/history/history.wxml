@@ -91,20 +91,6 @@
       </view>
     </view>
 
-    <!-- 历史未计时项 -->
-    <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
-      <view class="act_base_msg">
-        <view class="act_name">{{lang=="en"?'Not timed':'未计时'}}</view>
-        <view class="act_remark"></view>
-        <view class="act_time">2018.4.06 12:35-15:35</view>
-      </view>
-      <view class="act_total_msg">
-        <!-- <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
-        <view class="total_time large_font" style="color: {{pageMainColor}}">03 ：00 ： 00</view>
-      </view>
-    </view>
-
     <!-- 今日剩余时间项 -->
     <view class="history_item today_leaf_time" wx:if="{{currentTab == 0}}">
       <view class="act_base_msg">
