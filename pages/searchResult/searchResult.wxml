@@ -30,7 +30,7 @@
   </view>
 
   <view class="tab_bar_fill_block {{summaryType == 2?'':'extend'}}"></view>
-  <view class="search_key">{{start}} — {{end}} 时间记录搜索结果</view>
+  <view class="search_key">{{start}} — {{end}} </view>
   <view class="history_list">
 
     <!-- 活动项 -->
@@ -51,14 +51,14 @@
     <!-- 未计时项 -->
     <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
       <view class="act_base_msg">
-        <view class="act_name">未计时</view>
+        <view class="act_name">{{lang=="en"?'Not timed':'未计时'}}</view>
         <view class="act_remark"></view>
         <view class="act_time">2018.4.06 12:35-15:35</view>
       </view>
       <view class="act_total_msg">
         <!-- <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
-        <view class="total_time large_font" style="color: {{pageMainColor}}">3小时0分</view>
+        <view class="total_time large_font" style="color: {{pageMainColor}}">03 ：00 ： 00</view>
       </view>
     </view>
   </view>

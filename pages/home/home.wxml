@@ -64,7 +64,7 @@
         <!-- 活动相关备注的浮层 -->
         <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
           <view class="panel_content">
-            <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || '添加备注项'}}</view>
+            <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || lang == 'en'? 'add remark':'添加备注项'}}</view>
             <view class="act_remark_text act_remark_text2" catchtap="showEditRemarkPanel" wx:if="{{item.remark2}}">{{item.remark2}}</view>
             <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
           </view>
@@ -75,7 +75,7 @@
         <!-- 活动计时结束用时多少浮层 -->
         <view class="act_remark_panel {{index == lastFinishTarget && finishPanelShow ?'show':''}}">
           <view class="panel_content">
-            <view class="act_remark_text ">活动用时</view>
+            <view class="act_remark_text ">{{lang == 'en'? 'time spent':'活动用时'}}</view>
             <view class="act_remark_text act_remark_text2">{{finishTotal}}</view>
           </view>
           <view class="panel_bg" style="background-color: {{pageMainColor}}"></view>
@@ -91,21 +91,21 @@
   <view class="act_edit_block">
     <view class="act_edit_trigger" bindtap="addNewAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon1.png"></image>
-      <view class="set_btn_text" style="color: {{pageMainColor}}">新增活动</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}">{{lang == 'en'? 'Add Act':'新增活动'}}</view>
       <!-- <view class="divide_line"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="deleteAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" style="color: {{pageMainColor}}">删除活动</view>  -->
-      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing}}">删除活动</view>
-      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditing}}">完成删除</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing}}">{{lang == 'en'? 'Delete Act':'删除活动'}}</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditing}}">{{lang == 'en'? 'Finish':'完成删除'}}</view>
       <!-- <view class="divide_line divide_line2"></view> -->
     </view>
 
     <view class="act_edit_trigger" bindtap="toHistoryPage">
       <image class="act_icon_pic" src="../../static/img/bottom_icon4.png"></image>
-      <view class="set_btn_text" style="color: {{pageMainColor}}">时间记录</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}">{{lang == 'en'? 'Past':'时间记录'}}</view>
     </view>
   </view>
 
@@ -113,7 +113,7 @@
   <view class="edit_remark_wrapper">
     <view class="edit_remark_panel {{editRemarkPanelShow?'show':''}}">
       <view class="panel_header">
-        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> 设置活动备注
+        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> {{lang == 'en'?'Remark' : '设置活动备'}}
       </view>
       <view class="panel_content">
         <!-- 编辑备注1的部分 -->
@@ -126,7 +126,7 @@
 
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='12' />
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark1Input' value="{{remark1Text}}" placeholder="{{remarkPlaceholder}}" maxlength='12' />
           </view>
           <view class="history_remark_list">
             <view class="history_remark_item" wx:for="{{remark1List}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="selectRemark1">
@@ -149,7 +149,7 @@
             </view>
           </view>
           <view class="item_input_wrap">
-            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="请输入或从下面标签中选择备注" maxlength='12' />
+            <input class="remark_input" type="text" placeholder-style="color:#ccc" bindinput='bindRemark2Input' value="{{remark2Text}}" placeholder="{{remarkPlaceholder}}" maxlength='12' />
           </view>
 
           <view class="history_remark_list">
@@ -164,8 +164,8 @@
         </view>
       </view>
       <view class="panel_footer">
-        <view class="bottom_btn cancel_btn" bindtap="resetActRemark">重置</view>
-        <view class="bottom_btn submit_btn" bindtap="submitActRemark" style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">确定</view>
+        <view class="bottom_btn cancel_btn" bindtap="resetActRemark">{{lang == 'en'?'Reset':'重置'}}</view>
+        <view class="bottom_btn submit_btn" bindtap="submitActRemark" style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">{{lang == 'en'?'OK':'确定'}}</view>
       </view>
     </view>
   </view>
@@ -177,7 +177,7 @@
       <view class="name_input_wrap">
         <input class="name_input" type="text" value="{{remarkNameText}}" bindinput='bindRemarkNameInput' maxlength='12' />
       </view>
-      <view class="submit_btn" bindtap='submitEditRemarkName' style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">确定</view>
+      <view class="submit_btn" bindtap='submitEditRemarkName' style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">{{lang == 'en'?'OK':'确定'}}</view>
     </view>
   </view>
 

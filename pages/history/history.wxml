@@ -4,15 +4,15 @@
   <view class="tab_bar_wrapper {{summaryType == 2?'':'extend'}}">
     <!-- 第一级Tab -->
     <view class="tab_bar">
-      <view class="tab_item" data-idx="0" wx:if="{{currentTab != 0}}" bindtap="changeCurrentTab">今天</view>
-      <view class="tab_item active" data-idx="0" wx:if="{{currentTab == 0}}" style="color: {{pageMainColor}}">今天</view>
+      <view class="tab_item" data-idx="0" wx:if="{{currentTab != 0}}" bindtap="changeCurrentTab">{{lang=="en"?'Today':'今天'}}</view>
+      <view class="tab_item active" data-idx="0" wx:if="{{currentTab == 0}}" style="color: {{pageMainColor}}">{{lang=="en"?'Today':'今天'}}</view>
 
-      <view class="tab_item" data-idx="1" wx:if="{{currentTab != 1}}" bindtap="changeCurrentTab">昨日</view>
-      <view class="tab_item active" data-idx="1" wx:if="{{currentTab == 1}}" style="color: {{pageMainColor}}">昨日</view>
+      <view class="tab_item" data-idx="1" wx:if="{{currentTab != 1}}" bindtap="changeCurrentTab">{{lang=="en"?'Yesterday':'昨日'}}</view>
+      <view class="tab_item active" data-idx="1" wx:if="{{currentTab == 1}}" style="color: {{pageMainColor}}">{{lang=="en"?'Yesterday':'昨日'}}</view>
 
-      <view class="tab_item" data-idx="2" wx:if="{{currentTab != 2}}" bindtap="changeCurrentTab">本周</view>
-      <view class="tab_item active" data-idx="2" wx:if="{{currentTab == 2}}" style="color: {{pageMainColor}}">本周</view>
-      <view class="tab_item search_btn" bindtap="showSearchPanel">搜索
+      <view class="tab_item" data-idx="2" wx:if="{{currentTab != 2}}" bindtap="changeCurrentTab">{{lang=="en"?'This Week':'本周'}}</view>
+      <view class="tab_item active" data-idx="2" wx:if="{{currentTab == 2}}" style="color: {{pageMainColor}}">{{lang=="en"?'This Week':'本周'}}</view>
+      <view class="tab_item search_btn" bindtap="showSearchPanel">{{lang=="en"?'Search':'搜索'}}
         <image class="search_icon" src="../../static/img/search_icon.png"></image>
       </view>
     </view>
@@ -72,7 +72,7 @@
       </view>
       <view class="act_total_msg">
         <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>进行中</view>
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>{{lang=="en"?'In Progress':'进行中'}}</view>
         <view class="total_time" style="color: {{pageMainColor}}">{{countH2 + ' : ' + countM2 + ' : ' + countS2}}</view>
       </view>
     </view>
@@ -94,21 +94,21 @@
     <!-- 历史未计时项 -->
     <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
       <view class="act_base_msg">
-        <view class="act_name">未计时</view>
+        <view class="act_name">{{lang=="en"?'Not timed':'未计时'}}</view>
         <view class="act_remark"></view>
         <view class="act_time">2018.4.06 12:35-15:35</view>
       </view>
       <view class="act_total_msg">
         <!-- <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
-        <view class="total_time large_font" style="color: {{pageMainColor}}">3小时0分</view>
+        <view class="total_time large_font" style="color: {{pageMainColor}}">03 ：00 ： 00</view>
       </view>
     </view>
 
     <!-- 今日剩余时间项 -->
     <view class="history_item today_leaf_time" wx:if="{{currentTab == 0}}">
       <view class="act_base_msg">
-        <view class="act_name">今日剩余时间</view>
+        <view class="act_name">{{lang=="en"?'Time left for the day':'今日剩余时间'}}</view>
       </view>
       <view class="act_total_msg">
         <view class="total_time large_font" style="color: {{pageMainColor}};margin-top:0;">{{countH}} : {{countM}} : {{countS}}</view>
@@ -122,14 +122,14 @@
     <view class="search_history_panel {{searchPanelShow?'show':''}}">
       <view class="panel_header">
         <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideSearchPanel"></image>
-        请选择搜索时间段
+        {{lang=="en"?'Look up time periods':'请选择搜索时间段'}}
       </view>
 
       <!-- 起始时间输入项 -->
       <view class="panel_content">
         <view class="input_item">
           <picker mode="date" value="{{date}}" start="{{datePick1StartDate}}" end="{{datePick1EndDate}}" data-idx="1" bindtap="bindDatePickerTap" bindcancel="bindDatePickerCancel" bindchange="bindStartDateChange">
-            <view class="item_name">起始时间：</view>
+            <view class="item_name">{{lang=="en"?'Beginning':'起始时间'}}：</view>
             <view class="item_input_wrap" wx:if="{{currenteSelectedDateType != 1}}">{{startDate}}</view>
             <view class="item_input_wrap active" wx:if="{{currenteSelectedDateType == 1}}" style="border-color:{{pageMainColor}};">{{startDate}}</view>
           </picker>
@@ -138,15 +138,15 @@
         <!-- 结束时间输入项 -->
         <view class="input_item">
           <picker mode="date" value="{{date}}" start="{{datePick2StartDate}}" end="{{datePick2EndDate}}" data-idx="2" bindtap="bindDatePickerTap" bindchange="bindEndDateChange" bindcancel="bindDatePickerCancel">
-            <view class="item_name">结束时间：</view>
+            <view class="item_name">{{lang=="en"?'End':'结束时间'}}：</view>
             <view class="item_input_wrap" wx:if="{{currenteSelectedDateType != 2}}">{{endDate}}</view>
             <view class="item_input_wrap active" wx:if="{{currenteSelectedDateType == 2}}" style="border-color:{{pageMainColor}};">{{endDate}}</view>
           </picker>
         </view>
       </view>
       <view class="panel_footer">
-        <view class="bottom_btn cancel_btn" bindtap="resetSelectedDate">重置</view>
-        <view class="bottom_btn submit_btn" bindtap="submitSearch" style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">搜索</view>
+        <view class="bottom_btn cancel_btn" bindtap="resetSelectedDate">{{lang=="en"?'Reset':'重置'}}</view>
+        <view class="bottom_btn submit_btn" bindtap="submitSearch" style="background-color: {{pageMainColor}};border-color: {{pageMainColor}};">{{lang=="en"?'Search':'搜索'}}</view>
       </view>
     </view>
   </view>

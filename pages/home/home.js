@@ -6,6 +6,7 @@ var timeOutTimer = null;
 Page({
 
   data: {
+    lang: app.globalData.lang,
     actList: [],
 
     remark1List: [],
@@ -26,12 +27,14 @@ Page({
     editRemarkPanelShow: false,
     editRemarkNamePanelShow: false,
 
-    remark1Name: '客户',
-    remark2Name: '业务',
+    remark1Name: '',
+    remark2Name: '',
 
     remark1Text: '',
     remark2Text: '',
     remarkNameText: '',
+
+    remarkPlaceholder:'',
 
     currentEditRemarkNameType: 1,// 1:编辑备注1的名称，2：编辑备注2的名称
     selectedRemark1Index: -1,
@@ -111,6 +114,20 @@ Page({
   },
 
   onShow: function () {
+    var txt = this.data.lang == 'en' ? 'Time Matters' : '我的时间';
+    wx.setNavigationBarTitle({
+      title: txt
+    });
+
+    this.setData({
+      remark1Name: this.data.lang == 'en' ? 'Client' : '客户',
+      remark2Name: this.data.lang == 'en' ? 'Job' : '业务',
+      remarkPlaceholder: this.data.lang == 'en' ? 'You may fill remark or pick from the tags below' : '请输入或从下面标签中选择备注'
+    });
+
+
+
+
     this.initHome();
   },
 
@@ -132,11 +149,12 @@ Page({
     // if (app.globalData.lang == "en"){
     //   actionSheet = ['Change to Chinese','Set BG Color']
     // };
-    // if (app.globalData.lang == "cn") {
-    //   actionSheet = ['切换到英文', '设置背景颜色']
-    // };
+    var actionSheet = ['设置背景颜色', '退出登录']
+    if (this.data.lang == "en") {
+      actionSheet = ['Set color', 'Log out']
+    };
     wx.showActionSheet({
-      itemList: ['设置背景颜色', '退出登录'],
+      itemList: actionSheet,
       success: function (res) {
 
         if (res.tapIndex == 0) {
@@ -158,26 +176,7 @@ Page({
       }
     })
   },
-  setLang() {
-    wx.showActionSheet({
-      itemList: ['简体中文', 'English'],
-      success: function (res) {
-        if (res.tapIndex == 0) {
-          wx.showToast({
-            title: '中文',
-          })
-        };
-        if (res.tapIndex == 1) {
-          wx.showToast({
-            title: 'En',
-          })
-        };
-      },
-      fail: function (res) {
 
-      }
-    })
-  },
   // 去历史记录页面
   toHistoryPage() {
     wx.navigateTo({
@@ -282,7 +281,8 @@ Page({
   // 去新增活动
   addNewAct() {
     if (this.data.countTarget != -1) {
-      wx.showToast({ title: '请先暂停计时中的活动', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'Please first pause timing the activity' :'请先暂停计时中的活动';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     wx.navigateTo({
@@ -293,7 +293,8 @@ Page({
   // 进入选择活动删除的状态
   deleteAct() {
     if (this.data.countTarget != -1 && !this.data.isInEditing) {
-      wx.showToast({ title: '请先暂停计时中的活动', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'Please first pause timing the activity' : '请先暂停计时中的活动';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     this.setData({
@@ -435,7 +436,8 @@ Page({
   // 提交输入的备注名称
   submitEditRemarkName() {
     if (!this.data.remarkNameText) {
-      wx.showToast({ title: '备注名称不能为空', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'please input remark\'s name' : '备注名称不能为空';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     if (this.data.currentEditRemarkNameType == 1) {

@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    lang: app.globalData.lang,
     actId: '',
     iconList: [],
     selectedIconIndex: -1,
@@ -30,6 +31,11 @@ Page({
     })
   },
   onShow: function () {
+    var txt = this.data.lang == 'en' ? 'Add Activity Icon' : '选择活动图标';
+    wx.setNavigationBarTitle({
+      title: txt
+    });
+    
     var _this = this;
     wx.getStorage({
       key: 'bgColor',
@@ -140,7 +146,8 @@ Page({
   // 提交输入的图标名字
   submitActIconName() {
     if (!this.data.newActIconName) {
-      wx.showToast({ title: '请输入活动名称', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'please input name' : '请输入活动名称';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     userApi.addActivity({
@@ -149,7 +156,8 @@ Page({
     }).then(res => {
       this.hideEditIconNamePanel();
       this.postSelectedActIconMsg();
-      app.showToast("您已添加新活动");
+      var txt = this.data.lang == 'en' ? 'new activity added' : '您已添加新活动';
+      app.showToast(txt);
       app.globalData.event.initHome();
     })
 

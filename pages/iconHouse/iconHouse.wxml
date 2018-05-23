@@ -21,10 +21,10 @@
                 <view class="btn_name">上传图标</view>
             </view> -->
             <view class="edit_act_icon_btn submit_select_btn" wx:if="{{selectedIconIndex < 0}}">
-                <view class="btn_name">确定</view>
+                <view class="btn_name">{{lang == "en"?'OK':'确定'}}</view>
             </view> 
              <view class="edit_act_icon_btn submit_select_btn active" wx:if="{{selectedIconIndex >= 0}}"catchtap="submitActIcon" style="border-color: {{pageMainColor}};color:#fff;background-color: {{pageMainColor}}">
-                <view class="btn_name">确定</view>
+                <view class="btn_name">{{lang == "en"?'OK':'确定'}}</view>
             </view> 
         </view>
           
@@ -33,10 +33,10 @@
             <view class="edit_icon_name_mask" wx:if="{{editIconNamePanelShow}}" bindtap="hideEditIconNamePanel"></view>
             <view class="edit_icon_name_panel {{editIconNamePanelShow?'show':''}}">
                 <view class="name_input_wrap">
-                     <input class="name_input" maxlength="12" type="text" placeholder="请输入活动图标名称" bindinput="bindNameInput" value="{{newActIconName}}"/>
+                     <input class="name_input" maxlength="12" type="text" placeholder="{{lang == 'en'?'Please input name':'请输入活动图标名称'}}" bindinput="bindNameInput" value="{{newActIconName}}"/>
                 </view>
                 <!-- <view class="cancel_btn" bindtap="hideEditIconNamePanel">取消上传</view> -->
-                <view class="submit_btn" bindtap="submitActIconName" style="background-color: {{pageMainColor}}">确定</view>
+                <view class="submit_btn" bindtap="submitActIconName" style="background-color: {{pageMainColor}}">{{lang == "en"?'OK':'确定'}}</view>
             </view>
         </view>
     </view>

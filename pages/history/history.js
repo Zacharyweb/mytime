@@ -2,6 +2,7 @@ var app = getApp();
 var userApi = require("../../utils/data/user.js");
 Page({
   data: {
+    lang: app.globalData.lang,
     history: [],
     currentTab: 0,
 
@@ -37,9 +38,11 @@ Page({
     pageMainColor: '#c5c3c6'
   },
   onShow: function () {
-    // wx.setNavigationBarTitle({
-    //   title:'Histroy'
-    // });
+    var txt = this.data.lang == 'en' ? 'Time Spent' : '我的时间';
+    wx.setNavigationBarTitle({
+      title: txt
+    });
+
     this.count();
     this.initDatePickerRange();
 

@@ -2,7 +2,7 @@
 var app = getApp();
 App({
   onLaunch: function () {
-
+    this.getUserLang();
   },
   getAuthtoken: function () {
     var token = wx.getStorageSync('token') || '';
@@ -30,6 +30,19 @@ App({
     wx.showLoading({
       title: title,
     });
+  },
+  getUserLang:function(){
+    var _this = this;
+    wx.getSystemInfo({
+      success:function(res){
+        if (res.language == 'zh_CN'){
+          _this.globalData.lang = 'cn';
+        }
+        if(res.language == 'en'){
+          _this.globalData.lang = 'en';
+        }
+      }
+    })
   },
   globalData: {
     event: {},

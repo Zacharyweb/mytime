@@ -2,6 +2,7 @@ var app = getApp();
 var userApi = require("../../utils/data/user.js");
 Page({
   data: {
+    lang: app.globalData.lang,
     summaryType: 2, // 0：按活动汇总 1：按备注汇总 2：按时间排序
     summarySubType: 0, // 0：显示备注/显示活动 1：隐藏备注/隐藏活动
 
@@ -29,6 +30,11 @@ Page({
     });
   },
   onShow: function () {
+    var txt = this.data.lang == 'en' ? 'Search Result' : '搜索结果';
+    wx.setNavigationBarTitle({
+      title: txt
+    });
+
     var _this = this;
     wx.getStorage({
       key: 'bgColor',
