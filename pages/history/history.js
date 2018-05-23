@@ -5,8 +5,8 @@ Page({
     history: [],
     currentTab: 0,
 
-    summaryType: 0, // 0：按活动汇总 1：按备注汇总 
-    isInSummaryStatus: false, // 是否展示汇总
+    summaryType: 2, //2：按时间排序 0：按活动汇总 1：按备注汇总 
+    // isInSummaryStatus: false, // 是否展示汇总
 
 
     // 搜索日期相关
@@ -126,14 +126,13 @@ Page({
       });
     }, 500);
   },
-  // 更换展示状态方式（明细跟汇总状态间切换）
-  changeRankStatus() {
-
-    this.setData({
-      isInSummaryStatus: !this.data.isInSummaryStatus,
-      summaryType: 0
-    });
-  },
+  // 更换展示状态方式（明细跟汇总状态间切换 不做了）
+  // changeRankStatus() {
+  //   this.setData({
+  //     isInSummaryStatus: !this.data.isInSummaryStatus,
+  //     summaryType: 0
+  //   });
+  // },
   // 绑定开始时间选择
   bindStartDateChange: function (e) {
     this.setData({

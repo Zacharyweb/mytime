@@ -61,6 +61,17 @@ page{
   position: relative;
   overflow: hidden;
 }
+.history_layer .tab2_bar{
+  padding: 0 50rpx;
+  background-color: #fff;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #d9d9d9;
+  position: relative;
+  overflow: hidden;
+}
 .history_layer .tab2_bar .tab2_item{
   background-color: #e5e5e5;
   display: flex;
@@ -164,7 +175,10 @@ page{
   color: #1d8574;
   margin-top:20rpx;
 }
+.history_layer .history_item  .total_time.large_font{
+  font-size: 32rpx;
 
+}
 .history_layer .today_leaf_time{
   height: 160rpx;
   padding-bottom:0; 

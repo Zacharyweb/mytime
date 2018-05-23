@@ -18,7 +18,7 @@
     </view>
 
     <!-- 第二级Tab -->
-    <view class="tab2_bar">
+    <!-- <view class="tab2_bar">
       <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item active {{isInSummaryStatus?'':'hide'}}" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按活动汇总</view>
       <view class="tab2_item  {{isInSummaryStatus?'':'hide'}}" data-idx="1" wx:if="{{summaryType != 1}}" bindtap="changeSummaryType">按备注汇总</view>
@@ -32,6 +32,18 @@
         汇总
         <image class="rank_btn_icon" src="../../static/img/total_white.png"></image>
       </view>
+    </view> -->
+
+   <view class="tab2_bar">
+      <view class="tab2_item" data-idx="2" wx:if="{{summaryType != 2}}" bindtap="changeSummaryType">按时间排序</view>
+      <view class="tab2_item active" data-idx="2" wx:if="{{summaryType ==2}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按时间排序</view>
+      <view class="tab2_item" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item active" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按活动汇总</view>
+      <view class="tab2_item" data-idx="1" wx:if="{{summaryType != 1}}" bindtap="changeSummaryType">按备注汇总</view>
+      <view class="tab2_item active" data-idx="1" wx:if="{{summaryType == 1}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};" bindtap="changeSummaryType">按备注汇总</view>
+
+   
+    
     </view>
   </view>
 
@@ -61,9 +73,9 @@
         <view class="act_time">{{h.beginTime}}-{{h.endTime}}</view>
       </view>
       <view class="act_total_msg">
-        <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
+        <!-- <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
+        <view class="total_time large_font" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
       </view>
     </view>
 
@@ -75,9 +87,9 @@
         <view class="act_time">2018.4.06 12:35-15:35</view>
       </view>
       <view class="act_total_msg">
-        <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view>
-        <view class="total_time" style="color: {{pageMainColor}}">3小时0分</view>
+        <!-- <view class="time_total_text">
+          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
+        <view class="total_time large_font" style="color: {{pageMainColor}}">3小时0分</view>
       </view>
     </view>
 
@@ -87,7 +99,7 @@
         <view class="act_name">今日剩余时间</view>
       </view>
       <view class="act_total_msg">
-        <view class="total_time" style="color: {{pageMainColor}}">{{countH}}小时{{countM}}分钟{{countS}}秒</view>
+        <view class="total_time large_font" style="color: {{pageMainColor}};margin-top:0;">{{countH}} : {{countM}} : {{countS}}</view>
       </view>
     </view>
   </view>
