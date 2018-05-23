@@ -6,7 +6,7 @@ Page({
     currentTab: 0,
 
     summaryType: 2, //2：按时间排序 0：按活动汇总 1：按备注汇总 
-    summarySubType: 0, // 0：显示备注 1：隐藏备注 
+    summarySubType: 0, // 0：显示备注/显示活动 1：隐藏备注/隐藏活动
     
     
     // isInSummaryStatus: false, // 是否展示汇总

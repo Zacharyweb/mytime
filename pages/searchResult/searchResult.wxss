@@ -7,6 +7,10 @@ page{
 }
 .tab_bar_fill_block{
   height: 145rpx;
+  transition: all 0.3s;
+}
+.tab_bar_fill_block.extend{
+  height: 205rpx;
 }
 .history_layer .tab_bar_wrapper{
   position: fixed;
@@ -16,6 +20,10 @@ page{
   padding-top: 25rpx;
   height: 120rpx;
   background-color: #efeff4;
+ transition: all 0.3s;
+}
+.history_layer .tab_bar_wrapper.extend{
+    height: 180rpx;
 }
 .history_layer .search_key{
   height: 50rpx;
@@ -43,7 +51,7 @@ page{
 }
 
 .history_layer .tab2_bar{
-  padding-right: 270rpx;
+  padding-right: 50rpx;
   padding-left: 50rpx;
   background-color: #fff;
   height: 100rpx;
@@ -92,7 +100,28 @@ page{
   height: 40rpx;
   margin-left: 10rpx;
 }
+.history_layer .tab3_bar{
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #d9d9d9;
+}
+.history_layer .tab3_bar .tab3_item{
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+}
+.history_layer .tab3_bar .tab3_item.active{
+  font-weight: bold;
+}
+.history_layer .tab3_bar .devide_line{
+  height: 30rpx;
+  width: 1rpx;
+  background-color: #bbb;
 
+}
 
 .history_layer .history_list{
   background-color: #fff;
@@ -154,4 +183,7 @@ page{
   font-size: 26rpx;
   color: #1d8574;
   margin-top:20rpx;
+}
+.history_layer .history_item  .total_time.large_font{
+  font-size: 32rpx;
 }

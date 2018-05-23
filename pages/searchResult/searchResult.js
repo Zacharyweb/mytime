@@ -2,8 +2,9 @@ var app = getApp();
 var userApi = require("../../utils/data/user.js");
 Page({
   data: {
-    summaryType: 0, // 0：按活动汇总 1：按备注汇总 
-    isInSummaryStatus: false, // 是否展示汇总
+    summaryType: 2, // 0：按活动汇总 1：按备注汇总 2：按时间排序
+    summarySubType: 0, // 0：显示备注/显示活动 1：隐藏备注/隐藏活动
+
     start: '',
     end: '',
     pageMainColor: '#c5c3c6'
@@ -41,19 +42,16 @@ Page({
   // 更换汇总状态
   changeSummaryType(e) {
     var index = e.currentTarget.dataset.idx;
-    if (this.data.summaryType == index) {
-      return;
-    };
     this.setData({
       summaryType: index
     });
   },
 
-  // 更换展示状态方式（明细跟汇总状态间切换）
-  changeRankStatus() {
+  // 更换显示/隐藏 备注/活动
+  changeSummarySubType(e) {
+    var index = e.currentTarget.dataset.idx;
     this.setData({
-      isInSummaryStatus: !this.data.isInSummaryStatus,
-      summaryType: 0
+      summarySubType: index
     });
   }
 })
