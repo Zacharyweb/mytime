@@ -35,27 +35,27 @@
     </view> -->
 
     <view class="tab2_bar">
-      <view class="tab2_item" data-idx="2" wx:if="{{summaryType != 2}}" bindtap="changeSummaryType">按时间排序</view>
-      <view class="tab2_item active" data-idx="2" wx:if="{{summaryType ==2}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">按时间排序</view>
-      <view class="tab2_item" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">按活动汇总</view>
-      <view class="tab2_item active" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">按活动汇总</view>
-      <view class="tab2_item" data-idx="1" wx:if="{{summaryType != 1}}" bindtap="changeSummaryType">按备注汇总</view>
-      <view class="tab2_item active" data-idx="1" wx:if="{{summaryType == 1}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">按备注汇总</view>
+      <view class="tab2_item" data-idx="2" wx:if="{{summaryType != 2}}" bindtap="changeSummaryType">{{lang == 'en'?'by time':'按时间排序'}}</view>
+      <view class="tab2_item active" data-idx="2" wx:if="{{summaryType ==2}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">{{lang == 'en'?'by time':'按时间排序'}}</view>
+      <view class="tab2_item" data-idx="0" wx:if="{{summaryType != 0}}" bindtap="changeSummaryType">{{lang == 'en'?'by activity':'按活动汇总'}}</view>
+      <view class="tab2_item active" data-idx="0" wx:if="{{summaryType == 0}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">{{lang == 'en'?'by activity':'按活动汇总'}}</view>
+      <view class="tab2_item" data-idx="1" wx:if="{{summaryType != 1}}" bindtap="changeSummaryType">{{lang == 'en'?'by remark':'按备注汇总'}}</view>
+      <view class="tab2_item active" data-idx="1" wx:if="{{summaryType == 1}}" style="color: {{pageMainColor}};border-color:{{pageMainColor}};">{{lang == 'en'?'by remark':'按备注汇总'}}</view>
     </view>
     <view class="tab3_bar" wx:if="{{summaryType == 0}}">
-      <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">显示备注</view>
-      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">显示备注</view>
+      <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">{{lang == 'en'?'show remark':'显示备注'}}</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">{{lang == 'en'?'show remark':'显示备注'}}</view>
       <view class="devide_line"></view>
-      <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">隐藏备注</view>
-      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">隐藏备注</view>
+      <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">{{lang == 'en'?'hide remark':'隐藏备注'}}</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">{{lang == 'en'?'hide remark':'隐藏备注'}}</view>
     </view>
 
     <view class="tab3_bar" wx:if="{{summaryType == 1}}">
-      <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">显示活动</view>
-      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">显示活动</view>
+      <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">{{lang == 'en'?'show activity':'显示活动'}}</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">{{lang == 'en'?'show activity':'显示活动'}}</view>
       <view class="devide_line"></view>
-      <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">隐藏活动</view>
-      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">隐藏活动</view>
+      <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">{{lang == 'en'?'hide activity':'隐藏活动'}}</view>
+      <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">{{lang == 'en'?'hide activity':'隐藏活动'}}</view>
     </view>
   </view>
 
@@ -73,7 +73,7 @@
       <view class="act_total_msg">
         <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>{{lang=="en"?'In Progress':'进行中'}}</view>
-        <view class="total_time" style="color: {{pageMainColor}}">{{countH2 + ' : ' + countM2 + ' : ' + countS2}}</view>
+        <view class="total_time large_font" style="color: {{pageMainColor}}">{{countH2 + ' : ' + countM2 + ' : ' + countS2}}</view>
       </view>
     </view>
 

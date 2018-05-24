@@ -115,11 +115,13 @@ Page({
   // 提交搜索面板
   submitSearch() {
     if (!this.data.startDate) {
-      wx.showToast({ title: '请选择起始时间', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'Please select the beginning' : '请选择起始时间';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     if (!this.data.endDate) {
-      wx.showToast({ title: '请选择结束时间', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'Please select the end' : '请选择结束时间';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     this.hideSearchPanel();
@@ -150,7 +152,8 @@ Page({
   // 绑定结束时间选择
   bindEndDateChange: function (e) {
     if (!this.data.startDate) {
-      wx.showToast({ title: '请先选择起始时间', icon: 'none' });
+      var txt = this.data.lang == 'en' ? 'Please select the beginning' : '请选择起始时间';
+      wx.showToast({ title: txt, icon: 'none' });
       return;
     };
     this.setData({

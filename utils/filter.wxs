@@ -21,7 +21,7 @@ module.exports = {
   getShowRemark: function (remark) {
     var remark1 = remark["1"], remark2 = remark["2"];
     if (!remark1 && !remark2){
-      return "未添加备注"
+      return "--"
     };
     return (remark1 || "") + (remark2 && remark1 ? "," : "") + (remark2 || "");
   }
