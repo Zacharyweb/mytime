@@ -10,7 +10,7 @@ var formatUrl = (url, data) => {
     var hasQuery = url.indexOf("?") !== -1;
     for (var key in data) {
       var value = data[key];
-      if (value === null) return;
+      if (value === null) continue;
       var mark = "{" + key + "}";
       if (url.indexOf(mark) !== -1)
         url = url.replace(mark, value);

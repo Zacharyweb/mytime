@@ -27,7 +27,7 @@
 
         <!-- 活动图标 -->
         <view class="act_icon_wrap">
-          <image class="act_icon_pic" src="../../static/img/icon/{{item.icon}}"></image>
+          <image class="act_icon_pic" src="../../static/img/icon_{{lang}}/{{item.icon}}"></image>
         </view>
 
         <!-- 活动名称 -->
@@ -64,7 +64,7 @@
         <!-- 活动相关备注的浮层 -->
         <view class="act_remark_panel {{index == countTarget && remarkPanelShow?'show':''}}" catchtap="showRemarkPanel">
           <view class="panel_content">
-            <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || lang == 'en'? 'add remark':'添加备注项'}}</view>
+            <view class="act_remark_text " catchtap="showEditRemarkPanel">{{item.remark1 || (lang === 'en' ? 'add remark':'添加备注项')}}</view>
             <view class="act_remark_text act_remark_text2" catchtap="showEditRemarkPanel" wx:if="{{item.remark2}}">{{item.remark2}}</view>
             <image class="close_icon" src="../../static/img/close_icon2.png" catchtap="hideRemarkPanel"></image>
           </view>

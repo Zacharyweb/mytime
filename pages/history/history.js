@@ -8,8 +8,8 @@ Page({
 
     summaryType: 2, //2：按时间排序 0：按活动汇总 1：按备注汇总 
     summarySubType: 0, // 0：显示备注/显示活动 1：隐藏备注/隐藏活动
-    
-    
+
+
     // isInSummaryStatus: false, // 是否展示汇总
 
 
@@ -58,7 +58,10 @@ Page({
     this.showHistoryData();
   },
   showHistoryData() {
-    userApi.getPeopleActivityHistory({ dateType: this.data.currentTab }).then(res => {
+    userApi.getPeopleActivityHistory({
+      dateType: this.data.currentTab,
+      totalType: this.data.summaryType != 2 ? this.data.summaryType : null
+    }).then(res => {
       this.setData({
         history: res.result
       });
@@ -92,9 +95,10 @@ Page({
       summaryType: index,
       summarySubType: 0
     });
+    this.showHistoryData();
   },
   // 更换三级tab
-  changeSummarySubType(e){
+  changeSummarySubType(e) {
     var index = e.currentTarget.dataset.idx;
     this.setData({
       summarySubType: index
@@ -203,6 +207,7 @@ Page({
   },
   // 计时函数
   count() {
+    if (this.data.countTimer) clearInterval(this.data.countTimer);
     var nowDate = new Date();
     var nowTime = nowDate.getTime();
     var tomorrowDate = new Date(nowTime + 24 * 60 * 60 * 1000);

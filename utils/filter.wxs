@@ -19,8 +19,9 @@ module.exports = {
     return t;
   },
   getShowRemark: function (remark) {
+    if (!remark) return '';
     var remark1 = remark["1"], remark2 = remark["2"];
-    if (!remark1 && !remark2){
+    if (!remark1 && !remark2) {
       return "--"
     };
     return (remark1 || "") + (remark2 && remark1 ? "," : "") + (remark2 || "");

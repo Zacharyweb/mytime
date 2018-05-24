@@ -4,7 +4,7 @@
            <!-- 单个活动图标项 -->
             <view class="act_item" wx:for="{{iconList}}" wx:key="{{index}}" data-idx="{{index}}" catchtap="selectIcon">
                 <view class="act_item_inner {{index == selectedIconIndex?'selected':''}}" style="border-color: {{pageMainColor}};">
-                    <image class="act_icon_pic" src="../../static/img/icon/{{item.icon}}"></image>
+                    <image class="act_icon_pic" src="../../static/img/icon_{{lang}}/{{item.icon}}"></image>
                     <view class="act_icon_name">{{item.name}}</view>
                 </view>
             </view>
