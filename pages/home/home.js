@@ -34,7 +34,7 @@ Page({
     remark2Text: '',
     remarkNameText: '',
 
-    remarkPlaceholder:'',
+    remarkPlaceholder: '',
 
     currentEditRemarkNameType: 1,// 1:编辑备注1的名称，2：编辑备注2的名称
     selectedRemark1Index: -1,
@@ -77,8 +77,11 @@ Page({
       });
       this.count(res.result.totalSeconds);
     }).then(() => {
-      return userApi.getLabelCategories();
-    }).then(res => {
+      this.initLables();
+    });
+  },
+  initLables: function () {
+    userApi.getLabelCategories().then(res => {
       var data = res.result;
       this.setData({
         remark1Name: data[0].name,
@@ -124,9 +127,6 @@ Page({
       remark2Name: this.data.lang == 'en' ? 'Job' : '业务',
       remarkPlaceholder: this.data.lang == 'en' ? 'You may fill remark or pick from the tags below' : '请输入或从下面标签中选择备注'
     });
-
-
-
 
     this.initHome();
   },
@@ -281,7 +281,7 @@ Page({
   // 去新增活动
   addNewAct() {
     if (this.data.countTarget != -1) {
-      var txt = this.data.lang == 'en' ? 'Please first pause timing the activity' :'请先暂停计时中的活动';
+      var txt = this.data.lang == 'en' ? 'Please first pause timing the activity' : '请先暂停计时中的活动';
       wx.showToast({ title: txt, icon: 'none' });
       return;
     };
@@ -396,6 +396,7 @@ Page({
       this.setData({
         actList: newActList
       });
+      this.initLables();
     })
     this.hideEditRemarkPanel();
   },

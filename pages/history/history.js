@@ -253,7 +253,7 @@ Page({
       return;
     }
     var interval = list[i].totalSeconds;
-
+    if (this.data.countTimer2) clearInterval(this.data.countTimer2);
     var countTimer = null;
     countTimer = setInterval(() => {
       interval++;
