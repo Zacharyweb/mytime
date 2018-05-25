@@ -204,6 +204,7 @@ height: 255rpx;
   font-size: 26rpx;
   color: #1d8574;
   margin-top:20rpx;
+  text-align: right;
 }
 .history_layer .history_item  .total_time.large_font{
   font-size: 32rpx;
