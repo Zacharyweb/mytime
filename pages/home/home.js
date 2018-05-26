@@ -121,9 +121,9 @@ Page({
     });
 
     this.setData({
-      remark1Name: this.data.lang == 'en' ? 'Client' : '客户',
-      remark2Name: this.data.lang == 'en' ? 'Job' : '业务',
-      remarkPlaceholder: this.data.lang == 'en' ? 'You may fill remark or pick from the tags below' : '请输入或从下面标签中选择备注'
+      remark1Name: this.data.lang == 'en' ? 'Remark' : '备注',
+      remark2Name: this.data.lang == 'en' ? 'Remark' : '备注',
+      remarkPlaceholder: this.data.lang == 'en' ? 'You may fill remark or pick from the tags below' : '可填写活动的对象或事项，如客户、项目等'
     });
 
     this.initHome();

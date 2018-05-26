@@ -114,7 +114,7 @@
   <view class="edit_remark_wrapper">
     <view class="edit_remark_panel {{editRemarkPanelShow?'show':''}}">
       <view class="panel_header">
-        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> {{lang == 'en'?'Remark' : '设置活动备注'}}
+        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> {{lang == 'en'?'Remark' : '设置活动备注'}}<text wx:if="{{countTarget != -1}}">—{{actList[countTarget].name}}</text>
       </view>
       <view class="panel_content">
         <!-- 编辑备注1的部分 -->
