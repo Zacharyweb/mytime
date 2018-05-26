@@ -80,8 +80,8 @@
     <!-- 历史活动项 -->
     <view wx:for="{{history}}" wx:for-item="h" wx:key="{{index}}" wx:if="{{h.endTime != '??'}}" class="history_item">
       <view class="act_base_msg">
-        <view class="act_name">{{ h.activityName || h.remark || '未备注'}}</view>
-        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 2 ? filter.getShowRemark(h.labels):h.remark || ''}}</view>
+        <view class="act_name">{{ summaryType == 1 ? (h.remark || '未备注') : h.activityName}}</view>
+        <view class="act_remark" style="color: {{pageMainColor}}">{{ summaryType == 1 ? (h.activityName || '') : (filter.getShowRemark(h.labels) || h.remark || '')}}</view>
         <view class="act_time">{{h.beginTime || ''}}-{{h.endTime || ''}}</view>
       </view>
       <view class="act_total_msg">
