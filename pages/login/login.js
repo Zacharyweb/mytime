@@ -5,18 +5,6 @@ Page({
     lang: app.globalData.lang,
     pageMainColor: '#c5c3c6',
   },
-  onLoad: function () {
-    // wx.getSetting({
-    //   success: (res) => {
-    //     if (!res.authSetting["scope.userInfo"]) return;
-    //     wx.getUserInfo({
-    //       success: res => {
-    //         this.login(res.userInfo);
-    //       }
-    //     })
-    //   }
-    // })
-  },
   onShow: function () {
     var txt = this.data.lang == 'en' ? 'Login' : '登录';
     wx.setNavigationBarTitle({
@@ -32,6 +20,7 @@ Page({
         })
       }
     });
+    this.autoLogin();
   },
   toLogin: function (res) {
     if (!res.detail.userInfo) {
@@ -51,5 +40,18 @@ Page({
       app.globalData.neddBackOnLogin ? app.goBack() : app.redirectTo('../home/home');
       app.globalData.neddBackOnLogin = true;
     });
+  },
+  autoLogin: function () {
+    if (!app.globalData.autoLogin) return;
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting["scope.userInfo"]) return;
+        wx.getUserInfo({
+          success: res => {
+            this.login(res.userInfo);
+          }
+        })
+      }
+    })
   }
 })

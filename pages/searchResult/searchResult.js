@@ -23,7 +23,17 @@ Page({
         })
       }
     });
-    userApi.getPeopleActivityHistory({ beginDate: this.data.start, endDate: this.data.end }).then(res => {
+    this.showHistoryData();
+  },
+  showHistoryData: function () {
+    userApi.getPeopleActivityHistory({
+      beginDate: this.data.start,
+      endDate: this.data.end,
+      totalType: this.data.summaryType != 2 ?
+        this.data.summaryType == 0 && this.data.summarySubType == 1 ? 0 :
+          this.data.summaryType == 1 && this.data.summarySubType == 1 ? 1 : 4
+        : null
+    }).then(res => {
       this.setData({
         history: res.result
       })
@@ -52,6 +62,7 @@ Page({
       summaryType: index,
       summarySubType: 0
     });
+    this.showHistoryData();
   },
 
   // 更换显示/隐藏 备注/活动
@@ -60,5 +71,6 @@ Page({
     this.setData({
       summarySubType: index
     });
+    this.showHistoryData();
   }
 })

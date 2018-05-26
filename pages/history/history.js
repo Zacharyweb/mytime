@@ -43,7 +43,7 @@ Page({
       title: txt
     });
 
-    this.count();
+    //this.count();
     this.initDatePickerRange();
 
     var _this = this;
@@ -60,7 +60,10 @@ Page({
   showHistoryData() {
     userApi.getPeopleActivityHistory({
       dateType: this.data.currentTab,
-      totalType: this.data.summaryType != 2 ? this.data.summaryType : null
+      totalType: this.data.summaryType != 2 ?
+        this.data.summaryType == 0 && this.data.summarySubType == 1 ? 0 :
+          this.data.summaryType == 1 && this.data.summarySubType == 1 ? 1 : 4
+        : null
     }).then(res => {
       this.setData({
         history: res.result
@@ -104,6 +107,7 @@ Page({
     this.setData({
       summarySubType: index
     });
+    this.showHistoryData();
   },
   // 展示搜索面板
   showSearchPanel() {
@@ -251,6 +255,7 @@ Page({
       }
     };
     if (flag == -1) {
+      clearInterval(this.data.countTimer2);
       this.setData({
         countTimer2: null,
         countingAct: null

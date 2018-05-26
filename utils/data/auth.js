@@ -39,6 +39,7 @@ module.exports = {
   },
   logout: function () {
     app.setAuthtoken(null);
+    app.globalData.autoLogin = false;
     wx.navigateTo({
       url: '../../pages/login/login',
     })

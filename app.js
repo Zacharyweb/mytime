@@ -63,6 +63,7 @@ App({
     lang: 'cn',
     loginUrl: "../login/login",
     loginRoute: "pages/login/login",
-    neddBackOnLogin: false
+    neddBackOnLogin: false,
+    autoLogin: true
   }
 })
