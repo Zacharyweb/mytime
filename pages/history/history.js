@@ -70,6 +70,7 @@ Page({
   },
   onHide: function () {
     wx.hideLoading();
+    this.stopCount();
   },
   initDatePickerRange() {
     var date = new Date();
@@ -204,6 +205,10 @@ Page({
       countM: this.addZero(m),
       countS: this.addZero(s)
     });
+  },
+  stopCount() {
+    if (this.data.countTimer) clearInterval(this.data.countTimer);
+    if (this.data.countTimer2) clearInterval(this.data.countTimer2);
   },
   // 计时函数
   count() {

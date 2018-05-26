@@ -24,6 +24,6 @@ module.exports = {
     if (!remark1 && !remark2) {
       return "--"
     };
-    return (remark1 || "") + (remark2 && remark1 ? "," : "") + (remark2 || "");
+    return (remark1 || "") + (remark2 && remark1 ? " , " : "") + (remark2 || "");
   }
 };

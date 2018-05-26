@@ -1,12 +1,21 @@
 var authApi = require("../../utils/data/auth.js");
 var app = getApp();
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     lang: app.globalData.lang,
     pageMainColor: '#c5c3c6',
+  },
+  onLoad: function () {
+    // wx.getSetting({
+    //   success: (res) => {
+    //     if (!res.authSetting["scope.userInfo"]) return;
+    //     wx.getUserInfo({
+    //       success: res => {
+    //         this.login(res.userInfo);
+    //       }
+    //     })
+    //   }
+    // })
   },
   onShow: function () {
     var txt = this.data.lang == 'en' ? 'Login' : '登录';
@@ -29,14 +38,18 @@ Page({
       wx.showToast({ title: '登录失败，您已拒绝授权', icon: 'none' });
       return;
     }
+    this.login(res.detail.userInfo);
+  },
+  login: function (userInfo) {
     app.showLoading('登录中...');
-    var data = { ...res.detail.userInfo, openid: app.globalData.OpenId }
-    authApi.login(data).then(res => {
-      console.log(res);
+    authApi.register().then(() => {
+      var data = { ...userInfo, openid: app.globalData.OpenId };
+      return authApi.login(data);
+    }).then(res => {
+      wx.hideLoading();
       app.setAuthtoken(res.result.accessToken);
-      wx.navigateBack({
-        delta: 1
-      })
-    })
+      app.globalData.neddBackOnLogin ? app.goBack() : app.redirectTo('../home/home');
+      app.globalData.neddBackOnLogin = true;
+    });
   }
 })

@@ -1,6 +1,6 @@
 <wxs src="../../utils/filter.wxs" module="filter"/>
 <view class="history_layer">
-  <view class="tab_bar_wrapper {{summaryType == 2?'':'extend'}}">
+  <view class="tab_bar_wrapper">
 
     <view class="tab2_bar">
       <view class="tab2_item" data-idx="2" wx:if="{{summaryType != 2}}" bindtap="changeSummaryType">{{lang == 'en'?'by time':'按时间排序'}}</view>
@@ -12,24 +12,24 @@
       <view class="tab2_item active" data-idx="1" wx:if="{{summaryType == 1}}"  style="color: {{pageMainColor}};border-color:{{pageMainColor}};">{{lang == 'en'?'by remark':'按备注汇总'}}</view>
     </view>
 
-    <view class="tab3_bar" wx:if="{{summaryType == 0}}">
+    <!-- <view class="tab3_bar" wx:if="{{summaryType == 0}}">
       <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">{{lang == 'en'?'show remark':'显示备注'}}</view>
       <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">{{lang == 'en'?'show remark':'显示备注'}}</view>
       <view class="devide_line"></view>
       <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">{{lang == 'en'?'hide remark':'隐藏备注'}}</view>
       <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">{{lang == 'en'?'hide remark':'隐藏备注'}}</view>
-    </view>
+    </view> -->
 
-    <view class="tab3_bar" wx:if="{{summaryType == 1}}">
+    <!-- <view class="tab3_bar" wx:if="{{summaryType == 1}}">
       <view class="tab3_item" data-idx="0" wx:if="{{summarySubType != 0}}" bindtap="changeSummarySubType">{{lang == 'en'?'show activity':'显示活动'}}</view>
       <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 0}}">{{lang == 'en'?'show activity':'显示活动'}}</view>
       <view class="devide_line"></view>
       <view class="tab3_item" data-idx="1" wx:if="{{summarySubType != 1}}" bindtap="changeSummarySubType">{{lang == 'en'?'hide activity':'隐藏活动'}}</view>
       <view class="tab3_item active" style="color: {{pageMainColor}}" wx:if="{{summarySubType == 1}}">{{lang == 'en'?'hide activity':'隐藏活动'}}</view>
-    </view>
+    </view> -->
   </view>
 
-  <view class="tab_bar_fill_block {{summaryType == 2?'':'extend'}}"></view>
+  <view class="tab_bar_fill_block"></view>
   <view class="search_key">{{start}} — {{end}} </view>
   <view class="history_list">
 
@@ -44,21 +44,6 @@
         <!-- <view class="time_total_text">
           <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
         <view class="total_time large_font" style="color: {{pageMainColor}}">{{filter.getShowTime(h.totalSeconds)}}</view>
-      </view>
-    </view>
-
-
-    <!-- 未计时项 -->
-    <view class="history_item {{currentTab != 0?'no_border_bottom':''}}">
-      <view class="act_base_msg">
-        <view class="act_name">{{lang=="en"?'Not timed':'未计时'}}</view>
-        <view class="act_remark"></view>
-        <view class="act_time">2018.4.06 12:35-15:35</view>
-      </view>
-      <view class="act_total_msg">
-        <!-- <view class="time_total_text">
-          <image class="time_total_icon" src="../../static/img/time_total_icon.png"></image>总计</view> -->
-        <view class="total_time large_font" style="color: {{pageMainColor}}">03 ：00 ： 00</view>
       </view>
     </view>
   </view>

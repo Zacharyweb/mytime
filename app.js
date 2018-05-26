@@ -31,27 +31,38 @@ App({
       title: title,
     });
   },
-  getUserLang:function(){
+  getUserLang: function () {
     var _this = this;
     wx.getSystemInfo({
-      success:function(res){
-        if (res.language == 'zh_CN'){
+      success: function (res) {
+        if (res.language == 'zh_CN') {
           _this.globalData.lang = 'cn';
         }
-        if(res.language == 'en'){
+        if (res.language == 'en') {
           _this.globalData.lang = 'en';
         }
       }
     })
   },
+  goBack: function (delta = 1) {
+    wx.navigateBack({
+      delta: delta || 1
+    })
+  },
+  redirectTo: function (url) {
+    wx.redirectTo({
+      url: url
+    })
+  },
   globalData: {
-    event: {},
+    event: { initHome: () => { } },
     authUserInfo: false,
     OpenId: null,
     userInfo: null,
     gateway: "https://mytime.yuelinshe.com",
     lang: 'cn',
     loginUrl: "../login/login",
-    loginRoute: "pages/login/login"
+    loginRoute: "pages/login/login",
+    neddBackOnLogin: false
   }
 })

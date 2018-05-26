@@ -3,10 +3,6 @@ var app = getApp();
 
 module.exports = {
   register: function () {
-    if (app.getAuthtoken()) {
-      return Promise.resolve();
-    }
-    
     wx.getSetting({
       success: function (res) {
         app.globalData.authUserInfo = res.authSetting["scope.userInfo"];
@@ -40,6 +36,12 @@ module.exports = {
       app.globalData.OpenId = res.openid;
       return api.post("/api/TokenAuth/Register", null, { openid: res.openid });
     });
+  },
+  logout: function () {
+    app.setAuthtoken(null);
+    wx.navigateTo({
+      url: '../../pages/login/login',
+    })
   },
   login: function (data) {
     return api.post("/api/TokenAuth/Authenticate", null, data);

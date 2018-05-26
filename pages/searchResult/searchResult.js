@@ -13,7 +13,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       start: options.start,
-      end: options
+      end: options.end
     });
     wx.getStorage({
       key: 'bgColor',

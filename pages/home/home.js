@@ -94,7 +94,6 @@ Page({
   onLoad: function () {
     var _this = this;
     app.globalData.event.initHome = this.initHome;
-    authApi.register();
     wx.getStorage({
       key: 'bgColor',
       success: function (res) {
@@ -113,7 +112,6 @@ Page({
         })
       }
     });
-
   },
 
   onShow: function () {
@@ -141,6 +139,7 @@ Page({
         editRemarkNamePanelShow: false
       });
     }, 500);
+    _this.stopCount();
   },
   // 点击top区域
   topBlockTap() {
@@ -164,7 +163,7 @@ Page({
           _this.showBgColorSelecter();
         };
         if (res.tapIndex == 1) {
-          app.setAuthtoken(null);
+          authApi.logout();
         };
         if (res.tapIndex == 2) {
           _this.setData({
@@ -202,7 +201,9 @@ Page({
   },
   // 计时函数
   count(startInterval) {
-    if (this.data.countTimer) clearInterval(this.data.countTimer);
+    if (this.data.countTimer) {
+      clearInterval(this.data.countTimer);
+    }
     var interval = startInterval || 0;
     var countTimer = null;
 
@@ -214,6 +215,11 @@ Page({
     this.setData({
       countTimer: countTimer
     });
+  },
+  stopCount() {
+    if (this.data.countTimer) {
+      clearInterval(this.data.countTimer);
+    }
   },
 
   // 开始/更换活动
