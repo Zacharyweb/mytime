@@ -194,8 +194,14 @@
   </scroll-view>
 
   <!-- 首次进入的引导页 -->
-  <view class="guide_page {{guidePageHidePre?'hide':''}}" wx:if="{{guidePageShow && isFirstEnter}}" bindtap='closeGuidePage'>
+  <view class="guide_page {{guidePageHidePre?'hide':''}}" wx:if="{{lang != 'en'&& guidePageShow && isFirstEnter}}" bindtap='closeGuidePage'>
     <view class="guide_page_bg"></view>
     <view class="guide_page_text">时间都去哪了</view>
+  </view>
+
+  <view class="guide_page {{guidePageHidePre?'hide':''}}" wx:if="{{lang == 'en' && guidePageShow && isFirstEnter}}" bindtap='closeGuidePage'>
+    <view class="guide_page_bg"></view>
+    <view class="guide_page_text2">Where did</view>
+    <view class="guide_page_text3">my time go !?</view>
   </view>
 </view>
