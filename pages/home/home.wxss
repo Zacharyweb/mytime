@@ -694,3 +694,19 @@ page {
   color: #fff;
   font-size: 80rpx;
 }
+.guide_page .guide_page_text2{
+  position: absolute;
+  top:350rpx;
+  left: 80rpx;
+  color: #fff;
+  font-size: 70rpx;
+  z-index: 2;
+}
+.guide_page .guide_page_text3{
+  position: absolute;
+  top:450rpx;
+  left: 150rpx;
+  font-size: 70rpx;
+  color: #fff;
+  z-index: 2;
+}
