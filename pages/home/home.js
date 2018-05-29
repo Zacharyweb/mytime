@@ -66,8 +66,7 @@ Page({
     }).then(res => {
       if (!res.result) return;
       var curr = this.data.actList.findIndex(a => a.id === res.result.activityId);
-      console.log(res.result);
-
+      if (curr < 0) return;
       this.data.actList[curr].remark1 = res.result.labels[1] || '';
       this.data.actList[curr].remark2 = res.result.labels[2] || '';
       this.data.actList[curr].peopleActivityId = res.result.id;
@@ -83,6 +82,7 @@ Page({
   initLables: function () {
     userApi.getLabelCategories().then(res => {
       var data = res.result;
+      if (!data.length) return;
       this.setData({
         remark1Name: data[0].name,
         remark2Name: data[1].name,

@@ -8,6 +8,7 @@ var formatUrl = (url, data) => {
   }
   if (typeof (data) === "object") {
     var hasQuery = url.indexOf("?") !== -1;
+
     for (var key in data) {
       var value = data[key];
       if (value === null) continue;
@@ -33,7 +34,8 @@ function Request(url, query = {}, data = {}, method = "GET") {
       data: data || {},
       header: {
         Authorization: "Bearer " + app.getAuthtoken(),
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        ".AspNetCore.Culture": app.globalData.lang == "cn" ? "c=cn|uic=zh-CN" : "c=en|uic=en-US"
       },
       method: method,
       dataType: "json",
