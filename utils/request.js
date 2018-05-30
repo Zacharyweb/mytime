@@ -44,6 +44,7 @@ function Request(url, query = {}, data = {}, method = "GET") {
         else reject(res);
       },
       fail: (res) => {
+        wx.hideLoading();
         console.log(res);
         wx.showToast({ title: res.errMsg || "网络错误", duration: 5000 });
         reject(res);
@@ -51,9 +52,7 @@ function Request(url, query = {}, data = {}, method = "GET") {
       complete: (res) => {
         if (res.statusCode === 401) {
           if (app.getCurrentPage().route === app.globalData.loginRoute) return;
-          wx.navigateTo({
-            url: app.globalData.loginUrl
-          });
+          app.redirectTo(app.globalData.loginUrl);
         }
       }
     })

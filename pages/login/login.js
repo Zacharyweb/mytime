@@ -37,8 +37,7 @@ Page({
     }).then(res => {
       wx.hideLoading();
       app.setAuthtoken(res.result.accessToken);
-      app.globalData.neddBackOnLogin ? app.goBack() : app.redirectTo('../home/home');
-      app.globalData.neddBackOnLogin = true;
+      app.redirectTo('../home/home');
     });
   },
   autoLogin: function () {

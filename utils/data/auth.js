@@ -40,9 +40,7 @@ module.exports = {
   logout: function () {
     app.setAuthtoken(null);
     app.globalData.autoLogin = false;
-    wx.navigateTo({
-      url: '../../pages/login/login',
-    })
+    app.redirectTo('../../pages/login/login');
   },
   login: function (data) {
     return api.post("/api/TokenAuth/Authenticate", null, data);
