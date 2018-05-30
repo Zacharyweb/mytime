@@ -50,7 +50,7 @@ Page({
     contentPanelTouching: false,
 
     // 用户引导页展示
-    isFirstEnter: true,
+    isFirstEnter: false,
     guidePageHidePre: false,
     guidePageShow: true
 
@@ -109,6 +109,11 @@ Page({
       success: function (res) {
         _this.setData({
           isFirstEnter: false
+        })
+      },
+      fail:function(){
+        _this.setData({
+          isFirstEnter: true
         })
       }
     });
