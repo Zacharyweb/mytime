@@ -26,9 +26,10 @@ Page({
     this.showHistoryData();
   },
   showHistoryData: function () {
-    userApi.getPeopleActivityHistory({
+    return userApi.getPeopleActivityHistory({
       beginDate: this.data.start,
       endDate: this.data.end,
+      orderBy: this.data.summaryType,
       totalType: this.data.summaryType != 2 ?
         this.data.summaryType == 0 && this.data.summarySubType == 1 ? 0 :
           this.data.summaryType == 1 && this.data.summarySubType == 1 ? 1 : 4
@@ -60,7 +61,8 @@ Page({
     var index = e.currentTarget.dataset.idx;
     this.setData({
       summaryType: index,
-      summarySubType: 0
+      summarySubType: 0,
+      history: []
     });
     this.showHistoryData();
   },
@@ -69,8 +71,9 @@ Page({
   changeSummarySubType(e) {
     var index = e.currentTarget.dataset.idx;
     this.setData({
-      summarySubType: index
-    });
+      summarySubType: index,
+      history: []
+    })
     this.showHistoryData();
   }
 })

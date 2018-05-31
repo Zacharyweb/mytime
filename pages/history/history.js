@@ -58,8 +58,9 @@ Page({
     this.showHistoryData();
   },
   showHistoryData() {
-    userApi.getPeopleActivityHistory({
+    return userApi.getPeopleActivityHistory({
       dateType: this.data.currentTab,
+      orderBy: this.data.summaryType,
       totalType: this.data.summaryType != 2 ?
         this.data.summaryType == 0 && this.data.summarySubType == 1 ? 0 :
           this.data.summaryType == 1 && this.data.summarySubType == 1 ? 1 : 4
@@ -88,7 +89,7 @@ Page({
     var index = e.currentTarget.dataset.idx;
     this.setData({
       currentTab: index,
-      // summaryType: 0
+      history: []
     });
     this.showHistoryData();
   },
@@ -97,7 +98,8 @@ Page({
     var index = e.currentTarget.dataset.idx;
     this.setData({
       summaryType: index,
-      summarySubType: 0
+      summarySubType: 0,
+      history: []
     });
     this.showHistoryData();
   },
@@ -105,7 +107,8 @@ Page({
   changeSummarySubType(e) {
     var index = e.currentTarget.dataset.idx;
     this.setData({
-      summarySubType: index
+      summarySubType: index,
+      history: []
     });
     this.showHistoryData();
   },

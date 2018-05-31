@@ -316,18 +316,11 @@ Page({
   },
   // 选择活动删除
   selectDeletedAct(index) {
-    // var id = this.data.actList[index].id;
-    // this.setData({
-    //   isInEditing: false
-    // });
-    // wx.navigateTo({
-    //   url: '../editAct/editAct?actId=' + id
-    // });
-    var newActList = this.data.actList;
-    userApi.deleteActivity(newActList[index].id).then(() => {
-      newActList.splice(index, 1);
+    let i = index;
+    userApi.deleteActivity(this.data.actList[i].id).then(() => {
+      this.data.actList.splice(i, 1);
       this.setData({
-        actList: newActList
+        actList: this.data.actList
       });
     });
   },
