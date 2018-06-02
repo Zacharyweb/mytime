@@ -1,4 +1,5 @@
 var api = require("../restapi.js");
+var utils = require("../util.js");
 module.exports = {
   startActivity: (data) => {
     return api.post("/api/services/app/People/StartActivity", null, data);
@@ -10,7 +11,13 @@ module.exports = {
     return api.get("/api/services/app/People/GetCurrentActivity");
   },
   getPeopleActivityHistory: (data) => {
-    return api.get("/api/services/app/People/GetPeopleActivityHistory", data);
+    return api.get("/api/services/app/People/GetPeopleActivityHistory", data).then(res => {
+      res.result.forEach((item) => {
+        item.beginTime = item.beginTime.FormatTime('MM.dd HH:mm:ss');
+        item.endTime = item.endTime ? item.endTime.FormatTime('HH:mm:ss') : item.endTime;
+      })
+      return res;
+    });
   },
   addActivity: (data) => {
     return api.post("/api/services/app/People/AddActivity", null, data);

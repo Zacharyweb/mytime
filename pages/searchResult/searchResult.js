@@ -5,7 +5,6 @@ Page({
     lang: app.globalData.lang,
     summaryType: 2, // 0：按活动汇总 1：按备注汇总 2：按时间排序
     summarySubType: 0, // 0：显示备注/显示活动 1：隐藏备注/隐藏活动
-
     start: '',
     end: '',
     pageMainColor: '#c5c3c6'

@@ -249,7 +249,7 @@ Page({
   findCountingAct(list) {
     var flag = -1;
     for (var i = 0; i < list.length; i++) {
-      if (list[i].endTime == '??') {
+      if (!list[i].endTime) {
         this.setData({
           countingAct: list[i]
         });
