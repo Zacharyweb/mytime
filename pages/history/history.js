@@ -248,15 +248,16 @@ Page({
 
   findCountingAct(list) {
     var flag = -1;
-    for (var i = 0; i < list.length; i++) {
-      if (!list[i].endTime) {
-        this.setData({
-          countingAct: list[i]
-        });
-        flag = i;
-        break;
-      }
-    };
+    if (this.data.summaryType == 2)
+      for (var i = 0; i < list.length; i++) {
+        if (!list[i].endTime) {
+          this.setData({
+            countingAct: list[i]
+          });
+          flag = i;
+          break;
+        }
+      };
     if (flag == -1) {
       clearInterval(this.data.countTimer2);
       this.setData({

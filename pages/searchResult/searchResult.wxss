@@ -138,6 +138,9 @@ page{
   border-bottom: 2rpx solid #d9d9d9;
 
 }
+.history_layer .history_item:last-child {
+  border-bottom: none;
+}
 .history_layer .no_border_bottom{
   border:none;
 }

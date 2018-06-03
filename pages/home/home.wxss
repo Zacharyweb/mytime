@@ -403,6 +403,9 @@ page {
   height: 100rpx;
   position: relative;
 }
+.edit_remark_panel .panel_header .panel_header_space{
+  margin: 0 10rpx;
+}
 
 .edit_remark_panel .panel_header .close_icon {
   position: absolute;

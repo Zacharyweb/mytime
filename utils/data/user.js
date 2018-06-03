@@ -11,6 +11,10 @@ module.exports = {
     return api.get("/api/services/app/People/GetCurrentActivity");
   },
   getPeopleActivityHistory: (data) => {
+    var now = new Date();
+    if (data.beginDate) data.beginDate = new Date(data.beginDate).getUTCDateTime().Format();
+    if (data.endDate) data.endDate = new Date(data.endDate).getUTCDateTime().Format();
+    data.clientDateTime = now.getUTCDateTime().Format();
     return api.get("/api/services/app/People/GetPeopleActivityHistory", data).then(res => {
       res.result.forEach((item) => {
         item.beginTime = item.beginTime.FormatTime('MM.dd HH:mm:ss');

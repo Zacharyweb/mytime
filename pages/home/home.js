@@ -84,8 +84,8 @@ Page({
       var data = res.result;
       if (!data.length) return;
       this.setData({
-        remark1Name: data[0].name,
-        remark2Name: data[1].name,
+        remark1Name: this.data.lang == 'en' && data[0].name == '备注' ? "Remark" : data[0].name,
+        remark2Name: this.data.lang == 'en' && data[1].name == '备注' ? "Remark" : data[1].name,
         remark1List: data[0].labeles,
         remark2List: data[1].labeles,
       });
@@ -111,7 +111,7 @@ Page({
           isFirstEnter: false
         })
       },
-      fail:function(){
+      fail: function () {
         _this.setData({
           isFirstEnter: true
         })
@@ -128,7 +128,7 @@ Page({
     this.setData({
       remark1Name: this.data.lang == 'en' ? 'Remark' : '备注',
       remark2Name: this.data.lang == 'en' ? 'Remark' : '备注',
-      remarkPlaceholder: this.data.lang == 'en' ? 'You may fill remark or pick from the tags below' : '可填写活动的对象或事项，如客户、项目等'
+      remarkPlaceholder: this.data.lang == 'en' ? 'Fill in remark,e.g. client,project etc.' : '可填写活动的对象或事项，如客户、项目等'
     });
 
     this.initHome();
