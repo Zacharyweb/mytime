@@ -32,7 +32,12 @@ Page({
   login: function (userInfo) {
     app.showLoading('登录中...');
     authApi.register().then(() => {
-      var data = { ...userInfo, openid: app.globalData.OpenId };
+      var data = {
+        ...userInfo,
+        openid: app.globalData.OpenId,
+        TimezoneOffset: new Date().getTimezoneOffset(),
+        TimezoneInfo: Intl ? Intl.DateTimeFormat().resolvedOptions().timeZone : null
+      };
       return authApi.login(data);
     }).then(res => {
       wx.hideLoading();

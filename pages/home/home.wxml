@@ -106,7 +106,7 @@
 
     <view class="act_edit_trigger" bindtap="toHistoryPage">
       <image class="act_icon_pic" src="../../static/img/bottom_icon4.png"></image>
-      <view class="set_btn_text" style="color: {{pageMainColor}}">{{lang == 'en'? 'past':'时间记录'}}</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}">{{lang == 'en'? 'history':'时间记录'}}</view>
     </view>
   </view>
 

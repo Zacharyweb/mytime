@@ -12,9 +12,23 @@ module.exports = {
   },
   getPeopleActivityHistory: (data) => {
     var now = new Date();
-    if (data.beginDate) data.beginDate = new Date(data.beginDate).getUTCDateTime().Format();
-    if (data.endDate) data.endDate = new Date(data.endDate).getUTCDateTime().Format();
-    data.clientDateTime = now.getUTCDateTime().Format();
+    switch (parseInt(data.dateType)) {
+      case 0://今天
+        data.beginDate = data.endDate = now.Format("yyyy-MM-dd");
+        break;
+      case 1://昨天
+        now.setDate(now.getDate() - 1);
+        data.beginDate = data.beginDate = data.endDate = now.Format("yyyy-MM-dd");
+        break;
+      case 2://本周
+        now.setDate(now.getDate() - (now.getDay() == 0 ? 6 : (now.getDay() - 1)));
+        data.beginDate = now.Format("yyyy-MM-dd");
+        now.setDate(now.getDate() + 6);
+        data.endDate = now.Format("yyyy-MM-dd");
+        break;
+    }
+    if (data.beginDate) data.beginDate = new Date(data.beginDate + " 00:00:00").getUTCDateTime().Format();
+    if (data.endDate) data.endDate = new Date(data.endDate + " 23:59:59").getUTCDateTime().Format();
     return api.get("/api/services/app/People/GetPeopleActivityHistory", data).then(res => {
       res.result.forEach((item) => {
         item.beginTime = item.beginTime.FormatTime('MM.dd HH:mm:ss');

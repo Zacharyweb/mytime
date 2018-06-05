@@ -89,7 +89,8 @@ Page({
     var index = e.currentTarget.dataset.idx;
     this.setData({
       currentTab: index,
-      history: []
+      history: [],
+      countingAct: null
     });
     this.showHistoryData();
   },
