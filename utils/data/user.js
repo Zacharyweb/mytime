@@ -13,14 +13,14 @@ module.exports = {
   getPeopleActivityHistory: (data) => {
     var now = new Date();
     switch (parseInt(data.dateType)) {
-      case 0://今天
+      case 0:
         data.beginDate = data.endDate = now.Format("yyyy-MM-dd");
         break;
-      case 1://昨天
+      case 1:
         now.setDate(now.getDate() - 1);
         data.beginDate = data.beginDate = data.endDate = now.Format("yyyy-MM-dd");
         break;
-      case 2://本周
+      case 2:
         now.setDate(now.getDate() - (now.getDay() == 0 ? 6 : (now.getDay() - 1)));
         data.beginDate = now.Format("yyyy-MM-dd");
         now.setDate(now.getDate() + 6);

@@ -32,11 +32,11 @@ Page({
   login: function (userInfo) {
     app.showLoading('登录中...');
     authApi.register().then(() => {
+      var tzOffset = new Date().getTimezoneOffset();
       var data = {
         ...userInfo,
         openid: app.globalData.OpenId,
-        TimezoneOffset: new Date().getTimezoneOffset(),
-        TimezoneInfo: Intl ? Intl.DateTimeFormat().resolvedOptions().timeZone : null
+        TimezoneOffset: tzOffset
       };
       return authApi.login(data);
     }).then(res => {
