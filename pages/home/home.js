@@ -52,7 +52,13 @@ Page({
     // 用户引导页展示
     isFirstEnter: false,
     guidePageHidePre: false,
-    guidePageShow: true
+    guidePageShow: true,
+
+    // 在修改活动名称的状态中
+    isInEditingName:false,
+    editIconNamePanelShow:false,
+    newActName:'',
+    isEditNameIndex:-1
 
 
   },
@@ -240,6 +246,14 @@ Page({
     } else if (this.data.isSelectingPreferAct) {
       // 在选择首选活动的状态下
       this.selectPreferAct(index);
+    } else if (this.data.isInEditingName) {
+      // 在选择修改活动名称的状态下
+
+      this.setData({
+        isEditNameIndex: index,
+        editIconNamePanelShow:true,
+        newActName:actObj.name
+      });
     } else {
       // 更换计时活动
       let lastFinishTarget = this.data.countTarget;
@@ -308,11 +322,50 @@ Page({
       wx.showToast({ title: txt, icon: 'none' });
       return;
     };
-    this.setData({
+    var that = this;
+    // 如果在删除状态中
+    if (that.data.isInEditing) {
+      that.setData({
+        isInEditing: false
+      });
+      return;
+    };
+    // 如果在修改活动名称状态中
+    if (that.data.isInEditingName) {
+      that.setData({
+        isInEditingName: false
+      });
+      return;
+    };
+    var actionSheet = ['修改活动名称', '删除活动']
+    if (this.data.lang == "en") {
+      actionSheet = ['Edit Activity Name', 'Delete Activity']
+    };
+
+    that.setData({
       remarkPanelShow: false,
-      isInEditing: !this.data.isInEditing,
       isSelectingPreferAct: false
     });
+
+    wx.showActionSheet({
+      itemList: actionSheet,
+      success: function (res) {
+        if (res.tapIndex == 0) {
+          that.setData({
+            isInEditingName: true
+          });
+        };
+        if (res.tapIndex == 1) {
+          that.setData({
+            isInEditing: true
+          });
+        };
+
+      },
+      fail: function (res) {
+      }
+    })
+
   },
   // 选择活动删除
   selectDeletedAct(index) {
@@ -584,6 +637,35 @@ Page({
         guidePageHidePre: false
       })
     }, 1500);
+  },
+
+  // 隐藏修改活动名称的面板
+  hideEditIconNamePanel() {
+    this.setData({
+      editIconNamePanelShow: false
+    });
+  },
+
+  // 绑定活动名称输入
+  bindNameInput(e) {
+    this.setData({
+      newActName: e.detail.value
+    })
+  },
+  // 提交输入的活动名字
+  submitActIconName() {
+    if (!this.data.newActName) {
+      var txt = this.data.lang == 'en' ? 'please input name' : '请输入活动名称';
+      wx.showToast({ title: txt, icon: 'none' });
+      return;
+    };
+   
+    var newActList = this.data.actList;
+    newActList[this.data.isEditNameIndex].name = this.data.newActName;
+    this.setData({
+      actList: newActList,
+      editIconNamePanelShow: false
+    })
   },
 
 

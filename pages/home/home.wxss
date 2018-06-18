@@ -155,6 +155,15 @@ page {
   color: #fff;
   font-size: 30rpx;
 }
+.content_block .act_item .to_edit_btn_mask  .tip_text{
+  position: absolute;
+  z-index: 2;
+  top: 40%;
+  left: 0;
+
+  width: 100%;
+  height: 80rpx;
+}
 .content_block .act_item .to_edit_btn_mask  .delete_icon{
   position: absolute;
   z-index: 2;
@@ -712,4 +721,82 @@ page {
   font-size: 70rpx;
   color: #fff;
   z-index: 2;
+}
+
+/* 修改活动名称 */
+.edit_icon_name_mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 750rpx;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s;
+}
+
+.edit_icon_name_panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 120rpx;
+  right: 0;
+  z-index: 12;
+  background-color: #f6f6f6;
+  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  transform: translateY(-100%);
+}
+
+.edit_icon_name_panel.show {
+  transform: translateY(0);
+}
+
+.edit_icon_name_panel .name_input_wrap {
+  /* width: 360rpx; */
+  width: 500rpx;
+  height: 60rpx;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 8rpx;
+  display: flex;
+}
+
+.edit_icon_name_panel .name_input_wrap .name_input {
+  flex: 1;
+  height: 60rpx;
+  font-size: 28rpx;
+  color: #333;
+  padding: 0 30rpx;
+}
+
+.edit_icon_name_panel .cancel_btn {
+  width: 146rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d8574;
+  font-size: 26rpx;
+  border: 2rpx solid #1d8574;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
+}
+
+.edit_icon_name_panel .submit_btn {
+  width: 150rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26rpx;
+  background-color: #1d8574;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
 }

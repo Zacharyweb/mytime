@@ -49,6 +49,15 @@
           </view>
         </view>
 
+
+        <!-- 编辑活动名称时的遮罩 -->
+        <view class="to_edit_btn_mask {{isInEditingName?'show':''}}">
+          <view class="mask_inner" style="background-color: {{pageMainColor}}"></view>
+          <view class="to_edit_btn_text">
+            <view class="tip_text">{{lang == 'en'? 'tap to edit':'点击修改名称'}}</view>
+          </view>
+        </view>
+
         <!-- 活动未待设为首选活动时状态时的遮罩 -->
         <view class="to_edit_btn_mask {{isSelectingPreferAct?'show':''}}">
           <view class="to_edit_btn_text">设为首选活动</view>
@@ -99,8 +108,9 @@
     <view class="act_edit_trigger" bindtap="deleteAct">
       <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" style="color: {{pageMainColor}}">删除活动</view>  -->
-      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing}}">{{lang == 'en'? 'delete item':'删除活动'}}</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing && !isInEditingName}}">{{lang == 'en'? 'delete item':'编辑活动'}}</view>
       <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditing}}">{{lang == 'en'? 'finish':'完成删除'}}</view>
+      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditingName}}">{{lang == 'en'? 'finish':'完成修改'}}</view>
       <!-- <view class="divide_line divide_line2"></view> -->
     </view>
 
@@ -114,7 +124,9 @@
   <view class="edit_remark_wrapper">
     <view class="edit_remark_panel {{editRemarkPanelShow?'show':''}}">
       <view class="panel_header">
-        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> {{lang == 'en'?'Remark' : '设置活动备注'}}<view class='panel_header_space'>-</view><text wx:if="{{countTarget != -1}}">{{actList[countTarget].name}}</text>
+        <image class="close_icon" src="../../static/img/left_arrow.png" bindtap="hideEditRemarkPanel"></image> {{lang == 'en'?'Remark' : '设置活动备注'}}
+        <view class='panel_header_space'>-</view>
+        <text wx:if="{{countTarget != -1}}">{{actList[countTarget].name}}</text>
       </view>
       <view class="panel_content">
         <!-- 编辑备注1的部分 -->
@@ -203,5 +215,16 @@
     <view class="guide_page_bg"></view>
     <view class="guide_page_text2">Where did</view>
     <view class="guide_page_text3">my time go !?</view>
+  </view>
+
+  <!-- 修改活动名称面板 -->
+  <view class="edit_icon_name_wrapper">
+    <view class="edit_icon_name_mask" wx:if="{{editIconNamePanelShow}}" bindtap="hideEditIconNamePanel"></view>
+    <view class="edit_icon_name_panel {{editIconNamePanelShow?'show':''}}">
+      <view class="name_input_wrap">
+        <input class="name_input" maxlength="12" type="text" placeholder="{{lang == 'en'?'Please input name':'请输入新的活动名称'}}" bindinput="bindNameInput" value="{{newActName}}" />
+      </view>
+      <view class="submit_btn" bindtap="submitActIconName" style="background-color: {{pageMainColor}}">{{lang == "en"?'OK':'确定'}}</view>
+    </view>
   </view>
 </view>
