@@ -52,7 +52,7 @@
 
         <!-- 编辑活动名称时的遮罩 -->
         <view class="to_edit_btn_mask {{isInEditingName?'show':''}}">
-          <view class="mask_inner" style="background-color: {{pageMainColor}}"></view>
+          <view class="mask_inner2" style="background-color: {{pageMainColor}}"></view>
           <view class="to_edit_btn_text">
             <view class="tip_text">{{lang == 'en'? 'tap to edit':'点击修改名称'}}</view>
           </view>
@@ -109,8 +109,8 @@
       <image class="act_icon_pic" src="../../static/img/bottom_icon2.png"></image>
       <!-- <view class="set_btn_text" style="color: {{pageMainColor}}">删除活动</view>  -->
       <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{!isInEditing && !isInEditingName}}">{{lang == 'en'? 'delete item':'编辑活动'}}</view>
-      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditing}}">{{lang == 'en'? 'finish':'完成删除'}}</view>
-      <view class="set_btn_text" style="color: {{pageMainColor}}" wx:if="{{isInEditingName}}">{{lang == 'en'? 'finish':'完成修改'}}</view>
+      <view class="set_btn_text" style="color: #222;" wx:if="{{isInEditing}}">{{lang == 'en'? 'finish':'完成删除'}}</view>
+      <view class="set_btn_text" style="color: #222;" wx:if="{{isInEditingName}}">{{lang == 'en'? 'finish':'完成修改'}}</view>
       <!-- <view class="divide_line divide_line2"></view> -->
     </view>
 

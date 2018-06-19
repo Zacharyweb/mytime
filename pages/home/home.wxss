@@ -140,6 +140,7 @@ page {
   transition: all 0.4s ease-in-out;
 }
 
+
 .content_block .act_item .to_edit_btn_mask.show {
   transform: rotate(0deg);
 }
@@ -151,6 +152,14 @@ page {
   bottom: 0;
   opacity: 0.8;
 }
+.content_block .act_item .to_edit_btn_mask .mask_inner2{
+  position: absolute;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 75rpx;
+  opacity: 0.8;
+}
 .content_block .act_item .to_edit_btn_mask .to_edit_btn_text {
   color: #fff;
   font-size: 30rpx;
@@ -158,9 +167,8 @@ page {
 .content_block .act_item .to_edit_btn_mask  .tip_text{
   position: absolute;
   z-index: 2;
-  top: 40%;
+  top: 30%;
   left: 0;
-
   width: 100%;
   height: 80rpx;
 }
