@@ -55,10 +55,10 @@ Page({
     guidePageShow: true,
 
     // 在修改活动名称的状态中
-    isInEditingName:false,
-    editIconNamePanelShow:false,
-    newActName:'',
-    isEditNameIndex:-1
+    isInEditingName: false,
+    editIconNamePanelShow: false,
+    newActName: '',
+    isEditNameIndex: -1
 
 
   },
@@ -251,8 +251,8 @@ Page({
 
       this.setData({
         isEditNameIndex: index,
-        editIconNamePanelShow:true,
-        newActName:actObj.name
+        editIconNamePanelShow: true,
+        newActName: actObj.name
       });
     } else {
       // 更换计时活动
@@ -659,13 +659,19 @@ Page({
       wx.showToast({ title: txt, icon: 'none' });
       return;
     };
-   
-    var newActList = this.data.actList;
-    newActList[this.data.isEditNameIndex].name = this.data.newActName;
-    this.setData({
-      actList: newActList,
-      editIconNamePanelShow: false
-    })
+
+    var edited = this.data.actList[this.data.isEditNameIndex];
+    edited.name = this.data.newActName;
+
+    userApi.changeActivityName({
+      activityId: edited.id,
+      name: this.data.newActName
+    }).then(() => {
+      this.setData({
+        actList: this.data.actList,
+        editIconNamePanelShow: false
+      })
+    });
   },
 
 

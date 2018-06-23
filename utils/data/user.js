@@ -43,6 +43,9 @@ module.exports = {
   deleteActivity: (id) => {
     return api.delete("/api/services/app/People/DeleteActivity", { activityId: id });
   },
+  changeActivityName: (data) => {
+    return api.post("/api/services/app/People/ChangeActivityName", null, data);
+  },
   getUsedActivities: () => {
     return api.get("/api/services/app/People/GetUsedActivities").then(res => {
       return res.result.map(item => {
